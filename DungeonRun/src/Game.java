@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Game {
 
 	public static void main(String[] args) {
+		//test commit from Michel
+		//test commit from Michel
 		Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
 		map.generateMap(4, 4);
