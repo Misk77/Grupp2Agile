@@ -11,6 +11,9 @@ public class Hero {
 	String herotype;
 	int treasure = 0;
 	boolean dead = false;
+	boolean player = true;
+	
+	int lastinitiativeroll = 0;
 	
 	boolean block = false;
 	
@@ -84,12 +87,12 @@ public class Hero {
 		return 1;
 	}
 	
-	public int initiativeRoll() {
+	public void initiativeRoll() {
 		int totalInitiative = 0;
 		for(int i = 0; i < initiative; i++) {
 			totalInitiative = totalInitiative + rand.nextInt(6)+1;
 		}
-		return totalInitiative;
+		this.lastinitiativeroll = totalInitiative;
 	}
 	
 	public boolean flee() {

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Room {
-	ArrayList<Monster> monsterlist = new ArrayList<Monster>();
+	ArrayList<Object> monsterlist = new ArrayList<Object>();
 	ArrayList<Treasure> treasurelist = new ArrayList<Treasure>();
 	int x; //x room coordinates
 	int y; //y rom coordinates

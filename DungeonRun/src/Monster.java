@@ -7,6 +7,8 @@ public class Monster {
 	int avoidance;
 	String monstertype;
 	boolean dead = false;
+	int lastinititativeroll = 0;
+	boolean player = false;
 	
 	Random rand;
 	
@@ -70,12 +72,12 @@ public class Monster {
 		return 1;
 	}
 	
-	public int initiativeRoll() {
+	public void initiativeRoll() {
 		int totalInitiative = 0;
 		for(int i = 0; i < initiative; i++) {
 			totalInitiative = totalInitiative + rand.nextInt(6)+1;
 		}
-		return totalInitiative;
+		this.lastinititativeroll = totalInitiative;
 	}
 	
 	public void resetMonsterHealth() {

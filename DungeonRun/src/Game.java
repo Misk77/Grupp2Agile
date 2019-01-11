@@ -8,6 +8,7 @@ public class Game {
 		Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
 		map.generateMap(4, 4);
+		Hero hero = new Hero("Rogue", "myfirstrogue");
 		for(Room room : map.room) {
 			System.out.println(room.x+" "+room.y);
 		}
@@ -15,14 +16,54 @@ public class Game {
 		System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		while(true) {
 			if(currentroom != null) {
+				currentroom.monsterlist.add(hero);
 				System.out.println("\nMONSTERS");
-				for(Monster monster : currentroom.monsterlist) {
+				for(Object object : currentroom.monsterlist) {
+					
+					//object is monster
+					try {
+					Monster monster = ((Monster) object);
+					if(monster.player)
+						System.out.println("is a player");
 					System.out.println(monster.monstertype);
+					monster.initiativeRoll();
+					System.out.println(monster.lastinititativeroll);
+					}
+					
+					//object is a hero
+					
+					catch(Exception monsterishero) {
+						Hero thehero = ((Hero) object);
+						System.out.println(thehero.name);
+						thehero.initiativeRoll();
+						System.out.println(thehero.lastinitiativeroll);
+					}
 				}
+				//sort list according to initiative roll results, highest first
+				int initsort = 0;
+				Object monsterorhero;
+				for(Object object: currentroom.monsterlist) {
+					try {
+						Monster monster = ((Monster) object);
+					}
+					catch(Exception monsterishero) {
+						Hero thehero = ((Hero) object);
+					}
+					for(Object object2: currentroom.monsterlist) {
+						try {
+							Monster monster2 = ((Monster) object2);
+						}
+						catch(Exception monsterishero) {
+							Hero thehero2 = ((Hero) object2);
+						}
+					}
+				}
+				
 				System.out.println("\nTREASURES");
 				for(Treasure treasure : currentroom.treasurelist) {
 					System.out.println(treasure.treasuretype);
 				}
+				
 			}
 			System.out.print("\n>> ");
 			String whereto = scanner.nextLine();
@@ -37,8 +78,7 @@ public class Game {
 					currentroom = map.goWest();
 				
 			}
-			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy
-					+"\nACTUAL ROOM "+currentroom.x+" "+currentroom.y);
+			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
 
 	}
