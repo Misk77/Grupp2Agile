@@ -42,9 +42,11 @@ public class GameMenuMain {
 				+ "\nSmall treasure chest\ntreasuretype: treasuretype\nValue: 20\n");
 	}
 	
-	public void intro() {
-		
-		System.out.println("1. You will need to pick yourself a character of your choice.\r\n" + 
+	public void iGame() {
+		/* Instruction about the game. */
+		System.out.println(
+				"\n" + 
+				"1. You will need to pick yourself a character of your choice.\r\n" + 
 				"2. Choose your size of the game, small, medium or large. It’s the map.\r\n" + 
 				"3. You will battle monsters.\r\n" + 
 				"4. Pick up Treasures!\r\n" + 
@@ -118,7 +120,7 @@ public class GameMenuMain {
 			case "H":
 				System.out.println("[H]-Read about the game..."); /* Aiham */
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
-				intro();
+				iGame();
 				break;
 			case "C":
 				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
