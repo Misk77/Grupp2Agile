@@ -52,21 +52,19 @@ public class Game {
 		}
 	}
 	
+	
 	public void sortMonsters(ArrayList<Monster> monsterlist) {
 		for(Monster monster : monsterlist) {
 			monster.initiativeRoll();
 		}
-		for(Monster monster : monsterlist) {
-			for(Monster monster2 : monsterlist) {
-				if(monster2.lastinititativeroll > monster.lastinititativeroll) {
-					Monster helpvar = monster;
-					monster = monster2;
-					monster2 = helpvar;
+		for(int i = 0; i<monsterlist.size(); i++) {
+			for(int e = 0; e<monsterlist.size(); e++) {
+				if(monsterlist.get(i).lastinititativeroll > monsterlist.get(e).lastinititativeroll) {
+					Monster helpvar = monsterlist.get(i);
+					monsterlist.set(i, monsterlist.get(e));
+					monsterlist.set(e, helpvar);
 				}
 			}
-		}
-		for(Monster monster : monsterlist) {
-			System.out.println(monster.lastinititativeroll);
 		}
 	}
 
