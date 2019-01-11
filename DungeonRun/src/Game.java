@@ -44,6 +44,7 @@ public class Game {
 							if(hero.flee()) {
 								System.out.println("You fled successfully!");
 								//actually put the player in the previous room here
+								currentroom = map.goLast();
 							}
 						}
 						else if(fleeorattack.equals("a")) {
