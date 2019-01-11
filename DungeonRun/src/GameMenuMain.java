@@ -16,7 +16,8 @@ public class GameMenuMain {
 	FileData fd = new FileData();
 	
 	public void ReadChar() {
-		System.out.println("\nKnight\n"
+		System.out.println("\n---------------------------Heros-----------------------");
+		System.out.println("Knight\n"
 				+ "initiative = 5\nherotype = herotype\nhealth = 9\nbaseattack = 6\navoidance = 4\n"
 				+ "Specialförmåga: Sköldblock. Riddaren blockerar alltid första attackenper strid med sin sköld \noch behöver därför varken undvika eller ta någon skada\n");
 		
@@ -28,13 +29,17 @@ public class GameMenuMain {
 		System.out.println("Rogue\n"
 				+ "initiative = 7\nherotype = herotype\nhealth = 5\nbaseattack = 5\navoidance = 7\n"
 				+ "Specialförmåga: Kritisk träff. Tjuven har 25% chans att göra dubbel skada varje gång tjuven attackerar\n");
-
+		System.out.println("--------------------------Monster----------------------");
 		System.out.println("Giant Spider\ninitiative = 7\nMonstertype = Monster\nhealth = 1\nbaseattack = 2\navoidance = 3\n");
 		System.out.println("Skeleton\ninitiative = 4\nMonstertype = Monster\nhealth = 2\nbaseattack = 3\navoidance = 3\n");
 		System.out.println("Orc\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
 		System.out.println("Troll\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
-		
-		System.out.println("hej");
+		System.out.println("--------------------------Treasure----------------------");
+		System.out.println("Loose coins\ntreasuretype: treasuretype\nValue: 2\n"
+				+ "\nSmall bag of coins\ntreasuretype: treasuretype\nValue: 6\n"
+				+ "\nGold jewellry\ntreasuretype: treasuretype\nValue: 10\n"
+				+ "\nPrecious stone\ntreasuretype: treasuretype\nValue: 14\n"
+				+ "\nSmall treasure chest\ntreasuretype: treasuretype\nValue: 20\n");
 	}
 
 	public GameMenuMain() {
