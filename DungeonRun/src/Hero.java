@@ -46,7 +46,7 @@ public class Hero {
 	}
 	
 	
-	public int attack() {
+	public int attackRoll() {
 		int attack = 0;
 		for(int i = 0; i < baseattack; i++) {
 			attack = attack + rand.nextInt(6)+1;
@@ -55,7 +55,7 @@ public class Hero {
 	}
 	
 	
-	public int defend() {
+	public int defendRoll() {
 		int avoid = 0;
 		for(int i =0; i < avoidance; i++) {
 			avoid = avoid + rand.nextInt(6)+1;
