@@ -92,7 +92,7 @@ public class GameMenuMain {
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				break;
 			case "R":
-				System.out.println("[R]-Read about the game, charachter...");
+				System.out.println("[R]-Read about the charachters...");
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				break;
 
