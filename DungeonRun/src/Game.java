@@ -33,6 +33,15 @@ public class Game {
 				for(Monster monster : currentroom.monsterlist) {
 					System.out.println(monster.lastinititativeroll);
 				}
+				hero.initiativeRoll();
+				for(Monster monster : currentroom.monsterlist) {
+					if(hero.lastinitiativeroll > monster.lastinititativeroll) {
+						//hero gets to play
+					}
+					if(!monster.dead) {
+						//monster attacks if not dead
+					}
+				}
 			}
 			System.out.print("\n>> ");
 			String whereto = scanner.nextLine();
