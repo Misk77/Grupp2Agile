@@ -45,7 +45,7 @@ public class GameMenuMain {
 	public void intro() {
 		
 		System.out.println("1. You will need to pick yourself a character of your choice.\r\n" + 
-				"2. Choose your size of the game, smal, medium or large. It’s the map.\r\n" + 
+				"2. Choose your size of the game, small, medium or large. It’s the map.\r\n" + 
 				"3. You will battle monsters.\r\n" + 
 				"4. Pick up Treasures!\r\n" + 
 				"5. The adventure is Game Over when the player leaves the map or gets defeated.\r\n" + 
