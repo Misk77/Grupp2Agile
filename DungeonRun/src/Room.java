@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Room {
-	ArrayList<Object> monsterlist = new ArrayList<Object>();
+	ArrayList<Monster> monsterlist = new ArrayList<Monster>();
 	ArrayList<Treasure> treasurelist = new ArrayList<Treasure>();
 	int x; //x room coordinates
 	int y; //y rom coordinates
@@ -13,11 +13,11 @@ public class Room {
 	public Room() {
 		rand = new Random();
 		//generating monster for room
-		if(rand.nextInt(100)+1 <= 20) {
+		if(rand.nextInt(100)+1 <= 100) {
 			Monster monster = new Monster("Giant spider");
 			this.monsterlist.add(monster);
 		}
-		if(rand.nextInt(100)+1 <= 15) {
+		if(rand.nextInt(100)+1 <= 100) {
 			Monster monster = new Monster("Skeleton");
 			this.monsterlist.add(monster);
 		}
