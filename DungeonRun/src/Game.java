@@ -31,6 +31,7 @@ public class Game {
 					}
 					
 					//object is a hero
+					
 					catch(Exception monsterishero) {
 						Hero thehero = ((Hero) object);
 						System.out.println(thehero.name);
