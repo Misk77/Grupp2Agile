@@ -34,37 +34,34 @@ public class Game {
 				for(Monster monster : currentroom.monsterlist) {
 					System.out.println(monster.lastinititativeroll);
 				}
+				
+				
 				hero.initiativeRoll();
 				boolean fighting = true;
 				int monstercount = 0;
+				int backstep = 0;
 				while(!currentroom.monsterlist.isEmpty() && fighting) {
 					hero.turntaken = false;
 					monstercount = 0;
 					for(int i = 0; i < currentroom.monsterlist.size(); i++) {
-						if(hero.lastinitiativeroll > currentroom.monsterlist.get(i).lastinititativeroll && !hero.turntaken) {
-							game.playerCombatAction(scanner, hero, currentroom.monsterlist);
-							if(currentroom.monsterlist.get(i).dead) {
-								System.out.println(currentroom.monsterlist.get(i).monstertype+" has been slain");
-								currentroom.monsterlist.remove(i);
-								if(currentroom.monsterlist.isEmpty()) {
-									System.out.println("All monsters in the room have been slain");
-									break;
-								}
+						backstep = 0;
+						if(hero.lastinitiativeroll > currentroom.monsterlist.get(i).lastinititativeroll && hero.turntaken == false) {
+							backstep = game.playerCombatAction(scanner, hero, currentroom.monsterlist);
+							if(currentroom.monsterlist.isEmpty()) {
+								System.out.println("All monsters in the room have been slain");
+								break;
 							}
 						}
 						game.monsterAttack(hero, currentroom.monsterlist.get(i));
 						monstercount++;
-						if(monstercount == currentroom.monsterlist.size()) {
-							game.playerCombatAction(scanner, hero, currentroom.monsterlist);
-							if(currentroom.monsterlist.get(i).dead) {
-								System.out.println(currentroom.monsterlist.get(i).monstertype+" has been slain");
-								currentroom.monsterlist.remove(i);
-								if(currentroom.monsterlist.isEmpty()) {
-									System.out.println("All monsters in the room have been slain");
-									break;
-								}
+						if(monstercount == currentroom.monsterlist.size() && hero.turntaken == false) {
+							 backstep =game.playerCombatAction(scanner, hero, currentroom.monsterlist);
+							if(currentroom.monsterlist.isEmpty()) {
+								System.out.println("All monsters in the room have been slain");
+								break;
 							}
 						}
+						//i = i-backstep;
 					}
 				}
 			}
@@ -115,7 +112,7 @@ public class Game {
 	
 	}
 	
-	public void playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist) {
+	public int playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist) {
 		System.out.println("Do you want to [F]lee or [A]ttack");
 		String fleeorattack = scanner.nextLine().toLowerCase();
 		hero.turntaken = true;
@@ -135,7 +132,7 @@ public class Game {
 			boolean exists = false;
 			boolean attacking = true;
 			while(attacking) {
-				System.out.println(">> ");
+				System.out.print(">> ");
 				String attacktarget = scanner.nextLine().toLowerCase();
 				String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
 				for(Monster monster : monsterlist) {
@@ -150,6 +147,11 @@ public class Game {
 							int herodmg = hero.dealDamage();
 							monsterlist.get(i).takeDamage(herodmg);
 							System.out.println("Player hit "+monsterlist.get(i).monstertype+" for "+herodmg);
+							if(monsterlist.get(i).dead) {
+								System.out.println(monsterlist.get(i).monstertype+" has been slain");
+								monsterlist.remove(i);
+								return 1;
+							}
 							break;
 						}
 						else {
@@ -166,6 +168,7 @@ public class Game {
 				}
 			}
 		}
+		return 0;
 	}
 	
 	public void monsterAttack(Hero hero, Monster monster) {
