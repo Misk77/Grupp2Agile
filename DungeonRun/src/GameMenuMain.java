@@ -34,7 +34,7 @@ public class GameMenuMain {
 		System.out.println("Orc\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
 		System.out.println("Troll\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
 		
-		System.out.println("");
+		System.out.println("hej");
 	}
 
 	public GameMenuMain() {
