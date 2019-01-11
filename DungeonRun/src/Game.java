@@ -27,6 +27,7 @@ public class Game {
 				for(Treasure treasure : currentroom.treasurelist) {
 					System.out.println(treasure.treasuretype);
 				}
+				collectTreasures(currentroom.treasurelist, hero);
 				
 				game.sortMonsters(currentroom.monsterlist);
 				for(Monster monster : currentroom.monsterlist) {
@@ -68,5 +69,20 @@ public class Game {
 			System.out.println(monster.lastinititativeroll);
 		}
 	}
+
+	public static void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+		int treasureSum = 0;
+		for(Treasure treasure : treasurelist) {
+			treasureSum += treasure.value;
+		}
+		treasurelist.clear();
+		if (treasureSum > 0) {
+			hero.treasure += treasureSum;
+			System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.");
+		}
+	
+	}
+
+
 }
 
