@@ -36,10 +36,35 @@ public class Game {
 				hero.initiativeRoll();
 				for(Monster monster : currentroom.monsterlist) {
 					if(hero.lastinitiativeroll > monster.lastinititativeroll) {
-						//hero gets to play
+						//player gets option to flee or attack
+						//need to check somehwere is player is dead
+						System.out.println("Do you want to [F]lee or [A]ttack");
+						String fleeorattack = scanner.nextLine().toLowerCase();
+						if(fleeorattack.equals("f")) {
+							if(hero.flee()) {
+								System.out.println("You fled successfully!");
+								//actually put the player in the previous room here
+							}
+						}
+						else if(fleeorattack.equals("a")) {
+							if(hero.attackRoll() >= monster.defendRoll()) {
+								int herodmg = hero.dealDamage();
+								monster.takeDamage(herodmg);
+								System.out.println("You hit the monster for "+herodmg);
+							}
+						}
+						//if flee, flee gets rolled and if true, success
+						//player gets to choose which monster to attack
+						//if attack, attackroll and monster defendrolls, if attackroll > defendroll, player hits the monster
 					}
 					if(!monster.dead) {
-						//monster attacks if not dead
+						if(monster.attackRoll() > hero.defendRoll()) {
+							hero.takeDamage(monster.dealDamage());
+							System.out.println("Monster hit the player!");
+						}
+						else {
+							System.out.println("Monster missed!");
+						}
 					}
 				}
 			}
