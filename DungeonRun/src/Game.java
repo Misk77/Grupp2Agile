@@ -33,7 +33,6 @@ public class Game {
 				for(Monster monster : currentroom.monsterlist) {
 					System.out.println(monster.lastinititativeroll);
 				}
-				
 			}
 			System.out.print("\n>> ");
 			String whereto = scanner.nextLine();
