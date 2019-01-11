@@ -105,7 +105,7 @@ public class GameMenuMain {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("[H]-Help..."); // Readfile eller metod där allt står om spelet, spelrunda
+			System.out.println("[H]-Read about the game..."); // Readfile eller metod där allt står om spelet, spelrunda
 			System.out.println("[C]-Choose your charachter.."); // tar in hero metoden
 			System.out.println("[L]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[S]-See highscore(treasure points) charachter.."); //
