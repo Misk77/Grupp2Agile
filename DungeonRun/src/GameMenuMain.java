@@ -77,7 +77,7 @@ public class GameMenuMain {
 
 			case "H":
 				System.out.println("[H]-Read about the game...");
-				helpmenu();// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
+				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				break;
 			case "C":
 				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
@@ -107,33 +107,7 @@ public class GameMenuMain {
 
 	}// END GameMenuMain
 
-	void helpmenu() {
-		System.out.println("|=================================|\r\n" + "|----------| HELP MENU |----------|\r\n"
-				+ "|=================================|\r\n" + "\r\n"
-				+ "Spelkaraktärer:\n Spelaren ska kunna välja bland tre olika karaktärer: (Riddaren, Trollkarlen och Tjuven) som särskiljer sig genom olika attributvärden samt varsin specialförmåga. Hur dessa värden påverkar striderna förklaras under Strid. Alla specialförmågor är passiva och behöver inte aktiveras av spelaren. \r\n"
-				+ "Riddaren Attribut Värde Initiativ 5 Tålighet 9 Attack 6 Smidighet 4 Specialförmåga: Sköldblock. Riddaren blockerar alltid första attacken per strid med sin sköld, och behöver därför varken undvika eller ta någon skada.  \r\n"
-				+ "Trollkarlen " + "\r\n"
-				+ "|====================== INFO ABOUT DUNGENS Project ========================|\r\n");
-		System.out.println("Current Player name:");
-		System.out.println("Here shows your player name");
-		// System.out.println(gMenuMain.name);
-		System.out.println("info about Dungeons (gMenuMain) class: ");
-		// System.out.println(gMenuMain.toString()); onödig kanske? info om klassen
-		System.out.println("Here shows info om  klassen ");
-
-		System.out.println();
-		System.out.println("\n|====================== INFO ABOUT YOUR SYSTEM ========================|\r\n");
-		System.out.printf("%-5s %5s %5s%n", "|====== Computer Name is: ", (System.getProperty("user.name")), "======|");
-		Properties p = System.getProperties();
-		Enumeration<Object> keys = p.keys();
-		while (keys.hasMoreElements()) {
-			String key = (String) keys.nextElement();
-			String value = (String) p.get(key);
-			System.out.println(key + ": " + value);
-		}
-
-	}
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		gMenuMain.getClass();
