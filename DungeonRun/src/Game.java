@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -63,6 +64,7 @@ public class Game {
 				for(Treasure treasure : currentroom.treasurelist) {
 					System.out.println(treasure.treasuretype);
 				}
+				collectTreasures(currentroom.treasurelist, hero);
 				
 			}
 			System.out.print("\n>> ");
@@ -81,6 +83,19 @@ public class Game {
 			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
 
+	}
+
+	public static void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+		int treasureSum = 0;
+		for(Treasure treasure : treasurelist) {
+			treasureSum += treasure.value;
+		}
+		treasurelist.clear();
+		if (treasureSum > 0) {
+			hero.treasure += treasureSum;
+			System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.");
+		}
+	
 	}
 
 }
