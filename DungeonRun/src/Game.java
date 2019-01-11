@@ -34,6 +34,7 @@ public class Game {
 					System.out.println(monster.lastinititativeroll);
 				}
 				hero.initiativeRoll();
+				int monstercount = 0;
 				for(Monster monster : currentroom.monsterlist) {
 					if(hero.lastinitiativeroll > monster.lastinititativeroll) {
 						//player gets option to flee or attack
@@ -64,6 +65,10 @@ public class Game {
 						}
 						else {
 							System.out.println("Monster missed!");
+						}
+						monstercount++;
+						if(monstercount == currentroom.monsterlist.size()) {
+							//player has lowest init roll and gets to play here
 						}
 					}
 				}
