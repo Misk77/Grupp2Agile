@@ -41,6 +41,19 @@ public class GameMenuMain {
 				+ "\nPrecious stone\ntreasuretype: treasuretype\nValue: 14\n"
 				+ "\nSmall treasure chest\ntreasuretype: treasuretype\nValue: 20\n");
 	}
+	
+	public void intro() {
+		
+		System.out.println("1. You will need to pick yourself a character of your choice.\r\n" + 
+				"2. Choose your size of the game, smal, medium or large. It’s the map.\r\n" + 
+				"3. You will battle monsters.\r\n" + 
+				"4. Pick up Treasures!\r\n" + 
+				"5. The adventure is Game Over when the player leaves the map or gets defeated.\r\n" + 
+				"6. The commands to the games movement is “In need to be written” North, South, East, West. \r\n" + 
+				"");
+	}
+	
+	
 
 	public GameMenuMain() {
 		// TODO Auto-generated constructor stub
@@ -103,8 +116,9 @@ public class GameMenuMain {
 			switch (input) {
 
 			case "H":
-				System.out.println("[H]-Read about the game...");
+				System.out.println("[H]-Read about the game..."); /* Aiham */
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
+				intro();
 				break;
 			case "C":
 				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
