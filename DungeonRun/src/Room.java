@@ -13,15 +13,15 @@ public class Room {
 	public Room() {
 		rand = new Random();
 		//generating monster for room
-		if(rand.nextInt(100)+1 <= 100) {
+		if(rand.nextInt(100)+1 <= 20) {
 			Monster monster = new Monster("Giant spider");
 			this.monsterlist.add(monster);
 		}
-		if(rand.nextInt(100)+1 <= 100) {
+		if(rand.nextInt(100)+1 <= 15) {
 			Monster monster = new Monster("Skeleton");
 			this.monsterlist.add(monster);
 		}
-		if(rand.nextInt(100)+1 <= 100) {
+		if(rand.nextInt(100)+1 <= 10) {
 			Monster monster = new Monster("Orc");
 			this.monsterlist.add(monster);
 		}
