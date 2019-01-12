@@ -74,6 +74,17 @@ public class Map {
 		return null;
 	}
 	
+	public Room goLast() {
+		for(Room room : this.room) {
+			if(room.x == lastroomvisitedx && room.y == lastroomvisitedy) {
+				this.currentroomx = lastroomvisitedx;
+				this.currentroomy = lastroomvisitedy;
+				return room;
+			}
+		}
+		return null;
+	}
+	
 	public Room startingPoint(String corner) {
 		if(corner.equals("NW")) {
 			this.currentroomx = 0;

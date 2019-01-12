@@ -12,6 +12,7 @@ public class Hero {
 	int treasure = 0;
 	boolean dead = false;
 	boolean player = true;
+	boolean turntaken = false;
 	
 	int lastinitiativeroll = 0;
 	
