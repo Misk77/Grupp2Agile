@@ -39,32 +39,35 @@ public class Game {
 				hero.initiativeRoll();
 				boolean fighting = true;
 				int monstercount = 0;
-				int backstep = 0;
-				while(!currentroom.monsterlist.isEmpty() && fighting) {
-					hero.turntaken = false;
+				fighting = true;
+				deadmonstercount = 0;
+				
+				while(fighting) {
 					monstercount = 0;
-					for(int i = 0; i < currentroom.monsterlist.size(); i++) {
-						backstep = 0;
-						if(hero.lastinitiativeroll > currentroom.monsterlist.get(i).lastinititativeroll && hero.turntaken == false) {
-							backstep = game.playerCombatAction(scanner, hero, currentroom.monsterlist);
-							if(currentroom.monsterlist.isEmpty()) {
-								System.out.println("All monsters in the room have been slain");
-								break;
-							}
-						}
-						game.monsterAttack(hero, currentroom.monsterlist.get(i));
+					deadmonstercount = 0;
+					hero.turntaken = false;
+					for(Monster monster : currentroom.monsterlist) {
 						monstercount++;
-						if(monstercount == currentroom.monsterlist.size() && hero.turntaken == false) {
-							 backstep =game.playerCombatAction(scanner, hero, currentroom.monsterlist);
-							if(currentroom.monsterlist.isEmpty()) {
-								System.out.println("All monsters in the room have been slain");
-								break;
-							}
+						if(hero.lastinitiativeroll > monster.lastinititativeroll && !hero.turntaken && !monster.dead) {
+							game.playerCombatAction(scanner, hero, currentroom.monsterlist);
 						}
-						//i = i-backstep;
+						if(!monster.dead) {
+							game.monsterAttack(hero, monster);
+						}
+						else {
+							deadmonstercount++;
+						}
+					}
+					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken) {
+						game.playerCombatAction(scanner, hero, currentroom.monsterlist);
+					}
+					if(deadmonstercount == currentroom.monsterlist.size()) {
+						System.out.println("All monsters in the room have been slain");
+						currentroom.monsterlist.clear();
+						fighting = false;
+						break;
 					}
 				}
-			}
 			System.out.println("What direction?");
 			System.out.print("\n>> ");
 			String whereto = scanner.nextLine();
@@ -78,6 +81,7 @@ public class Game {
 				else if(whereto.equals("west"))
 					currentroom = map.goWest();
 			
+			}
 			}
 			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
@@ -112,7 +116,7 @@ public class Game {
 	
 	}
 	
-	public int playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist) {
+	public void playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist) {
 		System.out.println("Do you want to [F]lee or [A]ttack");
 		String fleeorattack = scanner.nextLine().toLowerCase();
 		hero.turntaken = true;
@@ -120,6 +124,7 @@ public class Game {
 			if(hero.flee()) {
 				System.out.println("You fled successfully!");
 				//actually put the player in the previous room here
+				//and reset remaining monsters health
 			}
 		}
 		else if(fleeorattack.equals("a")) {
@@ -132,11 +137,12 @@ public class Game {
 			boolean exists = false;
 			boolean attacking = true;
 			while(attacking) {
+				exists = false;
 				System.out.print(">> ");
 				String attacktarget = scanner.nextLine().toLowerCase();
 				String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
 				for(Monster monster : monsterlist) {
-					if(monster.monstertype.equals(formattedattacktarget)) {
+					if(monster.monstertype.equals(formattedattacktarget) && !monster.dead) {
 						exists = true;
 					}
 				}
@@ -149,8 +155,6 @@ public class Game {
 							System.out.println("Player hit "+monsterlist.get(i).monstertype+" for "+herodmg);
 							if(monsterlist.get(i).dead) {
 								System.out.println(monsterlist.get(i).monstertype+" has been slain");
-								monsterlist.remove(i);
-								return 1;
 							}
 							break;
 						}
@@ -160,6 +164,7 @@ public class Game {
 						}
 					}
 				}
+				attacking = false;
 				break;
 				}
 				else {
@@ -168,7 +173,6 @@ public class Game {
 				}
 			}
 		}
-		return 0;
 	}
 	
 	public void monsterAttack(Hero hero, Monster monster) {
@@ -186,5 +190,9 @@ public class Game {
 	}
 
 
+	public void test() {
+		
+	}
+	
 }
 
