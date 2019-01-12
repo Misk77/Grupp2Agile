@@ -96,7 +96,7 @@ public class GameMenuMain {
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
-		
+
 		while (running) {
 			System.out.println();
 			System.out
