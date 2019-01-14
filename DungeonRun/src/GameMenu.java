@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class GameMenuMain {
+public class GameMenu {
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
@@ -12,10 +12,10 @@ public class GameMenuMain {
 	// System objects
 
 	// Scanner scanner = new Scanner(System.in);
-	static GameMenuMain gMenuMain = new GameMenuMain();
+	static GameMenu gMenuMain = new GameMenu();
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
 	FileData fd = new FileData();
-	Hero hero = new Hero(herotype, name);
+	//Hero hero = new Hero(herotype, name);
 
 	public void ReadChar() {
 		System.out.println("\n---------------------------Heros-----------------------");

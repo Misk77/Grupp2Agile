@@ -5,7 +5,7 @@ public class Game {
 
 	public static void main(String[] args) {
 
-		GameMenuMain gMenuMain = new GameMenuMain();
+		GameMenu gMenuMain = new GameMenu();
 		gMenuMain.GameMenuFirst();
 
 		int deadmonstercount = 0;

@@ -11,7 +11,7 @@ public class SaveLoad<GameMenuMain> {
 		// main metoden d�r man skriver in till texten och som h�mtar metoden i
 		// writefile classen
 		Scanner sc = new Scanner(System.in);// This will be changed so pnly one object of scanner are implementet,maybye
-											// should be from GameMenuMain
+											// should be from GameMenu
 
 		String filepath = "DungenSaves.txt";
 
