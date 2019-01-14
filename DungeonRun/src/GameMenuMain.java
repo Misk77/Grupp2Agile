@@ -96,7 +96,12 @@ public class GameMenuMain {
 
 		}
 	}
-	
+	public String playerName(String name) {
+		System.out.println("Welcome player: \n Please enter your name: ");
+		name=scanner.next();
+		return name;
+		
+	}
 		public void Gamestart() {
 
 		boolean running = true;
@@ -113,7 +118,7 @@ public class GameMenuMain {
 				e.printStackTrace();
 			}
 			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet,														// spelrunda
-			System.out.println("[Choose]-Choose your charachter.."); // tar in hero metoden
+			System.out.println("[start]-Choose your charachter.."); // tar in hero metoden
 			System.out.println("[Load]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[See]-See highscore(treasure points) charachter.."); //
 			System.out.println("[Read]-Read about the charachter..");// om spelkaraktärer
@@ -134,13 +139,8 @@ public class GameMenuMain {
 				}
 				iGame();
 				break;
-			case "Start":
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}
+			case "START":
+				 playerName(name);
 				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
 
 				break;
