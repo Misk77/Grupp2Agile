@@ -3,17 +3,19 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class GameMenuMain {
+public class GameMenu {
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
+	String herotype;
 
 	// System objects
 
 	// Scanner scanner = new Scanner(System.in);
-	static GameMenuMain gMenuMain = new GameMenuMain();
+	static GameMenu gMenuMain = new GameMenu();
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
 	FileData fd = new FileData();
+	//Hero hero = new Hero(herotype, name);
 
 	public void ReadChar() {
 		System.out.println("\n---------------------------Heros-----------------------");
@@ -34,7 +36,7 @@ public class GameMenuMain {
 		System.out.println(
 				"Skeleton\ninitiative = 4\nMonstertype = Monster\nhealth = 2\nbaseattack = 3\navoidance = 3\n");
 		System.out.println("Orc\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
-		System.out.println("Troll\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
+		System.out.println("Troll\ninitiative = 2\nMonstertype = Monster\nhealth = 4\nbaseattack = 7\navoidance = 2\n");
 		System.out.println("--------------------------Treasure----------------------");
 		System.out.println("Loose coins\ntreasuretype: treasuretype\nValue: 2\n"
 				+ "\nSmall bag of coins\ntreasuretype: treasuretype\nValue: 6\n"
@@ -53,14 +55,14 @@ public class GameMenuMain {
 				+ "");
 	}
 
-	public GameMenuMain() {
+	public void GameMenuFirst() {
 
-		JOptionPane.showMessageDialog(null,
-				"Demo No:1\nWelcome to the Dungeon Run!" + "\nKlick [OK] to start the console program.", input, 0,
-				null);
+		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
+		System.out.println("[L]oad Game \n");
+		System.out.println("[S]tart Game \n");
+		System.out.println("[E]xit\n");
+		// System.out.println("[M]eny\n");
 
-		save.saveToDisk();
-		System.out.println("Enter the Dungeon now....\n[Y]es or [N]o");
 		input = scanner.next();
 
 		try {
@@ -69,8 +71,9 @@ public class GameMenuMain {
 			System.out.printf("Badness...", e2);
 		}
 
-		if (input.equalsIgnoreCase("Y")) {
+		if (input.equalsIgnoreCase("S")) {
 			System.out.println("Du tryckte Y: Adventures Begins...");
+			Gamestart();
 
 			try {
 				Thread.sleep(300);
@@ -84,14 +87,22 @@ public class GameMenuMain {
 				System.out.printf("Badness", e2);
 			}
 
-		} else if (input.equalsIgnoreCase("N")) {
+		} else if (input.equalsIgnoreCase("E")) {
 			System.out.println("To bad your leaving....");
 			System.out.println("Come back then you dare to enter the dungeons.....");
 			System.exit(0);
 
 		}
+	}
 
-		// Game start
+	public String playerName(String name) {
+		System.out.println("Welcome player: \n Please enter your name: ");
+		name = scanner.next();
+		return name;
+
+	}
+
+	public void Gamestart() {
 
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
@@ -99,17 +110,16 @@ public class GameMenuMain {
 
 		while (running) {
 			System.out.println();
-			System.out
-					.println("============================== Lets the Game begin! ===================================");
+			System.out.println("============================== GAME MENU ===================================");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
 			}
-			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet,
+			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet, //
 																	// spelrunda
-			System.out.println("[Choose]-Choose your charachter.."); // tar in hero metoden
+			System.out.println("[start]-Choose your charachter.."); // tar in hero metoden
 			System.out.println("[Load]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[See]-See highscore(treasure points) charachter.."); //
 			System.out.println("[Read]-Read about the charachter..");// om spelkaraktärer
@@ -130,14 +140,9 @@ public class GameMenuMain {
 				}
 				iGame();
 				break;
-			case "CHOOSE":
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}
-				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
+			case "START":
+				playerName(name);
+				//System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
 
 				break;
 			case "LOAD":
@@ -194,19 +199,6 @@ public class GameMenuMain {
 
 		}
 
-	}// END GameMenuMain
-
-	public static void main(String[] args) {
-
-		gMenuMain.getClass();
-
-	}// End Main
+	}// END GameMenu
 
 }
-
-/*
- * ///////////////////////////////// Discussion:
- * \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Should we have Thread.sleep(300); then
- * we print out, see not all text comes at the same time..easier and coolare to
- * read.
- */
