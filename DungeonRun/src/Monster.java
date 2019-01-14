@@ -81,22 +81,21 @@ public class Monster {
 	}
 	
 	public void resetMonsterHealth() {
-		//does dead monsters get their health reset when the player flees a room?
 		if(monstertype.equals("Giant spider")) {
-			health = 1;
-			dead = false;
+			if(!this.dead)
+				health = 1;
 		}
 		else if(monstertype.equals("Skeleton")) {
-			health = 2;
-			dead = false;
+			if(!this.dead)
+				health = 2;
 		}
 		else if (monstertype.equals("Orc")) {
-			health = 3;
-			dead = false;
+			if(!this.dead)
+				health = 3;
 		}
 		else if(monstertype.equals("Troll")) {
-			health = 4;
-			dead = false;
+			if(!this.dead)
+				health = 4;
 		}
 	}
 }

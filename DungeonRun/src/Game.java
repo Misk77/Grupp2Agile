@@ -9,7 +9,7 @@ public class Game {
 		int deadmonstercount = 0;
 		Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
-		map.generateMap(4, 4);
+		map.generateMap(10, 10);
 		Game game = new Game();
 		Hero hero = new Hero("Rogue", "myfirstrogue");
 		for(Room room : map.room) {
@@ -32,7 +32,7 @@ public class Game {
 				
 				game.sortMonsters(currentroom.monsterlist);
 				for(Monster monster : currentroom.monsterlist) {
-					System.out.println(monster.lastinititativeroll);
+					System.out.println(monster.lastinititativeroll);//this is the shit that gets printed
 				}
 				
 				
@@ -42,14 +42,25 @@ public class Game {
 				fighting = true;
 				deadmonstercount = 0;
 				
-				while(fighting) {
+				while(fighting && !currentroom.monsterlist.isEmpty()) {
 					monstercount = 0;
 					deadmonstercount = 0;
 					hero.turntaken = false;
 					for(Monster monster : currentroom.monsterlist) {
+						System.out.println("HERO HEALTH "+hero.health);
+						if(hero.dead) {
+							System.out.println("YOU DIED");
+							//ENDMENU TIME
+							fighting = false;
+							break;
+							
+						}
 						monstercount++;
 						if(hero.lastinitiativeroll > monster.lastinititativeroll && !hero.turntaken && !monster.dead) {
-							game.playerCombatAction(scanner, hero, currentroom.monsterlist);
+							if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
+								fighting = false;
+								break;
+							}
 						}
 						if(!monster.dead) {
 							game.monsterAttack(hero, monster);
@@ -58,8 +69,11 @@ public class Game {
 							deadmonstercount++;
 						}
 					}
-					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken) {
-						game.playerCombatAction(scanner, hero, currentroom.monsterlist);
+					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken && deadmonstercount != currentroom.monsterlist.size()) {
+						if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
+							fighting = false;
+							break;
+						}
 					}
 					if(deadmonstercount == currentroom.monsterlist.size()) {
 						System.out.println("All monsters in the room have been slain");
@@ -68,6 +82,8 @@ public class Game {
 						break;
 					}
 				}
+				fighting = true;
+			}
 			System.out.println("What direction?");
 			System.out.print("\n>> ");
 			String whereto = scanner.nextLine();
@@ -81,7 +97,6 @@ public class Game {
 				else if(whereto.equals("west"))
 					currentroom = map.goWest();
 			
-			}
 			}
 			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
@@ -116,15 +131,22 @@ public class Game {
 	
 	}
 	
-	public void playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist) {
+	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
 		System.out.println("Do you want to [F]lee or [A]ttack");
 		String fleeorattack = scanner.nextLine().toLowerCase();
 		hero.turntaken = true;
 		if(fleeorattack.equals("f")) {
 			if(hero.flee()) {
 				System.out.println("You fled successfully!");
-				//actually put the player in the previous room here
-				//and reset remaining monsters health
+				for(Monster monster : monsterlist) {
+					monster.resetMonsterHealth();
+				}
+				map.goLast();
+				System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+				return "break";
+			}
+			else {
+				System.out.println("Your attempt to flee failed");
 			}
 		}
 		else if(fleeorattack.equals("a")) {
@@ -173,6 +195,7 @@ public class Game {
 				}
 			}
 		}
+		return "";
 	}
 	
 	public void monsterAttack(Hero hero, Monster monster) {
