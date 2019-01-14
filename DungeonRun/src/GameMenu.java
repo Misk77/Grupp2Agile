@@ -142,7 +142,7 @@ public class GameMenu {
 				break;
 			case "START":
 				playerName(name);
-				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
+				//System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
 
 				break;
 			case "LOAD":
