@@ -53,14 +53,18 @@ public class GameMenuMain {
 				+ "");
 	}
 
-	public void GameMenu() {
+	public void GameMenuFirst() {
 
 		
-		System.out.println("Demo No:1\nWelcome to the Dungeon Run!" + "\nKlick [OK] to start the console program.");
+		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
+		System.out.println("[L]oad Game \n");
+		System.out.println("[S]tart Game \n");
+		System.out.println("[E]xit\n");
+		//System.out.println("[M]eny\n");
 
-		String savedata = null;
-		save.saveToDisk(savedata);
-		System.out.println("Enter the Dungeon now....\n[Y]es or [N]o");
+		
+		
+		
 		input = scanner.next();
 
 		try {
@@ -69,8 +73,9 @@ public class GameMenuMain {
 			System.out.printf("Badness...", e2);
 		}
 
-		if (input.equalsIgnoreCase("Y")) {
+		if (input.equalsIgnoreCase("S")) {
 			System.out.println("Du tryckte Y: Adventures Begins...");
+			Gamestart();
 
 			try {
 				Thread.sleep(300);
@@ -84,14 +89,15 @@ public class GameMenuMain {
 				System.out.printf("Badness", e2);
 			}
 
-		} else if (input.equalsIgnoreCase("N")) {
+		} else if (input.equalsIgnoreCase("E")) {
 			System.out.println("To bad your leaving....");
 			System.out.println("Come back then you dare to enter the dungeons.....");
 			System.exit(0);
 
 		}
-
-		// Game start
+	}
+	
+		public void Gamestart() {
 
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
@@ -193,7 +199,7 @@ public class GameMenuMain {
 			}
 
 		}
-
+		
 	}// END GameMenu
 
 	
