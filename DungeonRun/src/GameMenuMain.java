@@ -105,16 +105,14 @@ public class GameMenuMain {
 
 		while (running) {
 			System.out.println();
-			System.out
-					.println("============================== Lets the Game begin! ===================================");
+			System.out.println("============================== GAME MENU ===================================");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
 			}
-			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet,
-																	// spelrunda
+			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet,														// spelrunda
 			System.out.println("[Choose]-Choose your charachter.."); // tar in hero metoden
 			System.out.println("[Load]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[See]-See highscore(treasure points) charachter.."); //
