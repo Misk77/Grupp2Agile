@@ -53,11 +53,10 @@ public class GameMenuMain {
 				+ "");
 	}
 
-	public GameMenuMain() {
+	public void GameMenu() {
 
-		JOptionPane.showMessageDialog(null,
-				"Demo No:1\nWelcome to the Dungeon Run!" + "\nKlick [OK] to start the console program.", input, 0,
-				null);
+		
+		System.out.println("Demo No:1\nWelcome to the Dungeon Run!" + "\nKlick [OK] to start the console program.");
 
 		save.saveToDisk();
 		System.out.println("Enter the Dungeon now....\n[Y]es or [N]o");
@@ -130,7 +129,7 @@ public class GameMenuMain {
 				}
 				iGame();
 				break;
-			case "CHOOSE":
+			case "Start":
 				try {
 					Thread.sleep(300);
 				} catch (InterruptedException e) {
@@ -194,19 +193,8 @@ public class GameMenuMain {
 
 		}
 
-	}// END GameMenuMain
+	}// END GameMenu
 
-	public static void main(String[] args) {
-
-		gMenuMain.getClass();
-
-	}// End Main
-
+	
 }
 
-/*
- * ///////////////////////////////// Discussion:
- * \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ Should we have Thread.sleep(300); then
- * we print out, see not all text comes at the same time..easier and coolare to
- * read.
- */
