@@ -13,7 +13,7 @@ public class SaveLoad<GameMenuMain> {
 		Scanner sc = new Scanner(System.in);// This will be changed so pnly one object of scanner are implementet,maybye
 											// should be from GameMenuMain
 
-		String filepath = "C:\\\\Users\\\\miche\\\\Desktop\\\\DungenSaves.txt";
+		String filepath = "DungenSaves.txt";
 
 		WriteFile wf = new WriteFile(filepath, true);
 		// Just now its saves player name direct, maybe or also this save then the hero
