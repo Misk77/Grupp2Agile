@@ -7,6 +7,7 @@ public class GameMenuMain {
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
+	String herotype;
 
 	// System objects
 
@@ -14,6 +15,7 @@ public class GameMenuMain {
 	static GameMenuMain gMenuMain = new GameMenuMain();
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
 	FileData fd = new FileData();
+	Hero hero = new Hero(herotype, name);
 
 	public void ReadChar() {
 		System.out.println("\n---------------------------Heros-----------------------");
@@ -55,16 +57,12 @@ public class GameMenuMain {
 
 	public void GameMenuFirst() {
 
-		
 		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
 		System.out.println("[L]oad Game \n");
 		System.out.println("[S]tart Game \n");
 		System.out.println("[E]xit\n");
-		//System.out.println("[M]eny\n");
+		// System.out.println("[M]eny\n");
 
-		
-		
-		
 		input = scanner.next();
 
 		try {
@@ -96,13 +94,15 @@ public class GameMenuMain {
 
 		}
 	}
+
 	public String playerName(String name) {
 		System.out.println("Welcome player: \n Please enter your name: ");
-		name=scanner.next();
+		name = scanner.next();
 		return name;
-		
+
 	}
-		public void Gamestart() {
+
+	public void Gamestart() {
 
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
@@ -117,7 +117,8 @@ public class GameMenuMain {
 
 				e.printStackTrace();
 			}
-			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet,														// spelrunda
+			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet, //
+																	// spelrunda
 			System.out.println("[start]-Choose your charachter.."); // tar in hero metoden
 			System.out.println("[Load]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[See]-See highscore(treasure points) charachter.."); //
@@ -140,7 +141,7 @@ public class GameMenuMain {
 				iGame();
 				break;
 			case "START":
-				 playerName(name);
+				playerName(name);
 				System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
 
 				break;
@@ -197,9 +198,7 @@ public class GameMenuMain {
 			}
 
 		}
-		
+
 	}// END GameMenu
 
-	
 }
-
