@@ -36,7 +36,7 @@ public class GameMenu {
 		System.out.println(
 				"Skeleton\ninitiative = 4\nMonstertype = Monster\nhealth = 2\nbaseattack = 3\navoidance = 3\n");
 		System.out.println("Orc\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
-		System.out.println("Troll\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
+		System.out.println("Troll\ninitiative = 2\nMonstertype = Monster\nhealth = 4\nbaseattack = 7\navoidance = 2\n");
 		System.out.println("--------------------------Treasure----------------------");
 		System.out.println("Loose coins\ntreasuretype: treasuretype\nValue: 2\n"
 				+ "\nSmall bag of coins\ntreasuretype: treasuretype\nValue: 6\n"
