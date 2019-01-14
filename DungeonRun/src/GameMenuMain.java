@@ -58,7 +58,8 @@ public class GameMenuMain {
 		
 		System.out.println("Demo No:1\nWelcome to the Dungeon Run!" + "\nKlick [OK] to start the console program.");
 
-		save.saveToDisk();
+		String savedata = null;
+		save.saveToDisk(savedata);
 		System.out.println("Enter the Dungeon now....\n[Y]es or [N]o");
 		input = scanner.next();
 
