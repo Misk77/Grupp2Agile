@@ -191,4 +191,14 @@ public class Game {
 
 	}
 
+	public void endSequence(Hero hero) {
+		if (!hero.dead) {
+			//SaveLoad.saveToDisk(hero);
+			System.out.println("Congratulations, " + hero.name + "! You have fought bravely and escaped the dungeon alive!");
+		} else {
+			System.out.println("Everything comes to an end, and this is the end for you, " + hero.name + ". The total amount of your gathered treasures is : " + hero.treasure + " coins.");
+			//SaveLoad.saveToDisk(hero);
+		}
+	}
+	
 }
