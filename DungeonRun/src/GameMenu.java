@@ -8,6 +8,7 @@ public class GameMenu {
 	String name;
 	String input;
 	String herotype;
+	Object[] objectList = new Object[2];
 
 	// System objects
 
@@ -15,8 +16,54 @@ public class GameMenu {
 	static GameMenu gMenuMain = new GameMenu();
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
 	FileData fd = new FileData();
-	//Hero hero = new Hero(herotype, name);
+	
 
+	
+	public void maping() {
+		Map map = new Map();
+		System.out.println("Press 1 for map: 4x4\nPress 2 for map: 5x5\nPress 3 for map: 8x8");
+		int operator = scanner.nextInt();
+		switch(operator) {
+		case 1:
+			map.generateMap(4, 4);
+			break;
+		case 2:
+			map.generateMap(5, 5);
+			break;
+		case 3:
+			map.generateMap(8, 8);
+			break;
+		default:
+			System.out.println("Something went wrong try again");
+			maping();
+		}
+		objectList[0] = map;
+	}
+	
+	public void HeroChoice() {
+		
+        System.out.println("Press 1 for Knight, 2 for Rogue, 3 for Wizard");
+        int operator = scanner.nextInt();
+        String type = "";
+        switch (operator) {
+        case 1:
+            type = "Knight";
+            break;
+        case 2:
+        	type = "Rogue";
+            break;
+        case 3:
+        	type = "Wizard";
+            break;
+        default:
+            System.out.println("Something went wrong, please try again!");
+            HeroChoice();
+        }
+        Hero hero = new Hero(type, name);
+        objectList[1] = hero;
+        
+    }
+	
 	public void ReadChar() {
 		System.out.println("\n---------------------------Heros-----------------------");
 		System.out.println("Knight\n"
@@ -88,22 +135,21 @@ public class GameMenu {
 			}
 
 		} else if (input.equalsIgnoreCase("E")) {
-			System.out.println("To bad your leaving....");
-			System.out.println("Come back then you dare to enter the dungeons.....");
+			System.out.println("Too bad you're leaving....");
+			System.out.println("Come back when you dare to enter the dungeons.....");
 			System.exit(0);
 
 		}
 	}
 
-	public String playerName(String name) {
+	public String playerName() {
 		System.out.println("Welcome player: \n Please enter your name: ");
 		name = scanner.next();
 		return name;
 
 	}
 
-	public void Gamestart() {
-
+	public Object[] Gamestart() {
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
@@ -140,11 +186,12 @@ public class GameMenu {
 				}
 				iGame();
 				break;
-			case "START":
-				playerName(name);
+			case "START": // Returnera en object list för map och hero för att köra spelet.
+				playerName();
+				maping();
+				HeroChoice();
 				//System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
-
-				break;
+				
 			case "LOAD":
 				try {
 					Thread.sleep(300);
@@ -196,9 +243,9 @@ public class GameMenu {
 				break;
 
 			}
-
+			
 		}
-
+		return objectList;
 	}// END GameMenu
 
 }
