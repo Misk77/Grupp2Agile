@@ -21,14 +21,16 @@ public class Game {
 		map.generateExit();
 		map.clearCurrentRoom();
 		//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+		boolean firstround = true;
 		while(true) {
 			if(currentroom == null) {
 				System.out.println("You tried to walk through a wall, unsuccessfully");
 			}
 			else {
-				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit) {
+				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit && !firstround) {
 					System.out.println("There is nothing here...");
 				}
+				firstround = false;
 				if(currentroom.exit) {
 					System.out.println("You have found the exit, do you want to leave, [Y]es [N]o");
 					String yesorno = scanner.nextLine().toLowerCase();
@@ -48,6 +50,7 @@ public class Game {
 				if(!currentroom.monsterlist.isEmpty()) {
 					System.out.println("You encountered these monsters in the room");
 					for(Monster monster : currentroom.monsterlist) {
+						if(!monster.dead)
 						System.out.println(monster.monstertype);
 					}
 				}
