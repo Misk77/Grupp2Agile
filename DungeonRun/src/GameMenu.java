@@ -70,29 +70,29 @@ public class GameMenu {
 		System.out.println();
 		System.out.println("\n---------------------------Heros-----------------------");
 		System.out.println("Knight\n"
-				+ "initiative = 5\nherotype = herotype\nhealth = 9\nbaseattack = 6\navoidance = 4\n"
+				+ "Initiative = 5\nHerotype = Herotype\nHealth = 9\nBaseattack = 6\nAvoidance = 4\n"
 				+ "Specialförmåga: Sköldblock. Riddaren blockerar alltid första attackenper strid med sin sköld \noch behöver därför varken undvika eller ta någon skada\n");
 
 		System.out.println("Wizard\n"
-				+ "initiative = 6\nherotype = herotype\nhealth = 4\nbaseattack = 9\navoidance = 5\n"
+				+ "Initiative = 6\nHerotype = Herotype\nHealth = 4\nBaseattack = 9\nAvoidance = 5\n"
 				+ "Specialförmåga: Ljussken. Trollkarlen kan göra monster blinda och hardärför alltid 80% chans att fly från strider\n");
 
 		System.out.println("Rogue\n"
-				+ "initiative = 7\nherotype = herotype\nhealth = 5\nbaseattack = 5\navoidance = 7\n"
+				+ "Initiative = 7\nHerotype = Herotype\nHealth = 5\nBaseattack = 5\nAvoidance = 7\n"
 				+ "Specialförmåga: Kritisk träff. Tjuven har 25% chans att göra dubbel skada varje gång tjuven attackerar\n");
 		System.out.println("--------------------------Monster----------------------");
 		System.out.println(
-				"Giant Spider\ninitiative = 7\nMonstertype = Monster\nhealth = 1\nbaseattack = 2\navoidance = 3\n");
+				"Giant Spider\nInitiative = 7\nMonstertype = Monster\nHealth = 1\nBaseattack = 2\nAvoidance = 3\n");
 		System.out.println(
-				"Skeleton\ninitiative = 4\nMonstertype = Monster\nhealth = 2\nbaseattack = 3\navoidance = 3\n");
-		System.out.println("Orc\ninitiative = 6\nMonstertype = Monster\nhealth = 3\nbaseattack = 4\navoidance = 4\n");
-		System.out.println("Troll\ninitiative = 2\nMonstertype = Monster\nhealth = 4\nbaseattack = 7\navoidance = 2\n");
+				"Skeleton\nInitiative = 4\nMonstertype = Monster\nHealth = 2\nBaseattack = 3\nAvoidance = 3\n");
+		System.out.println("Orc\nInitiative = 6\nMonstertype = Monster\nHealth = 3\nBaseattack = 4\nAvoidance = 4\n");
+		System.out.println("Troll\nInitiative = 2\nMonstertype = Monster\nHealth = 4\nBaseattack = 7\nAvoidance = 2\n");
 		System.out.println("--------------------------Treasure----------------------");
-		System.out.println("Loose coins\ntreasuretype: treasuretype\nValue: 2\n"
-				+ "\nSmall bag of coins\ntreasuretype: treasuretype\nValue: 6\n"
-				+ "\nGold jewellry\ntreasuretype: treasuretype\nValue: 10\n"
-				+ "\nPrecious stone\ntreasuretype: treasuretype\nValue: 14\n"
-				+ "\nSmall treasure chest\ntreasuretype: treasuretype\nValue: 20\n");
+		System.out.println("Loose coins\nTreasuretype: Treasuretype\nValue: 2\n"
+				+ "\nSmall bag of coins\nTreasuretype: Treasuretype\nValue: 6\n"
+				+ "\nGold jewellry\nTreasuretype: Treasuretype\nValue: 10\n"
+				+ "\nPrecious stone\nTreasuretype: Treasuretype\nValue: 14\n"
+				+ "\nSmall treasure chest\nTreasuretype: Treasuretype\nValue: 20\n");
 		 Gamestart();
 	}
 
@@ -101,11 +101,11 @@ public class GameMenu {
 		System.out.println();
 		System.out.println("============================== Instrucion of the game ===================================");
 		System.out.println();
-		System.out.println("\n" + "1. You will need to pick yourself a character of your choice.\r\n"
-				+ "2. Choose your size of the game, small, medium or large. It’s the map.\r\n"
+		System.out.println("\n" + "1. You need to pick a character.\r\n"
+				+ "2. Choose the gamesize: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
 				+ "3. You will battle monsters.\r\n" + "4. Pick up Treasures!\r\n"
-				+ "5. The adventure is Game Over when the player leaves the map or gets defeated.\r\n"
-				+ "6. The commands to the games movement is “In need to be written” North, South, East, West. \r\n"
+				+ "5. Game Over when the player leaves the map or gets defeated.\r\n"
+				+ "6. The game command movement is: North, South, East, West. \r\n"
 				+ "");
 		 Gamestart();
 	}
