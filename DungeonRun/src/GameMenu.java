@@ -172,7 +172,7 @@ public class GameMenu {
 	}
 
 	public Object[] Gamestart() {
-		boolean running = true;
+		//boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
 
@@ -191,6 +191,7 @@ public class GameMenu {
 			System.out.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
 			System.out.println("[S]ee  - See highscore (treasure points) for character.."); //
 			System.out.println("[R]ead - Read about the characters..");// om spelkaraktärer
+			System.out.println("[E]XIT/SAVE\n");// THen exit automatic save the game
 			input = scanner.next();
 			// Valen i menu
 
@@ -215,26 +216,39 @@ public class GameMenu {
 			// klar....Disk med Daniel senare
 
 			case "L":
-
 				// Alternativ...1. read from file method in saveLoad
 				// 2. göra metod med allt
 				System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your character..");
 				 Gamestart();
 				break;
 			case "S":
-
 				System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..");
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				 Gamestart();
 				break;
 			case "R":
 				System.out.println();
-
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				ReadChar();
 				System.out.println();
 				break;
+			case "E":
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
 
+					e.printStackTrace();
+				}
+				System.out.println("You now exit the game....");
+				try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
+
+					e.printStackTrace();
+				}
+				System.out.println("Data will be automatic saved.....");
+				System.exit(0);
+				System.out.println();
 			default:
 				try {
 					Thread.sleep(300);
