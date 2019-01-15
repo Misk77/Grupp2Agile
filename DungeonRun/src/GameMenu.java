@@ -93,6 +93,7 @@ public class GameMenu {
 				+ "\nGold jewellry\ntreasuretype: treasuretype\nValue: 10\n"
 				+ "\nPrecious stone\ntreasuretype: treasuretype\nValue: 14\n"
 				+ "\nSmall treasure chest\ntreasuretype: treasuretype\nValue: 20\n");
+		 Gamestart();
 	}
 
 	public void iGame() {
@@ -106,6 +107,7 @@ public class GameMenu {
 				+ "5. The adventure is Game Over when the player leaves the map or gets defeated.\r\n"
 				+ "6. The commands to the games movement is “In need to be written” North, South, East, West. \r\n"
 				+ "");
+		 Gamestart();
 	}
 
 	public Object[] GameMenuFirst() {
