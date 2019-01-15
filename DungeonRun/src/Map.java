@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Map {
 	ArrayList<Room> room = new ArrayList<Room>();
@@ -10,6 +11,12 @@ public class Map {
 	
 	int sizex;
 	int sizey;
+	
+	Random rand;
+	
+	public Map() {
+		rand = new Random();
+	}
 	
 	public void generateMap(int x, int y) {
 		for(int h = 0; h < x; h++) {
@@ -89,6 +96,7 @@ public class Map {
 		if(corner.equals("NW")) {
 			this.currentroomx = 0;
 			this.currentroomy = 0;
+			
 		}
 		else if(corner.equals("NE")) {
 			this.currentroomx = 0;
@@ -109,4 +117,26 @@ public class Map {
 		}
 		return null;
 	}
+	
+	public void generateExit() {
+		while(true) {
+			int randroom = rand.nextInt(room.size()-1);
+			if(this.room.get(randroom).x != this.currentroomx && this.room.get(randroom).y != this.currentroomy) {
+				this.room.get(randroom).exit = true;
+				this.room.get(randroom).monsterlist.clear();
+				this.room.get(randroom).treasurelist.clear();
+				break;
+			}
+		}
+	}
+	public void clearCurrentRoom() {
+		for(Room room : this.room) {
+			if(room.x == currentroomx && room.y == currentroomy) {
+				room.monsterlist.clear();
+				room.treasurelist.clear();
+			}
+		}
+	}
+	
+	
 }

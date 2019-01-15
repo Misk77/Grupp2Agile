@@ -9,33 +9,58 @@ public class Game {
 		int deadmonstercount = 0;
 		Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
-		map.generateMap(10, 10);
+		map.generateMap(4, 4);
 		Game game = new Game();
 		Hero hero = new Hero("Rogue", "myfirstrogue");
-		for(Room room : map.room) {
-			System.out.println(room.x+" "+room.y);
-		}
+		//for(Room room : map.room) {
+		//	System.out.println(room.x+" "+room.y);
+		//}
 		Room currentroom = map.startingPoint("SE");
-		System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+		map.generateExit();
+		map.clearCurrentRoom();
+		//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		while(true) {
-			if(currentroom != null) {
-				System.out.println("\nMONSTERS");
-				for(Monster monster : currentroom.monsterlist) {
-					System.out.println(monster.monstertype);
+			if(currentroom == null) {
+				System.out.println("You tried to walk through a wall, unsuccessfully");
+			}
+			else {
+				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit) {
+					System.out.println("There is nothing here...");
+				}
+				if(currentroom.exit) {
+					System.out.println("You have found the exit, do you want to leave, [Y]es [N]o");
+					String yesorno = scanner.nextLine().toLowerCase();
+					if(yesorno.equals("y")) {
+						System.out.println("You have successfully found your way out of the dungeon");
+						System.out.println("You managed to find treasures worth "+hero.treasure+" coins");
+						break;
+					}
+					else if(yesorno.equals("n")) {
+						System.out.println("Continuing on...");
+					}
+					else {
+						System.out.println("Please enter a valid option");
+					}
+					
+				}
+				if(!currentroom.monsterlist.isEmpty()) {
+					System.out.println("You encountered these monsters in the room");
+					for(Monster monster : currentroom.monsterlist) {
+						System.out.println(monster.monstertype);
+					}
 				}
 				
-				System.out.println("\nTREASURES");
-				for(Treasure treasure : currentroom.treasurelist) {
-					System.out.println(treasure.treasuretype);
-				}
-				collectTreasures(currentroom.treasurelist, hero);
+				//System.out.println("\nTREASURES");
+				//for(Treasure treasure : currentroom.treasurelist) {
+				//	System.out.println(treasure.treasuretype);
+				//}
+				
+				
+				//for(Monster monster : currentroom.monsterlist) {
+				//	System.out.println(monster.lastinititativeroll);//this is the shit that gets printed
+				//}
 				
 				game.sortMonsters(currentroom.monsterlist);
-				for(Monster monster : currentroom.monsterlist) {
-					System.out.println(monster.lastinititativeroll);//this is the shit that gets printed
-				}
-				
-				
 				hero.initiativeRoll();
 				boolean fighting = true;
 				int monstercount = 0;
@@ -47,7 +72,6 @@ public class Game {
 					deadmonstercount = 0;
 					hero.turntaken = false;
 					for(Monster monster : currentroom.monsterlist) {
-						System.out.println("HERO HEALTH "+hero.health);
 						if(hero.dead) {
 							System.out.println("YOU DIED");
 							//ENDMENU TIME
@@ -83,10 +107,12 @@ public class Game {
 					}
 				}
 				fighting = true;
+				game.collectTreasures(currentroom.treasurelist, hero);
 			}
 			System.out.println("What direction?");
-			System.out.print("\n>> ");
+			System.out.print(">> ");
 			String whereto = scanner.nextLine();
+			hero.block = true;
 			if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
 				if(whereto.equals("north"))
 					currentroom = map.goNorth();
@@ -98,7 +124,7 @@ public class Game {
 					currentroom = map.goWest();
 			
 			}
-			System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+			//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
 	}
 	
@@ -118,7 +144,13 @@ public class Game {
 		}
 	}
 
-	public static void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+	public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+		if(!treasurelist.isEmpty()) {
+			System.out.println("\nYou found these treasures in the room");
+			for(Treasure treasure : treasurelist) {
+				System.out.println(treasure.treasuretype);
+			}
+		}
 		int treasureSum = 0;
 		for(Treasure treasure : treasurelist) {
 			treasureSum += treasure.value;
@@ -126,23 +158,24 @@ public class Game {
 		treasurelist.clear();
 		if (treasureSum > 0) {
 			hero.treasure += treasureSum;
-			System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.");
+			System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.\n");
 		}
 	
 	}
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
 		System.out.println("Do you want to [F]lee or [A]ttack");
+		//needs to make this input return here if bad input
 		String fleeorattack = scanner.nextLine().toLowerCase();
 		hero.turntaken = true;
 		if(fleeorattack.equals("f")) {
 			if(hero.flee()) {
-				System.out.println("You fled successfully!");
+				System.out.println("You fled back to the previous room successfully!");
 				for(Monster monster : monsterlist) {
 					monster.resetMonsterHealth();
 				}
 				map.goLast();
-				System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+				//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 				return "break";
 			}
 			else {
@@ -173,8 +206,12 @@ public class Game {
 					if(monsterlist.get(i).monstertype.equals(formattedattacktarget)) {
 						if(hero.attackRoll() > monsterlist.get(i).defendRoll()) {
 							int herodmg = hero.dealDamage();
+							int monsterhealth = monsterlist.get(i).health;
 							monsterlist.get(i).takeDamage(herodmg);
-							System.out.println("Player hit "+monsterlist.get(i).monstertype+" for "+herodmg);
+							System.out.println(hero.name+" hit "+monsterlist.get(i).monstertype+" for "+herodmg);
+							if(monsterhealth != monsterlist.get(i).health && monsterlist.get(i).health > 0) {
+								System.out.println(monsterlist.get(i).monstertype+"'s health is "+monsterlist.get(i).health);
+							}
 							if(monsterlist.get(i).dead) {
 								System.out.println(monsterlist.get(i).monstertype+" has been slain");
 							}
@@ -204,18 +241,16 @@ public class Game {
 		//System.out.println("ROLLS MONSTERATTACKROLL "+monsterattackroll+"\nHERO DEFENDROLL "+herodefendroll);
 		if(monsterattackroll > herodefendroll) {
 			int monsterdmg = monster.dealDamage();
+			int herohealth = hero.health;
 			hero.takeDamage(monsterdmg);
 			System.out.println(monster.monstertype+" hit the player for "+monsterdmg);
+			if(hero.health != herohealth) {
+				System.out.println(hero.name+"'s health is "+hero.health);
+			}
 		}
 		else {
-			System.out.println(monster.monstertype+" missed!");
+			System.out.println(monster.monstertype+" missed its attack!");
 		}
 	}
-
-
-	public void test() {
-		
-	}
-	
 }
 

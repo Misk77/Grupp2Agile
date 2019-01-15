@@ -6,7 +6,7 @@ public class Room {
 	ArrayList<Treasure> treasurelist = new ArrayList<Treasure>();
 	int x; //x room coordinates
 	int y; //y rom coordinates
-	boolean cleared = false;
+	boolean exit = false;
 	
 	Random rand;
 	

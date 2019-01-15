@@ -68,8 +68,10 @@ public class Hero {
 	}
 	
 	public void takeDamage(int damageTaken) {
-		if(block) {
-			block = false;
+		if(this.herotype.equals("Knight")) {
+			if(block) {
+				block = false;
+			}
 		}
 		else {
 			this.health = this.health - damageTaken;
