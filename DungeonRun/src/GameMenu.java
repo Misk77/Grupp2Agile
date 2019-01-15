@@ -150,6 +150,17 @@ public class GameMenu {
 			System.exit(0);
 
 		}
+		else if (input.equalsIgnoreCase("L")) {
+			System.out.println("Denna metod görs senare.. LOAD CHARACTER.");
+			GameMenuFirst();
+			
+
+		}
+		else{
+			System.out.println("No such option in menu");
+			System.out.println("\t try again........");
+			GameMenuFirst();
+		}
 		return objectList;
 	}
 
