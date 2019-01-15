@@ -6,7 +6,7 @@ public class GameMenu {
 	String name;
 	String input;
 	String herotype;
-	Object[] objectList = new Object[2];
+	Object[] objectList = new Object[3];
 
 	// System objects
 
@@ -19,6 +19,7 @@ public class GameMenu {
 
 	public void maping() {
 		Map map = new Map();
+		System.out.println("Choose map size:");
 		System.out.println("Press 1 for map: 4x4\nPress 2 for map: 5x5\nPress 3 for map: 8x8");
 		int operator = scanner.nextInt();
 		switch(operator) {
@@ -37,9 +38,34 @@ public class GameMenu {
 		}
 		objectList[0] = map;
 	}
+	
+	public void cornerChoice() {
+		System.out.println("Choose a corner to start in:");
+		System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1       2┆\n┆         ┆\n┆         ┆\n┆3       4┆\n╰┄┄┄┄┄┄┄┄┄╯");
+		String corner = null;
+		int operator = scanner.nextInt();
+		switch(operator) {
+		case 1:
+			corner = "NW";
+			break;
+		case 2:
+			corner = "NE";
+			break;
+		case 3:
+			corner = "SW";
+			break;
+		case 4:
+			corner = "SE";
+			break;
+		default:
+			System.out.println("Something went wrong, please try again!");
+			cornerChoice();
+		}
+		objectList[2] = corner;
+	}
 
 	public void HeroChoice() {
-
+		System.out.println("Choose your character:");
 		System.out.println("Press 1 for Knight\nPress 2 for Rogue\nPress 3 for Wizard");
 		int operator = scanner.nextInt();
 		String type = "";
@@ -165,7 +191,7 @@ public class GameMenu {
 	}
 
 	public String playerName() {
-		System.out.println("Welcome player: \nPlease enter your name: ");
+		System.out.println("Welcome player! \nPlease enter your name: ");
 		name = scanner.next();
 		return name;
 
@@ -207,8 +233,9 @@ public class GameMenu {
 				break;
 			case "N": // Returnera en object list för map och hero för att köra spelet.
 				playerName();
-				maping();
 				HeroChoice();
+				maping();
+				cornerChoice();
 				// game.playerCombatAction(); parametrar? scanner,hero,monster,maps?
 				// Här ska den in i battle??
 				break;

@@ -7,6 +7,7 @@ public class Room {
 	int x; //x room coordinates
 	int y; //y rom coordinates
 	boolean exit = false;
+	boolean visited = false;
 	
 	Random rand;
 	

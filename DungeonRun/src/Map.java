@@ -38,6 +38,8 @@ public class Map {
 				this.lastroomvisitedx = currentroomx;
 				this.lastroomvisitedy = currentroomy;
 				this.currentroomx = room.x;
+				room.visited = true;
+				drawMap(false);
 				return room;
 			}
 		}
@@ -50,6 +52,8 @@ public class Map {
 				this.lastroomvisitedx = currentroomx;
 				this.lastroomvisitedy = currentroomy;
 				this.currentroomx = room.x;
+				room.visited = true;
+				drawMap(false);
 				return room;
 			}
 		}
@@ -62,6 +66,8 @@ public class Map {
 				this.lastroomvisitedx = currentroomx;
 				this.lastroomvisitedy = currentroomy;
 				this.currentroomy = room.y;
+				room.visited = true;
+				drawMap(false);
 				return room;
 			}
 		}
@@ -75,6 +81,8 @@ public class Map {
 				this.lastroomvisitedx = currentroomx;
 				this.lastroomvisitedy = currentroomy;
 				this.currentroomy = room.y;
+				room.visited = true;
+				drawMap(false);
 				return room;
 			}
 		}
@@ -86,6 +94,8 @@ public class Map {
 			if(room.x == lastroomvisitedx && room.y == lastroomvisitedy) {
 				this.currentroomx = lastroomvisitedx;
 				this.currentroomy = lastroomvisitedy;
+				room.visited = true;
+				drawMap(false);
 				return room;
 			}
 		}
@@ -96,7 +106,6 @@ public class Map {
 		if(corner.equals("NW")) {
 			this.currentroomx = 0;
 			this.currentroomy = 0;
-			
 		}
 		else if(corner.equals("NE")) {
 			this.currentroomx = 0;
@@ -112,6 +121,8 @@ public class Map {
 		}
 		for(Room room : this.room) {
 			if(room.x == currentroomx && room.y == currentroomy) {
+				room.visited = true;
+				drawMap(true);
 				return room;
 			}
 		}
@@ -138,5 +149,62 @@ public class Map {
 		}
 	}
 	
-	
+	public void drawMap(boolean atStart) {
+		// atStart hindrar monster från att visas i första rummet, då det inte clearats ännu.
+		boolean showMap = false;
+		String[] part = new String[2];
+		part[0] = "";
+		part[1] = "";
+		String heroHere;
+		if (showMap) {
+			System.out.print(" ");
+			for (int i = sizex; i>=0; i--) {
+				System.out.print("▁▁▁▁▁");
+			}
+			System.out.println();
+			for(int x = 0; x<=sizex; x++) {
+				for(int y = 0; y<=sizex; y++) {
+					for(Room room : this.room) {
+						if(room.x == x && room.y == y) {
+							if (room.visited) {
+								heroHere = " ";
+								if(room.x == currentroomx && room.y == currentroomy) {
+									heroHere = "×";
+								}
+								part[0] += "  " + heroHere + "  ";
+								if (room.monsterlist.isEmpty() || atStart) {
+									if (room.exit) {
+										part[1] += "EXIT ";
+									} else {
+										part[1] += "     ";
+									}
+								} else {
+									int space = 5;
+									for (Monster monster : room.monsterlist) {
+										if (!monster.dead) {
+											part[1] += monster.monstertype.substring(0,1);
+											space -= 1;
+										}
+									}
+									for (int i = space; i>0; i--) {
+										part[1] += " ";
+									}
+								}
+							} else {
+								part[0] += "░░░░░";
+								part[1] += "░░░░░";
+							}
+						}
+					}
+				} // Y
+				System.out.print("▕" + part[1] + "▏\n");
+				System.out.print("▕" + part[0] + "▏\n");
+				part[0] = "";
+				part[1] = "";
+			} // X
+			System.out.print(" ");
+			for (int i = sizex; i>=0; i--) { System.out.print("▔▔▔▔▔");}
+			System.out.println();
+		}
+	}
 }

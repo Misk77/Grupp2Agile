@@ -11,13 +11,14 @@ public class Game {
 		Object [] objects = gamemenu.GameMenuFirst();
 		Hero hero = (Hero) objects[1]; //need the correct index
 		Map map = (Map) objects[0]; //need the correct index
+		String corner = (String) objects[2]; //need the correct index
 		//map.generateMap(4, 4);
 		Game game = new Game();
 		//Hero hero = new Hero("Rogue", "myfirstrogue");
 		//for(Room room : map.room) {
 		//	System.out.println(room.x+" "+room.y);
 		//}
-		Room currentroom = map.startingPoint("SE");
+		Room currentroom = map.startingPoint(corner);
 		map.generateExit();
 		map.clearCurrentRoom();
 		//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
@@ -48,7 +49,7 @@ public class Game {
 					
 				}
 				if(!currentroom.monsterlist.isEmpty()) {
-					System.out.println("You encountered these monsters in the room");
+					System.out.println("You encountered these monsters in the room:");
 					for(Monster monster : currentroom.monsterlist) {
 						if(!monster.dead)
 						System.out.println(monster.monstertype);
@@ -112,7 +113,8 @@ public class Game {
 					}
 				}
 				fighting = true;
-				game.collectTreasures(currentroom.treasurelist, hero);
+				//game.collectTreasures(currentroom.treasurelist, hero);
+				game.collectTreasures(map, hero);
 			}
 			System.out.println("What direction?");
 			System.out.print(">> ");
@@ -149,9 +151,21 @@ public class Game {
 		}
 	}
 
-	public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+
+	public void collectTreasures(Map map, Hero hero) {
+	//public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
+		/* Johannes ändrat:
+		 * Eftersom collectTreasures kallas efter ev. flykt, och game.currentroom inte uppdateras av map.goLast()
+		 * så fick man skatterna från ett rum även om man flytt därifrån. Hämtar därför treasurelist via map.currentx/y istället.
+		 */
+		ArrayList<Treasure> treasurelist = null;
+		for(Room room : map.room) {
+			if(room.x == map.currentroomx && room.y == map.currentroomy) {
+				treasurelist = room.treasurelist;
+			}
+		}
 		if(!treasurelist.isEmpty()) {
-			System.out.println("\nYou found these treasures in the room");
+			System.out.println("\nYou found these treasures in the room:");
 			for(Treasure treasure : treasurelist) {
 				System.out.println(treasure.treasuretype);
 			}
@@ -169,7 +183,7 @@ public class Game {
 	}
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
-		System.out.println("Do you want to [F]lee or [A]ttack");
+		System.out.println("Do you want to [F]lee or [A]ttack?");
 		//needs to make this input return here if bad input
 		String fleeorattack = scanner.nextLine().toLowerCase();
 		hero.turntaken = true;
