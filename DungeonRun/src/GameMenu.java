@@ -21,15 +21,15 @@ public class GameMenu {
 		Map map = new Map();
 		System.out.println("Press 1 for map: 4x4\nPress 2 for map: 5x5\nPress 3 for map: 8x8");
 		int operator = scanner.nextInt();
-		switch (operator) {
+		switch(operator) {
 		case 1:
-			map.generateMap(4, 4);
-			break;
-		case 2:
 			map.generateMap(5, 5);
 			break;
+		case 2:
+			map.generateMap(6, 6);
+			break;
 		case 3:
-			map.generateMap(8, 8);
+			map.generateMap(9, 9);
 			break;
 		default:
 			System.out.println("Something went wrong try again");
@@ -108,7 +108,7 @@ public class GameMenu {
 				+ "");
 	}
 
-	public void GameMenuFirst() {
+	public Object[] GameMenuFirst() {
 		System.out.println();
 		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
 		System.out
@@ -128,7 +128,7 @@ public class GameMenu {
 
 		if (input.equalsIgnoreCase("S")) {
 			System.out.println("Let the Adventures Begins...");
-			Gamestart();
+			objectList = Gamestart();
 
 			try {
 				Thread.sleep(300);
@@ -148,6 +148,7 @@ public class GameMenu {
 			System.exit(0);
 
 		}
+		return objectList;
 	}
 
 	public String playerName() {
@@ -162,7 +163,7 @@ public class GameMenu {
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
 
-		while (running) {
+		//while (running) {
 			System.out.println();
 			System.out.println("============================== GAME MENU ===================================");
 			try {
@@ -234,8 +235,8 @@ public class GameMenu {
 
 			}
 
-		}
-		save.saveToDisk(objectList);
+		//}
+		//save.saveToDisk(objectList);
 		return objectList;
 	}// END GameMenu
 

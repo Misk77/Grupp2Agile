@@ -5,14 +5,24 @@ public class Game {
 
 	public static void main(String[] args) {
 
-		GameMenu menu = new GameMenu();
-		menu.GameMenuFirst();
+		//test commit from Michel
+		//test commit from Michel
+		GameMenu gMenuMain = new GameMenu();
 		int deadmonstercount = 0;
 		Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
-		map.generateMap(10, 10);
+		//map.generateMap(10, 10);
 		Game game = new Game();
-		Hero hero = new Hero("Rogue", "myfirstrogue");
+		Hero hero = new Hero("", "");
+		
+		Object[] objectList = new Object[2];
+		
+		objectList = gMenuMain.GameMenuFirst();
+		map = (Map) objectList[0];
+		hero = (Hero) objectList[1];
+		System.out.println("hero name: " + hero.name);
+		System.out.println("hero type: " + hero.herotype);
+		System.out.println("map sizex: : " + map.sizex); 
 		for (Room room : map.room) {
 			System.out.println(room.x + " " + room.y);
 		}
