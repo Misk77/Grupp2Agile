@@ -1,23 +1,73 @@
 
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class GameMenu {
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
 	String herotype;
+	Object[] objectList = new Object[2];
 
 	// System objects
 
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
+
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
 	FileData fd = new FileData();
-	//Hero hero = new Hero(herotype, name);
+	Game game = new Game();
+
+	public void maping() {
+		Map map = new Map();
+		System.out.println("Press 1 for map: 4x4\nPress 2 for map: 5x5\nPress 3 for map: 8x8");
+		int operator = scanner.nextInt();
+		switch(operator) {
+		case 1:
+			map.generateMap(5, 5);
+			break;
+		case 2:
+			map.generateMap(6, 6);
+			break;
+		case 3:
+			map.generateMap(9, 9);
+			break;
+		default:
+			System.out.println("Something went wrong try again");
+			maping();
+		}
+		objectList[0] = map;
+	}
+
+	public void HeroChoice() {
+
+		System.out.println("Press 1 for Knight\nPress 2 for Rogue\nPress 3 for Wizard");
+		int operator = scanner.nextInt();
+		String type = "";
+		switch (operator) {
+		case 1:
+			type = "Knight";
+			break;
+		case 2:
+			type = "Rogue";
+			break;
+		case 3:
+			type = "Wizard";
+			break;
+		default:
+			System.out.println("Something went wrong, please try again!");
+			HeroChoice();
+		}
+		Hero hero = new Hero(type, name);
+
+		objectList[1] = hero;
+
+	}
 
 	public void ReadChar() {
+		System.out.println();
+		System.out
+				.println("============================== Read about the character ===================================");
+		System.out.println();
 		System.out.println("\n---------------------------Heros-----------------------");
 		System.out.println("Knight\n"
 				+ "initiative = 5\nherotype = herotype\nhealth = 9\nbaseattack = 6\navoidance = 4\n"
@@ -47,6 +97,9 @@ public class GameMenu {
 
 	public void iGame() {
 		/* Instruction about the game. */
+		System.out.println();
+		System.out.println("============================== Instrucion of the game ===================================");
+		System.out.println();
 		System.out.println("\n" + "1. You will need to pick yourself a character of your choice.\r\n"
 				+ "2. Choose your size of the game, small, medium or large. It’s the map.\r\n"
 				+ "3. You will battle monsters.\r\n" + "4. Pick up Treasures!\r\n"
@@ -55,9 +108,11 @@ public class GameMenu {
 				+ "");
 	}
 
-	public void GameMenuFirst() {
-
+	public Object[] GameMenuFirst() {
+		System.out.println();
 		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
+		System.out
+				.println("============================== Load or start a new game ===================================");
 		System.out.println("[L]oad Game \n");
 		System.out.println("[S]tart Game \n");
 		System.out.println("[E]xit\n");
@@ -72,8 +127,8 @@ public class GameMenu {
 		}
 
 		if (input.equalsIgnoreCase("S")) {
-			System.out.println("Du tryckte Y: Adventures Begins...");
-			Gamestart();
+			System.out.println("Let the Adventures Begins...");
+			objectList = Gamestart();
 
 			try {
 				Thread.sleep(300);
@@ -88,27 +143,27 @@ public class GameMenu {
 			}
 
 		} else if (input.equalsIgnoreCase("E")) {
-			System.out.println("To bad your leaving....");
-			System.out.println("Come back then you dare to enter the dungeons.....");
+			System.out.println("Too bad you're leaving....");
+			System.out.println("Come back when you dare to enter the dungeons.....");
 			System.exit(0);
 
 		}
+		return objectList;
 	}
 
-	public String playerName(String name) {
-		System.out.println("Welcome player: \n Please enter your name: ");
+	public String playerName() {
+		System.out.println("Welcome player: \nPlease enter your name: ");
 		name = scanner.next();
 		return name;
 
 	}
 
-	public void Gamestart() {
-
+	public Object[] Gamestart() {
 		boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
 
-		while (running) {
+		//while (running) {
 			System.out.println();
 			System.out.println("============================== GAME MENU ===================================");
 			try {
@@ -131,57 +186,40 @@ public class GameMenu {
 			case "HELP":
 				System.out.println(); /* Aiham */
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
+				// Fånga denna senare innan demo är klart GÄLLER ALLA DESSA TRY/CATCH
+				// exempel: System.out.printf("BADNESS...",e);
 
-					e.printStackTrace();// Fånga denna senare innan demo är klart GÄLLER ALLA DESSA TRY/CATCH
-					// exempel: System.out.printf("BADNESS...",e);
-				}
 				iGame();
 				break;
-			case "START":
-				playerName(name);
-				//System.out.println("[C]-Choose your charachter..");// När Hero metoden är klar....Disk med Daniel senare
-
+			case "START": // Returnera en object list för map och hero för att köra spelet.
+				playerName();
+				maping();
+				HeroChoice();
+				// game.playerCombatAction(); parametrar? scanner,hero,monster,maps?
+				// Här ska den in i battle??
 				break;
-			case "LOAD":
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
+			// System.out.println("[C]-Choose your charachter..");// När Hero metoden är
+			// klar....Disk med Daniel senare
 
-					e.printStackTrace();
-				}
-				System.out.println("[L]-Load your charachter.."); // Alternativ...1. read from file method in saveLoad
-																	// 2. göra metod med allt
+			case "LOAD":
+
+				// Alternativ...1. read from file method in saveLoad
+				// 2. göra metod med allt
 				System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your charachter..");
+				System.out.println();
 				break;
 			case "SEE":
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
 
-					e.printStackTrace();
-				}
 				System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore(treasure points) charachter..");
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
+				System.out.println();
 				break;
 			case "READ":
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
+				System.out.println();
 
-					e.printStackTrace();
-				}
-				System.out.println("[R]-Read about the charachters...");
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				ReadChar();
+				System.out.println();
 				break;
 
 			default:
@@ -197,8 +235,9 @@ public class GameMenu {
 
 			}
 
-		}
-
+		//}
+		//save.saveToDisk(objectList);
+		return objectList;
 	}// END GameMenu
 
 }

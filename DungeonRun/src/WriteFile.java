@@ -3,29 +3,25 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-
-
 public class WriteFile {
 
 	// konstruktor
-	String path; // sökvägen till texten
-	boolean append; // true -nya rader - false, skriver över
-	
-	public  WriteFile(String file_path,boolean append_value) {
-		path=file_path;
-		append=append_value;
+	String path; // sï¿½kvï¿½gen till texten
+	boolean append; // true -nya rader - false, skriver ï¿½ver
+
+	public WriteFile(String file_path, boolean append_value) {
+		path = file_path;
+		append = append_value;
 	}
-	// metoden som skriver in 
-	public void writeToFile(String text)throws IOException {
-		FileWriter write = new FileWriter(path,append);//läser bara bytes
-		PrintWriter print= new PrintWriter(write);
-		print.printf("%s"+"%n", text);
+
+	// metoden som skriver in
+	public void writeToFile(String text) throws IOException {
+		FileWriter write = new FileWriter(path, append);// lï¿½ser bara bytes
+		PrintWriter print = new PrintWriter(write);
+		print.printf("%s" + "%n", text);
 		write.close();
 		print.close();
-		
+
 	}
-	
-	
-	
-	
+
 }
