@@ -4,14 +4,16 @@ import java.util.Scanner;
 public class Game {
 
 	public static void main(String[] args) {
-		//test commit from Michel
-		//test commit from Michel
 		int deadmonstercount = 0;
-		Map map = new Map();
+		//Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
-		map.generateMap(4, 4);
+		GameMenu gamemenu = new GameMenu();
+		Object [] objects = gamemenu.GameMenuFirst();
+		Hero hero = (Hero) objects[1]; //need the correct index
+		Map map = (Map) objects[0]; //need the correct index
+		//map.generateMap(4, 4);
 		Game game = new Game();
-		Hero hero = new Hero("Rogue", "myfirstrogue");
+		//Hero hero = new Hero("Rogue", "myfirstrogue");
 		//for(Room room : map.room) {
 		//	System.out.println(room.x+" "+room.y);
 		//}
