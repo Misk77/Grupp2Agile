@@ -109,15 +109,15 @@ public class GameMenu {
 				+ "");
 		 Gamestart();
 	}
-
+//Games start here, then NEW GAME the follow the methods one by one tha nfinally into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() {
 		System.out.println();
 		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
 		System.out
 				.println("============================== Load or start a new game ===================================");
-		System.out.println("[L]oad Game \n");
-		System.out.println("[S]tart Game \n");
-		System.out.println("[E]xit\n");
+		System.out.println("[L]OAD GAME \n");
+		System.out.println("[N]EW GAME \n");
+		System.out.println("[E]XIT\n");
 		// System.out.println("[M]eny\n");
 
 		input = scanner.next();
@@ -128,7 +128,7 @@ public class GameMenu {
 			System.out.printf("Badness...", e2);
 		}
 
-		if (input.equalsIgnoreCase("S")) {
+		if (input.equalsIgnoreCase("N")) {
 			System.out.println("Let the Adventures Begin...");
 			objectList = Gamestart();
 
@@ -151,7 +151,7 @@ public class GameMenu {
 
 		}
 		else if (input.equalsIgnoreCase("L")) {
-			System.out.println("Denna metod görs senare.. LOAD CHARACTER.");
+			System.out.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD");
 			GameMenuFirst();
 			
 
