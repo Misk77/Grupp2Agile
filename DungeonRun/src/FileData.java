@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class FileData {
 
-	public static void main(String[] args) {
+	public void writeToFile() {
 		// TODO Auto-generated method stub
 		
-		// main metoden där man skriver in till texten och som hämtar metoden i writefile classen
+		// main metoden dï¿½r man skriver in till texten och som hï¿½mtar metoden i writefile classen
 		Scanner sc = new Scanner(System.in);
 	
 		String filepath = "C:\\\\Users\\\\miche\\\\Desktop\\\\writemytextfile.txt";
@@ -25,7 +25,7 @@ public class FileData {
 		
 		catch(IOException e) {
 			System.out.println(e.getMessage());
-			System.out.println("Du har inte skrivit till filen.\nNågot gick fel");
+			System.out.println("Du har inte skrivit till filen.\nNï¿½got gick fel");
 		}
 		
 
