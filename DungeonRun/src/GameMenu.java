@@ -208,13 +208,13 @@ public class GameMenu {
 				// Alternativ...1. read from file method in saveLoad
 				// 2. göra metod med allt
 				System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your charachter..");
-				System.out.println();
+				 Gamestart();
 				break;
 			case "SEE":
 
 				System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore(treasure points) charachter..");
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
-				System.out.println();
+				 Gamestart();
 				break;
 			case "READ":
 				System.out.println();
@@ -233,6 +233,7 @@ public class GameMenu {
 				}
 				System.out.println("No such option in menu");
 				System.out.println("\t try again........");
+				 Gamestart();
 				break;
 
 			}
