@@ -23,16 +23,16 @@ public class GameMenu {
 		int operator = scanner.nextInt();
 		switch(operator) {
 		case 1:
-			map.generateMap(5, 5);
+			map.generateMap(4, 4);
 			break;
 		case 2:
-			map.generateMap(6, 6);
+			map.generateMap(5, 5);
 			break;
 		case 3:
-			map.generateMap(9, 9);
+			map.generateMap(8, 8);
 			break;
 		default:
-			System.out.println("Something went wrong try again");
+			System.out.println("Something went wrong, please try again!");
 			maping();
 		}
 		objectList[0] = map;
@@ -99,10 +99,10 @@ public class GameMenu {
 	public void iGame() {
 		/* Instruction about the game. */
 		System.out.println();
-		System.out.println("============================== Instrucion of the game ===================================");
+		System.out.println("============================== Instructions for the game ===================================");
 		System.out.println();
 		System.out.println("\n" + "1. You need to pick a character.\r\n"
-				+ "2. Choose the gamesize: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
+				+ "2. Choose the map size: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
 				+ "3. You will battle monsters.\r\n" + "4. Pick up Treasures!\r\n"
 				+ "5. Game Over when the player leaves the map or gets defeated.\r\n"
 				+ "6. The game command movement is: North, South, East, West. \r\n"
@@ -129,7 +129,7 @@ public class GameMenu {
 		}
 
 		if (input.equalsIgnoreCase("S")) {
-			System.out.println("Let the Adventures Begins...");
+			System.out.println("Let the Adventures Begin...");
 			objectList = Gamestart();
 
 			try {
@@ -185,18 +185,18 @@ public class GameMenu {
 
 				e.printStackTrace();
 			}
-			System.out.println("[Help]-Read about the game..."); // Readfile eller metod där allt står om spelet, //
+			System.out.println("[H]elp - Read about the game..."); // Readfile eller metod där allt står om spelet, //
 																	// spelrunda
-			System.out.println("[start]-Choose your charachter.."); // tar in hero metoden
-			System.out.println("[Load]-Load your charachter.."); // läser från load metoden och tar in befiltlig spelare
-			System.out.println("[See]-See highscore(treasure points) charachter.."); //
-			System.out.println("[Read]-Read about the charachter..");// om spelkaraktärer
+			System.out.println("[N]ew  - Create new character.."); // tar in hero metoden
+			System.out.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
+			System.out.println("[S]ee  - See highscore (treasure points) for character.."); //
+			System.out.println("[R]ead - Read about the characters..");// om spelkaraktärer
 			input = scanner.next();
 			// Valen i menu
 
 			switch (input.toUpperCase()) {
 
-			case "HELP":
+			case "H":
 				System.out.println(); /* Aiham */
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				// Fånga denna senare innan demo är klart GÄLLER ALLA DESSA TRY/CATCH
@@ -204,7 +204,7 @@ public class GameMenu {
 
 				iGame();
 				break;
-			case "START": // Returnera en object list för map och hero för att köra spelet.
+			case "N": // Returnera en object list för map och hero för att köra spelet.
 				playerName();
 				maping();
 				HeroChoice();
@@ -214,20 +214,20 @@ public class GameMenu {
 			// System.out.println("[C]-Choose your charachter..");// När Hero metoden är
 			// klar....Disk med Daniel senare
 
-			case "LOAD":
+			case "L":
 
 				// Alternativ...1. read from file method in saveLoad
 				// 2. göra metod med allt
-				System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your charachter..");
+				System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your character..");
 				 Gamestart();
 				break;
-			case "SEE":
+			case "S":
 
-				System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore(treasure points) charachter..");
+				System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..");
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 				 Gamestart();
 				break;
-			case "READ":
+			case "R":
 				System.out.println();
 
 				// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
@@ -244,7 +244,7 @@ public class GameMenu {
 				}
 				System.out.println("No such option in menu");
 				System.out.println("\t try again........");
-				 Gamestart();
+				Gamestart();
 				break;
 
 			}
