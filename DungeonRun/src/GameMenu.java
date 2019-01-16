@@ -41,7 +41,8 @@ public class GameMenu {
 	
 	public void cornerChoice() {
 		System.out.println("Choose a corner to start in:");
-		System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1       2┆\n┆         ┆\n┆         ┆\n┆3       4┆\n╰┄┄┄┄┄┄┄┄┄╯");
+		//System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1       2┆\n┆         ┆\n┆         ┆\n┆3       4┆\n╰┄┄┄┄┄┄┄┄┄╯");
+		System.out.println(" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|");
 		String corner = null;
 		int operator = scanner.nextInt();
 		switch(operator) {
