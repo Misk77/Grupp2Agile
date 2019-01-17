@@ -28,6 +28,12 @@ public class Game {
 				System.out.println("You tried to walk through a wall, unsuccessfully");
 			}
 			else {
+				//counting rooms
+				if(!map.visitedrooms.contains(currentroom)) {
+					map.visitedrooms.add(currentroom);
+					hero.visitedrooms++;
+				}
+				//counting rooms
 				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit && !firstround) {
 					System.out.println("There is nothing here...");
 				}
@@ -81,6 +87,10 @@ public class Game {
 						if(hero.dead) {
 							System.out.println("YOU DIED");
 							//ENDMENU TIME
+							//dont put an endmenu here
+							//need another loop and then to break out of all of them
+							//if we put a menu here we'll just nest this shit
+							//which will probably work, but seems shit
 							fighting = false;
 							break;
 							
@@ -119,34 +129,44 @@ public class Game {
 			System.out.println("What direction?");
 			System.out.print(">> ");
 			while(true) {
-			String whereto = scanner.nextLine();
-			hero.block = true;
-			if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
-				if(whereto.equals("north")) {
-					currentroom = map.goNorth();
-					break;
-				}
-				else if(whereto.equals("south")) {
-					currentroom = map.goSouth();
-					break;
+				//count checks
+				System.out.println("ROOMS VISITED "+hero.visitedrooms);
+				System.out.println("GIANT SPIDERS KILLED "+hero.deadgiantspiders);
+				System.out.println("SKELETONS KILLED "+hero.deadskeletons);
+				System.out.println("ORCS KILLED "+hero.deadorcs);
+				System.out.println("TROLLS KILLED "+hero.deadtrolls);
+				//count checks
+				String whereto = scanner.nextLine();
+				hero.block = true;
+				if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
+					if(whereto.equals("north")) {
+						currentroom = map.goNorth();
+						break;
 					}
-				else if(whereto.equals("east")) {
-					currentroom = map.goEast();
-					break;
+					else if(whereto.equals("south")) {
+						currentroom = map.goSouth();
+						break;
+						}
+					else if(whereto.equals("east")) {
+						currentroom = map.goEast();
+						break;
+					}
+					else if(whereto.equals("west")) {
+						currentroom = map.goWest();
+						break;
+					}
 				}
-				else if(whereto.equals("west")) {
-					currentroom = map.goWest();
-					break;
+				else {
+					System.out.println("Please choose a direction, North, West, South or East\n>> ");
+					continue;
 				}
-			}
-			else {
-				System.out.println("Please choose a direction, North, West, South or East\n>> ");
-				continue;
-			}
-			
+				
 			}
 			//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
+		//cant test this, supposed to count amount of runs
+		hero.adventures++;
+		//cant test this, supposed to count amount of runs
 	}
 	
 	
@@ -198,7 +218,6 @@ public class Game {
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
 		System.out.println("Do you want to [F]lee or [A]ttack?");
-		//needs to make this input return here if bad input
 		boolean wronginput = true;
 		while(wronginput) {
 			String fleeorattack = scanner.nextLine().toLowerCase();
@@ -250,6 +269,16 @@ public class Game {
 									System.out.println(monsterlist.get(i).monstertype+"'s health is "+monsterlist.get(i).health);
 								}
 								if(monsterlist.get(i).dead) {
+									//counting dead monsters
+									if(monsterlist.get(i).monstertype.equals("Giant spider"))
+										hero.deadgiantspiders++;
+									else if(monsterlist.get(i).monstertype.equals("Skeleton"))
+										hero.deadskeletons++;
+									else if(monsterlist.get(i).monstertype.equals("Orc"))
+										hero.deadorcs++;
+									else if(monsterlist.get(i).monstertype.equals("Troll"))
+										hero.deadtrolls++;
+									//counting dead monsters
 									System.out.println(monsterlist.get(i).monstertype+" has been slain");
 								}
 								break;
