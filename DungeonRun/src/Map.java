@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Map {
 	ArrayList<Room> room = new ArrayList<Room>();
+	ArrayList<Room> visitedrooms = new ArrayList<Room>();
 	int lastroomvisitedx; //coordinates for last room
 	int lastroomvisitedy;
 	

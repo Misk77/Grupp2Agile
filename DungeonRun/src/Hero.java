@@ -13,6 +13,12 @@ public class Hero {
 	boolean dead = false;
 	boolean player = true;
 	boolean turntaken = false;
+	int deadgiantspiders = 0;
+	int deadskeletons = 0;
+	int deadorcs = 0;
+	int deadtrolls = 0;
+	int adventures = 0;
+	int visitedrooms = 0;
 	
 	int lastinitiativeroll = 0;
 	
