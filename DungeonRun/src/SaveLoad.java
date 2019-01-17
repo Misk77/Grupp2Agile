@@ -12,7 +12,7 @@ public class SaveLoad<GameMenuMain> {
 	String filepath = "src/DungeonRun.ser";
 
 	// PATH ("DungeonRunSaves.tmp");
-	public void saveToDisk(Object[] objectList) {// need to add the proper arguments, like name and treasure
+	public void saveToDisk(String name, String herotype) {// need to add the proper arguments, like name and treasure
 		{
 			GameMenu gamemenu = new GameMenu();
 			try {
@@ -26,7 +26,8 @@ public class SaveLoad<GameMenuMain> {
 				i.printStackTrace();
 			}
 			// game.Gamestart();
-			System.out.printf("Lämnat saveToDIsk Metoden");// sparar filen
+			System.out.printf("Lämnat saveToDIsk Metoden\n");// sparar filen
+			System.out.println();
 		}
 
 	}
@@ -47,13 +48,14 @@ public class SaveLoad<GameMenuMain> {
 			c.printStackTrace();
 			return;
 		}
-
+		System.out.println();
 		System.out.println("LOAD FROM:  DungeonRunSaves...\n");
 		System.out.println("Name: " + gamemenu.name);
 		System.out.println("Herotype: " + gamemenu.herotype);
 		System.out.println("PlayerName: " + gamemenu.playerName());
 		System.out.println("Object: " + gamemenu.objectList);
-		System.out.printf("Lämnat LoadFromDisk Metoden");// sparar filen
+		System.out.printf("Lämnat LoadFromDisk Metoden\n");// sparar filen
+		System.out.println();
 		// game.Gamestart();
 	}// LoadFromDisk
 

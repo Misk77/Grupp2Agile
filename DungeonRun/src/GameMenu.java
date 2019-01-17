@@ -339,9 +339,9 @@ public class GameMenu {
 			break;
 
 		}
-
 		// }
-		save.saveToDisk(objectList);
+		//save.saveToDisk(objectList);
+		save.saveToDisk(name,herotype);
 		return objectList;
 	}// END GameMenu
 
