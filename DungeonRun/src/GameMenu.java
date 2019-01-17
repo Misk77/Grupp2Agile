@@ -12,7 +12,7 @@ public class GameMenu {
 
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
-	  Game e = new Game();
+	
 	//String[] corners = { "NW ", "NE ", "SW", "SE " };
 	//AiHero ahero = new AiHero(herotype);
 	SaveLoad<?> save = new SaveLoad<Object>();// Maybe shouldnt be here
@@ -340,8 +340,9 @@ public class GameMenu {
 
 		}
 		// }
+		save.saveToDisk(objectList);
+		//save.saveToDisk(name,herotype);
 		//save.saveToDisk(objectList);
-		save.saveToDisk(name,herotype);
 		return objectList;
 	}// END GameMenu
 

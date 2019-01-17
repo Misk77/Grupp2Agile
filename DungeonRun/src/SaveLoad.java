@@ -18,7 +18,7 @@ public class SaveLoad<GameMenuMain> {
 			try {
 				FileOutputStream fileOut = new FileOutputStream(filepath);
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
-				out.writeObject(gamemenu.objectList);
+				out.writeObject(usertext);
 				out.close();
 				fileOut.close();
 				System.out.printf("SAVE TO: DungeonRunSaves\n");// sparar filen
@@ -37,6 +37,7 @@ public class SaveLoad<GameMenuMain> {
 		try {
 			FileInputStream fileIn = new FileInputStream(filepath);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
+			//System.out.println("Data: \n"+in.readObject().toString());
 			usertext = (Object[]) in.readObject();
 			in.close();
 			fileIn.close();
@@ -53,44 +54,66 @@ public class SaveLoad<GameMenuMain> {
 		System.out.println("Name: " + gamemenu.name);
 		System.out.println("Herotype: " + gamemenu.herotype);
 		System.out.println("PlayerName: " + gamemenu.playerName());
-		System.out.println("Object: " + gamemenu.objectList);
+		System.out.println("Object: " + usertext);
 		System.out.printf("Lämnat LoadFromDisk Metoden\n");// sparar filen
 		System.out.println();
+		//gamemenu.maping();
 		// game.Gamestart();
 	}// LoadFromDisk
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////// BELOW THIS NOT IN USE!!!
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
-	public void writeToFile() {
+	
 
-		// main metoden d�r man skriver in till texten och som h�mtar metoden i
-		// writefile classen
-		Scanner sc = new Scanner(System.in);
-
-		String filepath = "C:\\\\Users\\\\miche\\\\Desktop\\\\writemytextfile.txt";
-
-		WriteFile wf = new WriteFile(filepath, true);
-
+	public void saveToDisk(Object[] objectList) {
+		// TODO Auto-generated method stub
+		GameMenu gamemenu = new GameMenu();
 		try {
-			System.out.println("Skriv till filen");
-			String usertext = sc.nextLine();
-			wf.writeToFile(usertext);
-			System.out.printf("Du har skrivit till filen:\n%s", filepath);
+			FileOutputStream fileOut = new FileOutputStream(filepath);
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(usertext);
+			out.close();
+			fileOut.close();
+			System.out.printf("SAVE TO: DungeonRunSaves\n");// sparar filen
+		} catch (IOException i) {
+			i.printStackTrace();
 		}
-
-		catch (IOException e) {
-			System.out.println(e.getMessage());
-			System.out.println("Du har inte skrivit till filen.\nN�got gick fel");
-		}
-
-		sc.close();
+		// game.Gamestart();
+		System.out.printf("Lämnat saveToDIsk Metoden\n");// sparar filen
+		System.out.println();
 
 	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// BELOW THIS NOT IN USE!!!
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
+public void writeToFile() {
+
+// main metoden d�r man skriver in till texten och som h�mtar metoden i
+// writefile classen
+Scanner sc = new Scanner(System.in);
+
+String filepath = "C:\\\\Users\\\\miche\\\\Desktop\\\\writemytextfile.txt";
+
+WriteFile wf = new WriteFile(filepath, true);
+
+try {
+System.out.println("Skriv till filen");
+String usertext = sc.nextLine();
+wf.writeToFile(usertext);
+System.out.printf("Du har skrivit till filen:\n%s", filepath);
+}
+
+catch (IOException e) {
+System.out.println(e.getMessage());
+System.out.println("Du har inte skrivit till filen.\nN�got gick fel");
+}
+
+sc.close();
+
+}
 }// END of WriteToFile
 
 /*
