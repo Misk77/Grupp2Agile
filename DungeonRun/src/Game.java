@@ -118,17 +118,31 @@ public class Game {
 			}
 			System.out.println("What direction?");
 			System.out.print(">> ");
+			while(true) {
 			String whereto = scanner.nextLine();
 			hero.block = true;
 			if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
-				if(whereto.equals("north"))
+				if(whereto.equals("north")) {
 					currentroom = map.goNorth();
-				else if(whereto.equals("south"))
+					break;
+				}
+				else if(whereto.equals("south")) {
 					currentroom = map.goSouth();
-				else if(whereto.equals("east"))
+					break;
+					}
+				else if(whereto.equals("east")) {
 					currentroom = map.goEast();
-				else if(whereto.equals("west"))
+					break;
+				}
+				else if(whereto.equals("west")) {
 					currentroom = map.goWest();
+					break;
+				}
+			}
+			else {
+				System.out.println("Please choose a direction, North, West, South or East\n>> ");
+				continue;
+			}
 			
 			}
 			//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
@@ -154,9 +168,9 @@ public class Game {
 
 	public void collectTreasures(Map map, Hero hero) {
 	//public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
-		/* Johannes ändrat:
+		/* Johannes Ã¤ndrat:
 		 * Eftersom collectTreasures kallas efter ev. flykt, och game.currentroom inte uppdateras av map.goLast()
-		 * så fick man skatterna från ett rum även om man flytt därifrån. Hämtar därför treasurelist via map.currentx/y istället.
+		 * sÃ¥ fick man skatterna frÃ¥n ett rum Ã¤ven om man flytt dÃ¤rifrÃ¥n. HÃ¤mtar dÃ¤rfÃ¶r treasurelist via map.currentx/y istÃ¤llet.
 		 */
 		ArrayList<Treasure> treasurelist = null;
 		for(Room room : map.room) {
@@ -185,70 +199,79 @@ public class Game {
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
 		System.out.println("Do you want to [F]lee or [A]ttack?");
 		//needs to make this input return here if bad input
-		String fleeorattack = scanner.nextLine().toLowerCase();
-		hero.turntaken = true;
-		if(fleeorattack.equals("f")) {
-			if(hero.flee()) {
-				System.out.println("You fled back to the previous room successfully!");
-				for(Monster monster : monsterlist) {
-					monster.resetMonsterHealth();
-				}
-				map.goLast();
-				//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
-				return "break";
-			}
-			else {
-				System.out.println("Your attempt to flee failed");
-			}
-		}
-		else if(fleeorattack.equals("a")) {
-			System.out.println("Which monster do you want to attack?");
-			for(Monster monster : monsterlist) {
-				if(!monster.dead) {
-					System.out.println(monster.monstertype);
-				}
-			}
-			boolean exists = false;
-			boolean attacking = true;
-			while(attacking) {
-				exists = false;
-				System.out.print(">> ");
-				String attacktarget = scanner.nextLine().toLowerCase();
-				String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
-				for(Monster monster : monsterlist) {
-					if(monster.monstertype.equals(formattedattacktarget) && !monster.dead) {
-						exists = true;
+		boolean wronginput = true;
+		while(wronginput) {
+			String fleeorattack = scanner.nextLine().toLowerCase();
+			hero.turntaken = true;
+			if(fleeorattack.equals("f")) {
+				wronginput = false;
+				if(hero.flee()) {
+					System.out.println("You fled back to the previous room successfully!");
+					for(Monster monster : monsterlist) {
+						monster.resetMonsterHealth();
 					}
-				}
-				if(exists) {
-				for(int i = 0; i < monsterlist.size(); i++) {
-					if(monsterlist.get(i).monstertype.equals(formattedattacktarget)) {
-						if(hero.attackRoll() > monsterlist.get(i).defendRoll()) {
-							int herodmg = hero.dealDamage();
-							int monsterhealth = monsterlist.get(i).health;
-							monsterlist.get(i).takeDamage(herodmg);
-							System.out.println(hero.name+" hit "+monsterlist.get(i).monstertype+" for "+herodmg);
-							if(monsterhealth != monsterlist.get(i).health && monsterlist.get(i).health > 0) {
-								System.out.println(monsterlist.get(i).monstertype+"'s health is "+monsterlist.get(i).health);
-							}
-							if(monsterlist.get(i).dead) {
-								System.out.println(monsterlist.get(i).monstertype+" has been slain");
-							}
-							break;
-						}
-						else {
-							System.out.println("Player's attack missed");
-							break;
-						}
-					}
-				}
-				attacking = false;
-				break;
+					map.goLast();
+					//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+					return "break";
 				}
 				else {
-					System.out.println("Please enter a valid target");
-					continue;
+					System.out.println("Your attempt to flee failed");
 				}
+			}
+			else if(fleeorattack.equals("a")) {
+				wronginput = false;
+				System.out.println("Which monster do you want to attack?");
+				for(Monster monster : monsterlist) {
+					if(!monster.dead) {
+						System.out.println(monster.monstertype);
+					}
+				}
+				boolean exists = false;
+				boolean attacking = true;
+				while(attacking) {
+					exists = false;
+					System.out.print(">> ");
+					String attacktarget = scanner.nextLine().toLowerCase();
+					String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
+					for(Monster monster : monsterlist) {
+						if(monster.monstertype.equals(formattedattacktarget) && !monster.dead) {
+							exists = true;
+						}
+					}
+					if(exists) {
+					for(int i = 0; i < monsterlist.size(); i++) {
+						if(monsterlist.get(i).monstertype.equals(formattedattacktarget)) {
+							if(hero.attackRoll() > monsterlist.get(i).defendRoll()) {
+								int herodmg = hero.dealDamage();
+								int monsterhealth = monsterlist.get(i).health;
+								monsterlist.get(i).takeDamage(herodmg);
+								System.out.println(hero.name+" hit "+monsterlist.get(i).monstertype+" for "+herodmg);
+								if(monsterhealth != monsterlist.get(i).health && monsterlist.get(i).health > 0) {
+									System.out.println(monsterlist.get(i).monstertype+"'s health is "+monsterlist.get(i).health);
+								}
+								if(monsterlist.get(i).dead) {
+									System.out.println(monsterlist.get(i).monstertype+" has been slain");
+								}
+								break;
+							}
+							else {
+								System.out.println("Player's attack missed");
+								break;
+							}
+						}
+					}
+					attacking = false;
+					break;
+					}
+					else {
+						System.out.println("Please enter a valid target");
+						continue;
+					}
+				}
+			}
+			else {
+				System.out.println("Please enter a valid option");
+				continue;
 			}
 		}
 		return "";
