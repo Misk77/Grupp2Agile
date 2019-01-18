@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.Random;
 
 public class Hero {
@@ -116,6 +117,18 @@ public class Hero {
 				return true;
 			}
 		}
+		return false;
+	}
+
+
+	public boolean allseeing(Hero hero, Treasure tresure, Monster monster) {
+		 {
+			 GuiConsole.io.println("╔══════════════════════════════════════════════════════════════════╗\n",Color.RED);
+			 GuiConsole.io.println(hero.name + "see a gliming " + tresure.treasuretype + "behind the " +monster.monstertype,Color.RED);
+			 GuiConsole.io.println("╚══════════════════════════════════════════════════════════════════╝\n",Color.RED);
+			 
+		 }
+
 		return false;
 	}
 }

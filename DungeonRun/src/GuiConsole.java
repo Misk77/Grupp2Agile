@@ -39,8 +39,8 @@ public final class GuiConsole {
         	ImageIcon img = new ImageIcon("src/1000.jpg");
             // Orginal windows stil
         	//Ändra stil färg via parametrarna
-            defaultFont = "Lucida Console";
-          //defaultFont = "MONOSPACED";
+            defaultFont = "Lucida Console";//verkar vara bästa för kartorna
+          //defaultFont = "MONOSPACED";//Fungerar
            // defaultFont = "HANGING_BASELINE"; // KARTAN BLIR FEL
            // defaultFont = "SERIF"; // KARTAN BLIR FEL
         	//defaultFont = "SANS_SERIF";   // KARTAN BLIR FEL
@@ -52,6 +52,7 @@ public final class GuiConsole {
             
             pane.setSize(1300, 1000);
             pane.setLayout(null);
+            
     		//setDefaultCloseOperation(EXIT_ON_CLOSE);
     		
 
@@ -70,9 +71,20 @@ public final class GuiConsole {
         private void initComponents() {
             frame = new JFrame("Dungeon RUN");
             pane = new JTextPane();
+            frame. setLocationRelativeTo(null);
             doc = pane.getStyledDocument();
             defaultStyles();
             redirectSystemStreams();
+            
+            /////////////////////////////////////// Mapen fram ifall det fungerar
+            Map map = new Map();
+            JFrame frame2 = new JFrame();
+            frame2.setSize(400, 400);
+            frame2.setLocation(frame.getX() + frame.getWidth(), frame.getY());
+            frame2.setVisible(true);
+           ////////////////////////////////////////////////////////////////////////////////MAPENS FÖNSTER/FRAME
+            
+           // frame.setLocationRelativeTo(null); sätter fönstret i miten
             fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment()
                     .getAvailableFontFamilyNames();
             InputPolicy cp = new InputPolicy();
@@ -168,6 +180,8 @@ public final class GuiConsole {
         private void add(JFrame frame2) {
 			// TODO Auto-generated method stub
 			//kanske kan lägga background
+        	Map map = new Map();
+        	map.drawMap(editing);;
 		}
 
 		/**

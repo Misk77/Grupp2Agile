@@ -13,6 +13,7 @@ public class SaveLoad<GameMenuMain> {
 	String filepath = "src/DungeonRun.ser";
 
 	// PATH ("DungeonRunSaves.tmp");
+	/*
 	public void saveToDisk(String name, String herotype) {// need to add the proper arguments, like name and treasure
 		{
 			GameMenu gamemenu = new GameMenu();
@@ -32,8 +33,9 @@ public class SaveLoad<GameMenuMain> {
 		}
 
 	}
-
-	public void LoadFromDisk() {
+*/
+	public void LoadFromDisk(int deadgiantspiders, int deadorcs, int deadskeletons, int deadtrolls, String herotype,
+			String name, int treasure, int visitedrooms, int adventures) {//fel säkert, men testar, seralize
 		GameMenu gamemenu = new GameMenu();
 		try {
 			FileInputStream fileIn = new FileInputStream(filepath);
@@ -64,7 +66,8 @@ public class SaveLoad<GameMenuMain> {
 
 	
 
-	public void saveToDisk(Object[] objectList) {
+	public void saveToDisk(int deadgiantspiders, int deadorcs, int deadskeletons, int deadtrolls, String herotype,
+			String name, int treasure, int visitedrooms, int adventures) {
 		// TODO Auto-generated method stub
 		GameMenu gamemenu = new GameMenu();
 		try {
@@ -90,7 +93,7 @@ public class SaveLoad<GameMenuMain> {
 ///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// BELOW THIS NOT IN USE!!! ////////////////////////////////////////////////////////////
-public void writeToFile() {
+public void writeToFile() {//textfil
 
 // main metoden d�r man skriver in till texten och som h�mtar metoden i
 // writefile classen
@@ -109,12 +112,14 @@ System.out.printf("Du har skrivit till filen:\n%s", filepath);
 
 catch (IOException e) {
 System.out.println(e.getMessage());
-System.out.println("Du har inte skrivit till filen.\nN�got gick fel");
+System.out.println("Du har inte skrivit till filen.\nNågot gick fel");
 }
 
 sc.close();
 
 }
+
+
 }// END of WriteToFile
 
 /*

@@ -285,6 +285,16 @@ public class Game implements java.io.Serializable {
 				GuiConsole.io.print(">> ");
 				fleeorattack = GuiConsole.io.nextLine().toLowerCase();
 			}
+			//allseeingeye
+			/*
+			hero.turntaken = true;
+			if(fleeorattack.equals("seeing")) {
+				 GuiConsole.io.println("╔══════════════════════════════════════════════════════════════════╗\n",Color.RED);
+				 GuiConsole.io.println(hero.name + "see a gliming " + treasure.treasuretype + "behind the " +monster.monstertype,Color.RED);
+				 GuiConsole.io.println("╚══════════════════════════════════════════════════════════════════╝\n",Color.RED);
+					return "break";
+				}
+				*/
 			hero.turntaken = true;
 			if(fleeorattack.equals("f")) {
 				wronginput = false;
