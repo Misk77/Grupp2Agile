@@ -322,6 +322,7 @@ public class GameMenu {
 			break;
 		case "S":
 			GuiConsole.io.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..",Color.RED);
+			//endMenu(); // Måste ha parameter
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			Gamestart();
 			break;
