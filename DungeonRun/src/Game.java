@@ -310,7 +310,11 @@ public class Game {
 		int monsterattackroll = monster.attackRoll();
 		int herodefendroll = hero.defendRoll();
 		//System.out.println("ROLLS MONSTERATTACKROLL "+monsterattackroll+"\nHERO DEFENDROLL "+herodefendroll);
-		if(monsterattackroll > herodefendroll) {
+		if(hero.herotype.equals("Knight") && hero.block) {
+			hero.takeDamage(monster.dealDamage());
+			System.out.println(hero.name+" blocked the "+monster.monstertype+"'s attack!");
+		}
+		else if(monsterattackroll > herodefendroll) {
 			int monsterdmg = monster.dealDamage();
 			int herohealth = hero.health;
 			hero.takeDamage(monsterdmg);
