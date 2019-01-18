@@ -39,6 +39,10 @@ public class AI {
 								}
 							}
 						}
+						if(rand.nextInt(100)+1 <= 10) {
+							// We need a wild card to stop the idiots from walking in circles
+							willPower[way] = 100;
+						}
 
 					}
 				} 
