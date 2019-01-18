@@ -185,7 +185,7 @@ public class GameMenu {
 //Games start here, then NEW GAME the follow the methods one by one tha nfinally into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() {
 		GuiConsole.io.println();
-		GuiConsole.io.println("Demo No:1\nWelcome to the Dungeon Run!\n",Color.YELLOW);
+		GuiConsole.io.println("\nWelcome to the Dungeon Run!\n",Color.YELLOW);
 		GuiConsole.io.println("============================== Load or start a new game ===================================",Color.RED);
 		GuiConsole.io.println("[L]OAD GAME \n",Color.MAGENTA);
 		GuiConsole.io.println("[N]EW GAME \n",Color.BLUE);

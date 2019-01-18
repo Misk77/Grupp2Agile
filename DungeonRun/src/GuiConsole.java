@@ -39,27 +39,31 @@ public final class GuiConsole {
         	ImageIcon img = new ImageIcon("src/1000.jpg");
             // Orginal windows stil
         	//Ändra stil färg via parametrarna
-            defaultFont = "Lucida Console";
+            //defaultFont = "Lucida Console";
+         //   defaultFont = "MONOSPACED";
+          //  defaultFont = "HANGING_BASELINE";
+           // defaultFont = "SERIF";
+        	defaultFont = "SANS_SERIF";
 
             pane.setBackground(Color.BLACK);
             pane.setForeground(Color.LIGHT_GRAY);
             pane.setCaretColor(Color.WHITE);
-            pane.setFont(new Font(defaultFont, Font.PLAIN, 12)); 
+            pane.setFont(new Font(defaultFont, Font.TRUETYPE_FONT,14)); 
             
-            pane.setSize(1120, 750);
+            pane.setSize(1300, 1000);
             pane.setLayout(null);
     		//setDefaultCloseOperation(EXIT_ON_CLOSE);
     		
 
     		//pane.background = new JLabel("", img, JLabel.CENTER);
-    		pane.setBounds(0, 0, 1120, 700);
+    		pane.setBounds(0, 0, 1300, 1000);
             
 
             // orginal prompt stil
     		//Ändra stil färg via parametrarna
             promptStyle = new SimpleAttributeSet();
             StyleConstants.setFontFamily(promptStyle, defaultFont);
-            StyleConstants.setFontSize(promptStyle, 12);
+            StyleConstants.setFontSize(promptStyle, 14);
             StyleConstants.setForeground(promptStyle, Color.GREEN);
         }
 
@@ -144,6 +148,7 @@ public final class GuiConsole {
             frame.add(new JScrollPane(pane));
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+            frame.setBounds(0, 0, 1200, 700);
             
             //background
             /*
