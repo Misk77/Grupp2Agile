@@ -23,9 +23,12 @@ public class GameMenu {
 
 	public void maping() {
 		Map map = new Map();
-		System.out.println("Choose map size:");
-		System.out.println("Press 1 for map: 4x4\nPress 2 for map: 5x5\nPress 3 for map: 8x8");
-		int operator = scanner.nextInt();
+		GuiConsole.io.println();
+		GuiConsole.io.println("Choose map size:",Color.MAGENTA);
+		GuiConsole.io.println("Press 1 for map: 4x4",Color.BLUE);
+		GuiConsole.io.println("Press 2 for map: 5x5",Color.RED);
+		GuiConsole.io.println("Press 3 for map: 8x8",Color.WHITE);
+		int operator = GuiConsole. io.nextInt();
 		switch (operator) {
 		case 1:
 			map.generateMap(4, 4);
@@ -37,19 +40,20 @@ public class GameMenu {
 			map.generateMap(8, 8);
 			break;
 		default:
-			System.out.println("Something went wrong, please try again!");
+			GuiConsole.io.println("Something went wrong, please try again!",Color.RED);
 			maping();
 		}
 		objectList[0] = map;
 	}
 
 	public void cornerChoice() {
-		System.out.println("Choose a corner to start in:");
+		GuiConsole.io.println();
+		GuiConsole.io.println("Choose a corner to start in:",Color.GREEN);
 		// System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1 2┆\n┆ ┆\n┆ ┆\n┆3 4┆\n╰┄┄┄┄┄┄┄┄┄╯");
-		System.out.println(
-				" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|");
+		GuiConsole.io.println(
+				" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|",Color.CYAN);
 		String corner = null;
-		int operator = scanner.nextInt();
+		int operator = GuiConsole. io.nextInt();
 		switch (operator) {
 		case 1:
 			corner = "NW";
@@ -64,7 +68,7 @@ public class GameMenu {
 			corner = "SE";
 			break;
 		default:
-			System.out.println("Something went wrong, please try again!");
+			GuiConsole.io.println("Something went wrong, please try again!",Color.BLUE);
 			cornerChoice();
 		}
 		objectList[2] = corner;
@@ -72,10 +76,12 @@ public class GameMenu {
 
 	// Välj herotype for player
 	public void HeroChoice() {
-		System.out.println("Choose your character:");
-		System.out.println("Press 1 for Knight\nPress 2 for Rogue\nPress 3 for Wizard");
+		GuiConsole.io.println("Choose your character:\n",Color.GREEN);
+		GuiConsole.io.println("Press 1 for Knight",Color.RED);
+		GuiConsole.io.println("Press 2 for Rogue",Color.GREEN);
+		GuiConsole.io.println("Press 3 for Wizard",Color.YELLOW);
 
-		int operator = scanner.nextInt();
+		int operator = GuiConsole. io.nextInt();
 		String type = "";
 		switch (operator) {
 		case 1:
@@ -92,7 +98,7 @@ public class GameMenu {
 			break;
 
 		default:
-			System.out.println("Something went wrong, please try again!");
+			GuiConsole.io.println("Something went wrong, please try again!",Color.GREEN);
 			HeroChoice();
 		}
 		Hero hero = new Hero(type, name);
@@ -102,9 +108,9 @@ public class GameMenu {
 	}
 
 	public void AiHeroChoice() {
-		System.out.println("Press 1 for \"AI Knight\nPress 2 for \"AI Rogue\nPress 3 for AI Wizard");
+		GuiConsole.io.println("Press 1 for \"AI Knight\nPress 2 for \"AI Rogue\nPress 3 for AI Wizard",Color.GREEN);
 
-		int operator = scanner.nextInt();
+		int operator = GuiConsole. io.nextInt();
 		String type = "";
 
 		switch (operator) {
@@ -119,7 +125,7 @@ public class GameMenu {
 			break;
 
 		default:
-			System.out.println("Something went wrong, please try again!");
+			GuiConsole.io.println("Something went wrong, please try again!",Color.RED);
 			AiHeroChoice();
 		}
 		AiHero aihero = new AiHero(type);
@@ -129,31 +135,30 @@ public class GameMenu {
 	}
 
 	public void ReadChar() {
-		System.out.println();
-		System.out
-				.println("============================== Read about the character ===================================");
-		System.out.println();
-		System.out.println("\n---------------------------Heros-----------------------");
-		System.out.println("Knight\n"
+		GuiConsole.io.println();
+		GuiConsole.io.println("============================== Read about the character ===================================",Color.RED);
+		GuiConsole.io.println();
+		GuiConsole.io.println("\n---------------------------Heros-----------------------",Color.MAGENTA);
+		GuiConsole.io.println("Knight\n"
 				+ "Initiative = 5\nHerotype = Herotype\nHealth = 9\nBaseattack = 6\nAvoidance = 4\n"
-				+ "Specialförmåga: Sköldblock. Riddaren blockerar alltid första attackenper strid med sin sköld \noch behöver därför varken undvika eller ta någon skada\n");
+				+ "Specialförmåga: Sköldblock. Riddaren blockerar alltid första attackenper strid med sin sköld \noch behöver därför varken undvika eller ta någon skada\n",Color.BLUE);
 
-		System.out.println("Wizard\n"
+		GuiConsole.io.println("Wizard\n"
 				+ "Initiative = 6\nHerotype = Herotype\nHealth = 4\nBaseattack = 9\nAvoidance = 5\n"
-				+ "Specialförmåga: Ljussken. Trollkarlen kan göra monster blinda och hardärför alltid 80% chans att fly från strider\n");
+				+ "Specialförmåga: Ljussken. Trollkarlen kan göra monster blinda och hardärför alltid 80% chans att fly från strider\n",Color.WHITE);
 
-		System.out.println("Rogue\n"
+		GuiConsole.io.println("Rogue\n"
 				+ "Initiative = 7\nHerotype = Herotype\nHealth = 5\nBaseattack = 5\nAvoidance = 7\n"
-				+ "Specialförmåga: Kritisk träff. Tjuven har 25% chans att göra dubbel skada varje gång tjuven attackerar\n");
-		System.out.println("--------------------------Monster----------------------");
-		System.out.println(
-				"Giant Spider\nInitiative = 7\nMonstertype = Monster\nHealth = 1\nBaseattack = 2\nAvoidance = 3\n");
-		System.out.println(
-				"Skeleton\nInitiative = 4\nMonstertype = Monster\nHealth = 2\nBaseattack = 3\nAvoidance = 3\n");
-		System.out.println("Orc\nInitiative = 6\nMonstertype = Monster\nHealth = 3\nBaseattack = 4\nAvoidance = 4\n");
-		System.out.println("Troll\nInitiative = 2\nMonstertype = Monster\nHealth = 4\nBaseattack = 7\nAvoidance = 2\n");
-		System.out.println("--------------------------Treasure----------------------");
-		System.out.println("Loose coins\nTreasuretype: Treasuretype\nValue: 2\n"
+				+ "Specialförmåga: Kritisk träff. Tjuven har 25% chans att göra dubbel skada varje gång tjuven attackerar\n",Color.ORANGE);
+		GuiConsole.io.println("--------------------------Monster----------------------");
+		GuiConsole.io.println(
+				"Giant Spider\nInitiative = 7\nMonstertype = Monster\nHealth = 1\nBaseattack = 2\nAvoidance = 3\n",Color.RED);
+		GuiConsole.io.println(
+				"Skeleton\nInitiative = 4\nMonstertype = Monster\nHealth = 2\nBaseattack = 3\nAvoidance = 3\n",Color.YELLOW);
+		GuiConsole.io.println("Orc\nInitiative = 6\nMonstertype = Monster\nHealth = 3\nBaseattack = 4\nAvoidance = 4\n",Color.RED);
+		GuiConsole.io.println("Troll\nInitiative = 2\nMonstertype = Monster\nHealth = 4\nBaseattack = 7\nAvoidance = 2\n",Color.CYAN);
+		GuiConsole.io.println("--------------------------Treasure----------------------");
+		GuiConsole.io.println("Loose coins\nTreasuretype: Treasuretype\nValue: 2\n"
 				+ "\nSmall bag of coins\nTreasuretype: Treasuretype\nValue: 6\n"
 				+ "\nGold jewellry\nTreasuretype: Treasuretype\nValue: 10\n"
 				+ "\nPrecious stone\nTreasuretype: Treasuretype\nValue: 14\n"
@@ -181,7 +186,7 @@ public class GameMenu {
 	public Object[] GameMenuFirst() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Demo No:1\nWelcome to the Dungeon Run!\n",Color.YELLOW);
-		GuiConsole.io.println("============================== Load or start a new game ===================================",Color.BLACK);
+		GuiConsole.io.println("============================== Load or start a new game ===================================",Color.RED);
 		GuiConsole.io.println("[L]OAD GAME \n",Color.MAGENTA);
 		GuiConsole.io.println("[N]EW GAME \n",Color.BLUE);
 		//System.out.println("[A]i Character \n");
@@ -194,49 +199,49 @@ public class GameMenu {
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e2) {
-			GuiConsole.io.println("Badness...");
+			GuiConsole.io.println("Badness...",Color.RED);
 		}
 
 		if (input.equalsIgnoreCase("N")) {
-			GuiConsole.io.println("Let the Adventures Begin...");
+			GuiConsole.io.println("Let the Adventures Begin...",Color.GREEN);
 			objectList = Gamestart();
 
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness");
+				GuiConsole.io.println("Badness",Color.RED);
 			}
 
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness");
+				GuiConsole.io.println("Badness",Color.RED);
 			}
 		} else if (input.equalsIgnoreCase("A")) {
 			AiHeroChoice();
 			maping();
 			AiHero.cornerRandom();
 		} else if (input.equalsIgnoreCase("E")) {
-			GuiConsole.io.println("Too bad you're leaving....");
-			GuiConsole.io.println("Come back when you dare to enter the dungeons.....");
+			GuiConsole.io.println("Too bad you're leaving....",Color.ORANGE);
+			GuiConsole.io.println("Come back when you dare to enter the dungeons.....",Color.BLUE);
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
 			save.LoadFromDisk();
-			GuiConsole.io.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD");
+			GuiConsole.io.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD",Color.YELLOW);
 			GameMenuFirst();
 
 		} else {
-			GuiConsole.io.println("No such option in menu");
-			GuiConsole.io.println("\t try again........");
+			GuiConsole.io.println("No such option in menu",Color.RED);
+			GuiConsole.io.println("\t try again........",Color.RED);
 			GameMenuFirst();
 		}
 		return objectList;
 	}
 
 	public String playerName() {
-		GuiConsole.io.println("Welcome player! \nPlease enter your name: ");
-		name = scanner.next();
+		GuiConsole.io.println("Welcome player! \nPlease enter your name: ",Color.GREEN);
+		name = GuiConsole.io.nextLine();
 		return name;
 
 	}
@@ -299,11 +304,11 @@ public class GameMenu {
 		case "L":
 			// Alternativ...1. read from file method in saveLoad
 			// 2. göra metod med allt
-			GuiConsole.io.println("[L]-DENNA METOD GÖRS SENARE - Load your character..");
+			GuiConsole.io.println("[L]-DENNA METOD GÖRS SENARE - Load your character..",Color.YELLOW);
 			Gamestart();
 			break;
 		case "S":
-			GuiConsole.io.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..");
+			GuiConsole.io.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..",Color.RED);
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			Gamestart();
 			break;
@@ -320,14 +325,14 @@ public class GameMenu {
 
 				e.printStackTrace();
 			}
-			GuiConsole.io.println("You now exit the game....");
+			GuiConsole.io.println("You now exit the game....",Color.YELLOW);
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
 			}
-			GuiConsole.io.println("Data will be automatic saved.....");
+			GuiConsole.io.println("Data will be automatic saved.....",Color.YELLOW);
 			System.exit(0);
 			GuiConsole.io.println();
 		default:
@@ -337,14 +342,14 @@ public class GameMenu {
 
 				e.printStackTrace();
 			}
-			GuiConsole.io.println("No such option in menu");
-			GuiConsole.io.println("\t try again........");
+			GuiConsole.io.println("No such option in menu",Color.RED);
+			GuiConsole.io.println("\t try again........",Color.YELLOW);
 			Gamestart();
 			break;
 
 		}
 		// }
-		save.saveToDisk(objectList);
+	//	save.saveToDisk(objectList);
 		//save.saveToDisk(name,herotype);
 		//save.saveToDisk(objectList);
 		return objectList;
@@ -353,20 +358,20 @@ public class GameMenu {
 	public String endMenu(Hero hero) {
 		//save here
 		if(hero.dead) 
-			System.out.println("Your adventures are over, these are your accomplishments:");
+			GuiConsole.io.println("Your adventures are over, these are your accomplishments:",Color.YELLOW);
 		else
-			System.out.println("You managed to get out of the dungeon alive, these are your accomplishments:");
-		System.out.println("Treasure worth "+hero.treasure+" coins collected\n"
+			GuiConsole.io.println("You managed to get out of the dungeon alive, these are your accomplishments:",Color.BLUE);
+		GuiConsole.io.println("Treasure worth "+hero.treasure+" coins collected\n"
 						+ hero.visitedrooms+" rooms visited\n"
 						+ hero.deadgiantspiders+" Giant Spiders slain\n"
 						+ hero.deadskeletons+" Skeletons slain\n"
 						+ hero.deadorcs+" Orcs slain\n"
 						+ hero.deadtrolls+" Trolls slain\n"
 						+ (hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls)+" monsters slain in total\n"
-						+ hero.adventures+" adventures undertaken\n");
-		System.out.println("[M]ain menu\n[Q]uit game");
+						+ hero.adventures+" adventures undertaken\n",Color.RED);
+		GuiConsole.io.println("[M]ain menu\n[Q]uit game",Color.GREEN);
 		while(true) {
-			String option = scanner.nextLine().toLowerCase();
+			String option = GuiConsole.io.nextLine().toLowerCase();
 			if(option.equals("m")) {
 				return "menu";
 			}

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,13 +22,13 @@ public class SaveLoad<GameMenuMain> {
 				out.writeObject(usertext);
 				out.close();
 				fileOut.close();
-				System.out.printf("SAVE TO: DungeonRunSaves\n");// sparar filen
+				GuiConsole.io.println("SAVE TO: DungeonRunSaves\n",Color.GREEN);// sparar filen
 			} catch (IOException i) {
 				i.printStackTrace();
 			}
 			// game.Gamestart();
-			System.out.printf("Lämnat saveToDIsk Metoden\n");// sparar filen
-			System.out.println();
+			GuiConsole.io.println("Lämnat saveToDIsk Metoden\n",Color.BLUE);// sparar filen
+			GuiConsole.io.println();
 		}
 
 	}
@@ -45,18 +46,18 @@ public class SaveLoad<GameMenuMain> {
 			i.printStackTrace();
 			return;
 		} catch (ClassNotFoundException c) {
-			System.out.println("DungeonRunSaves  not found\n");
+			GuiConsole.io.println("DungeonRunSaves  not found\n",Color.RED);
 			c.printStackTrace();
 			return;
 		}
 		System.out.println();
-		System.out.println("LOAD FROM:  DungeonRunSaves...\n");
-		System.out.println("Name: " + gamemenu.name);
-		System.out.println("Herotype: " + gamemenu.herotype);
-		System.out.println("PlayerName: " + gamemenu.playerName());
-		System.out.println("Object: " + usertext);
-		System.out.printf("Lämnat LoadFromDisk Metoden\n");// sparar filen
-		System.out.println();
+		GuiConsole.io.println("LOAD FROM:  DungeonRunSaves...\n",Color.WHITE);
+		GuiConsole.io.println("Name: " + gamemenu.name,Color.BLUE);
+		GuiConsole.io.println("Herotype: " + gamemenu.herotype,Color.BLACK);
+		GuiConsole.io.println("PlayerName: " + gamemenu.playerName(),Color.GREEN);
+		GuiConsole.io.println("Object: " + usertext,Color.WHITE);
+		GuiConsole.io.println("Lämnat LoadFromDisk Metoden\n",Color.RED);// sparar filen
+		GuiConsole.io.println();
 		//gamemenu.maping();
 		// game.Gamestart();
 	}// LoadFromDisk
@@ -72,13 +73,13 @@ public class SaveLoad<GameMenuMain> {
 			out.writeObject(usertext);
 			out.close();
 			fileOut.close();
-			System.out.printf("SAVE TO: DungeonRunSaves\n");// sparar filen
+			GuiConsole.io.println("SAVE TO: DungeonRunSaves\n",Color.RED);// sparar filen
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
 		// game.Gamestart();
-		System.out.printf("Lämnat saveToDIsk Metoden\n");// sparar filen
-		System.out.println();
+		GuiConsole.io.println("Lämnat saveToDIsk Metoden\n",Color.RED);// sparar filen
+		GuiConsole.io.println();
 
 	}
 

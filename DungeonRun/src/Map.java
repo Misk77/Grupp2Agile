@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -160,9 +161,9 @@ public class Map {
 		if (showMap) {
 			System.out.print(" ");
 			for (int i = sizex; i>=0; i--) {
-				System.out.print("▁▁▁▁▁");
+				GuiConsole.io.println("▁▁▁▁▁",Color.GREEN);
 			}
-			System.out.println();
+			GuiConsole.io.println();
 			for(int x = 0; x<=sizex; x++) {
 				for(int y = 0; y<=sizex; y++) {
 					for(Room room : this.room) {
@@ -198,14 +199,14 @@ public class Map {
 						}
 					}
 				} // Y
-				System.out.print("▕" + part[1] + "▏\n");
-				System.out.print("▕" + part[0] + "▏\n");
+				GuiConsole.io.println("▕" + part[1] + "▏\n",Color.BLACK);
+				GuiConsole.io.println("▕" + part[0] + "▏\n",Color.MAGENTA);
 				part[0] = "";
 				part[1] = "";
 			} // X
-			System.out.print(" ");
-			for (int i = sizex; i>=0; i--) { System.out.print("▔▔▔▔▔");}
-			System.out.println();
+			GuiConsole.io.println(" ",Color.RED);
+			for (int i = sizex; i>=0; i--) { GuiConsole.io.println("▔▔▔▔▔",Color.WHITE);}
+			GuiConsole.io.println();
 		}
 	}
 }
