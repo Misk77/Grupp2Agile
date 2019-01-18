@@ -48,7 +48,7 @@ public final class GuiConsole {
             pane.setBackground(Color.BLACK);
             pane.setForeground(Color.LIGHT_GRAY);
             pane.setCaretColor(Color.WHITE);
-            pane.setFont(new Font(defaultFont, Font.TRUETYPE_FONT,14)); 
+            pane.setFont(new Font(defaultFont, Font.TYPE1_FONT,14)); 
             
             pane.setSize(1300, 1000);
             pane.setLayout(null);
