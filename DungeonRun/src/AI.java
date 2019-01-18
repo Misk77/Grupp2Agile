@@ -4,9 +4,10 @@ import java.util.Random;
 public class AI {
 	static int pause = 300;
 	static Random rand = new Random();
-
+	static int deadSteps = 0;
+	
 	public AI() {
-
+		
 	}
 
 	public String chooseDirection(Map map, Hero hero) {
@@ -39,9 +40,10 @@ public class AI {
 								}
 							}
 						}
-						if(rand.nextInt(100)+1 <= 10) {
-							// We need a wild card to stop the idiots from walking in circles
-							willPower[way] = 100;
+						if(deadSteps > 50) { // We need to stop these cowards from walking in circles
+							if(rand.nextInt(100)+1 <= 50) {
+								willPower[way] = 100;
+							}
 						}
 
 					}
@@ -66,9 +68,9 @@ public class AI {
 		}
 
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
-		String decision = bestChoices.get(rand.nextInt(bestChoices.size()));
-		System.out.println(decision);
-		return decision;
+		String theWay = bestChoices.get(rand.nextInt(bestChoices.size()));
+		System.out.println(theWay);
+		return theWay;
 	}
 
 
@@ -105,6 +107,9 @@ public class AI {
 					decision = "f";
 				}
 			}
+			if(deadSteps > 50) {
+				decision = "a";
+			}
 		}
 
 		if(hero.herotype.equals("Rogue")) {
@@ -112,6 +117,9 @@ public class AI {
 				decision = "a";
 			} else {
 				decision = "f";
+			}
+			if(deadSteps > 50) {
+				decision = "a";
 			}
 		}
 

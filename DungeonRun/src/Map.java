@@ -8,19 +8,19 @@ public class Map {
 	ArrayList<Room> visitedrooms = new ArrayList<Room>();
 	int lastroomvisitedx; //coordinates for last room
 	int lastroomvisitedy;
-	
+
 	int currentroomx;
 	int currentroomy;
-	
+
 	int sizex;
 	int sizey;
-	
+
 	Random rand;
-	
+
 	public Map() {
 		rand = new Random();
 	}
-	
+
 	public void generateMap(int x, int y) {
 		for(int h = 0; h < x; h++) {
 			//"x" coordinates
@@ -34,7 +34,7 @@ public class Map {
 		this.sizex = x-1;
 		this.sizey = y-1;
 	}
-	
+
 	public Room goNorth() {
 		for(Room room : this.room) {
 			if(room.x == currentroomx-1 && room.y == currentroomy) {
@@ -48,7 +48,7 @@ public class Map {
 		}
 		return null;
 	}
-	
+
 	public Room goSouth() {
 		for(Room room : this.room) {
 			if(room.x == currentroomx+1 && room.y == currentroomy) {
@@ -62,7 +62,7 @@ public class Map {
 		}
 		return null;
 	}
-	
+
 	public Room goEast() {
 		for(Room room : this.room) {
 			if(room.x == currentroomx && room.y == currentroomy+1) {
@@ -75,9 +75,9 @@ public class Map {
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public Room goWest() {
 		for(Room room : this.room) {
 			if(room.x == currentroomx && room.y == currentroomy-1) {
@@ -91,7 +91,7 @@ public class Map {
 		}
 		return null;
 	}
-	
+
 	public Room goLast() {
 		for(Room room : this.room) {
 			if(room.x == lastroomvisitedx && room.y == lastroomvisitedy) {
@@ -104,7 +104,7 @@ public class Map {
 		}
 		return null;
 	}
-	
+
 	public Room startingPoint(String corner) {
 		if(corner.equals("NW")) {
 			this.currentroomx = 0;
@@ -131,7 +131,7 @@ public class Map {
 		}
 		return null;
 	}
-	
+
 	public void generateExit() {
 		while(true) {
 			int randroom = rand.nextInt(room.size()-1);
@@ -151,7 +151,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public void drawMap(boolean atStart) {
 		// atStart hindrar monster från att visas i första rummet, då det inte clearats ännu.
 		boolean showMap = true;
@@ -219,5 +219,6 @@ public class Map {
 			}
 			GuiConsole.io.print("█\n\n",Color.ORANGE);
 		}
-}
+		System.out.println("deadSteps: " + AI.deadSteps);
+	}
 }

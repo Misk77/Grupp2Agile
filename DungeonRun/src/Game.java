@@ -21,7 +21,7 @@ public class Game implements java.io.Serializable {
 			Hero hero = (Hero) objects[1]; //need the correct index
 			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index
-			//Map.clearScreenWhenEnteringRoom = true; // Testa gärna denna och säg vad ni tycker! Cleanare enligt mig. /Johannes
+			//Map.clearScreenWhenEnteringRoom = true; // Testa gï¿½rna denna och sï¿½g vad ni tycker! Cleanare enligt mig. /Johannes
 			String corner = (String) objects[2]; //need the correct index
 			Game game = new Game();
 			AI ai = new AI();
@@ -45,6 +45,7 @@ public class Game implements java.io.Serializable {
 				//counting rooms
 				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit && !firstround) {
 					GuiConsole.io.println("There is nothing here...");
+					AI.deadSteps++;
 				}
 				firstround = false;
 				if(currentroom.exit) {
@@ -294,6 +295,7 @@ public class Game implements java.io.Serializable {
 					}
 					map.goLast();
 					GuiConsole.io.println("You fled back to the previous room successfully!",Color.GREEN);
+					AI.deadSteps++;
 					//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 					return "break";
 				}
@@ -349,6 +351,7 @@ public class Game implements java.io.Serializable {
 										hero.deadtrolls++;
 									//counting dead monsters
 									GuiConsole.io.println(monsterlist.get(i).monstertype+" has been slain",Color.CYAN);
+									AI.deadSteps = 0;
 								}
 								break;
 							}
