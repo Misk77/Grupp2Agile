@@ -28,6 +28,7 @@ public class GameMenu {
 		GuiConsole.io.println("Press 1 for map: 4x4",Color.BLUE);
 		GuiConsole.io.println("Press 2 for map: 5x5",Color.RED);
 		GuiConsole.io.println("Press 3 for map: 8x8",Color.WHITE);
+		GuiConsole.io.println();
 		int operator = GuiConsole. io.nextInt();
 		switch (operator) {
 		case 1:
@@ -52,6 +53,7 @@ public class GameMenu {
 		// System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1 2┆\n┆ ┆\n┆ ┆\n┆3 4┆\n╰┄┄┄┄┄┄┄┄┄╯");
 		GuiConsole.io.println(
 				" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|",Color.CYAN);
+		GuiConsole.io.println();
 		String corner = null;
 		int operator = GuiConsole. io.nextInt();
 		switch (operator) {
@@ -77,10 +79,11 @@ public class GameMenu {
 	// Välj herotype for player
 	public void HeroChoice() {
 		GuiConsole.io.println("Choose your character:\n",Color.GREEN);
+		GuiConsole.io.println();
 		GuiConsole.io.println("Press 1 for Knight",Color.RED);
 		GuiConsole.io.println("Press 2 for Rogue",Color.GREEN);
 		GuiConsole.io.println("Press 3 for Wizard",Color.YELLOW);
-
+		GuiConsole.io.println();
 		int operator = GuiConsole. io.nextInt();
 		String type = "";
 		switch (operator) {
