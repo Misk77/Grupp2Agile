@@ -1,7 +1,9 @@
 
+import java.awt.Color;
 import java.util.Scanner;
 
 public class GameMenu {
+	
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
@@ -161,78 +163,79 @@ public class GameMenu {
 
 	public void iGame() {
 		/* Instruction about the game. */
-		System.out.println();
-		System.out.println(
-				"============================== Instructions for the game ===================================");
-		System.out.println();
-		System.out.println("\n" + "1. You need to pick a character.\r\n"
+		GuiConsole.io.println();
+		
+		
+		
+		GuiConsole.io.println(
+				"============================== Instructions for the game ===================================",Color.YELLOW);
+		GuiConsole.io.println();
+		GuiConsole.io.println("\n" + "1. You need to pick a character.\r\n"
 				+ "2. Choose the map size: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
 				+ "3. You will battle monsters.\r\n" + "4. Pick up Treasures!\r\n"
 				+ "5. Game Over when the player leaves the map or gets defeated.\r\n"
-				+ "6. The game command movement is: North, South, East, West. \r\n" + "");
-		Gamestart();
+				+ "6. The game command movement is: North, South, East, West. \r\n" + "",Color.BLUE);
 	}
 
 //Games start here, then NEW GAME the follow the methods one by one tha nfinally into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() {
-		System.out.println();
-		System.out.println("Demo No:1\nWelcome to the Dungeon Run!\n");
-		System.out
-				.println("============================== Load or start a new game ===================================");
-		System.out.println("[L]OAD GAME \n");
-		System.out.println("[N]EW GAME \n");
+		GuiConsole.io.println();
+		GuiConsole.io.println("Demo No:1\nWelcome to the Dungeon Run!\n",Color.YELLOW);
+		GuiConsole.io.println("============================== Load or start a new game ===================================",Color.BLACK);
+		GuiConsole.io.println("[L]OAD GAME \n",Color.MAGENTA);
+		GuiConsole.io.println("[N]EW GAME \n",Color.BLUE);
 		//System.out.println("[A]i Character \n");
-		System.out.println("[E]XIT\n");
-		System.out.println();
+		GuiConsole.io.println("[E]XIT\n",Color.RED);
+		GuiConsole.io.println();
 		// System.out.println("[M]eny\n");
 
-		input = scanner.next();
+		input =GuiConsole.io.nextLine();
 
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e2) {
-			System.out.printf("Badness...", e2);
+			GuiConsole.io.println("Badness...");
 		}
 
 		if (input.equalsIgnoreCase("N")) {
-			System.out.println("Let the Adventures Begin...");
+			GuiConsole.io.println("Let the Adventures Begin...");
 			objectList = Gamestart();
 
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
-				System.out.printf("Badness", e2);
+				GuiConsole.io.println("Badness");
 			}
 
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
-				System.out.printf("Badness", e2);
+				GuiConsole.io.println("Badness");
 			}
 		} else if (input.equalsIgnoreCase("A")) {
 			AiHeroChoice();
 			maping();
 			AiHero.cornerRandom();
 		} else if (input.equalsIgnoreCase("E")) {
-			System.out.println("Too bad you're leaving....");
-			System.out.println("Come back when you dare to enter the dungeons.....");
+			GuiConsole.io.println("Too bad you're leaving....");
+			GuiConsole.io.println("Come back when you dare to enter the dungeons.....");
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
 			save.LoadFromDisk();
-			System.out.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD");
+			GuiConsole.io.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD");
 			GameMenuFirst();
 
 		} else {
-			System.out.println("No such option in menu");
-			System.out.println("\t try again........");
+			GuiConsole.io.println("No such option in menu");
+			GuiConsole.io.println("\t try again........");
 			GameMenuFirst();
 		}
 		return objectList;
 	}
 
 	public String playerName() {
-		System.out.println("Welcome player! \nPlease enter your name: ");
+		GuiConsole.io.println("Welcome player! \nPlease enter your name: ");
 		name = scanner.next();
 		return name;
 
@@ -244,29 +247,30 @@ public class GameMenu {
 		// have GAME; like a break but put us here instead
 
 		// while (running) {
-		System.out.println();
-		System.out.println("============================== GAME MENU ===================================");
+		GuiConsole.io.println();
+		GuiConsole.io.println("============================== GAME MENU ===================================",Color.BLUE);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("[H]elp - Read about the game..."); // Readfile eller metod där allt står om spelet, //
+		GuiConsole.io.println("[H]elp - Read about the game...",Color.YELLOW); // Readfile eller metod där allt står om spelet, //
 																// spelrunda
-		System.out.println("[N]ew  - Create new character.."); // tar in hero metoden
-		System.out.println("[A]i character .."); // läser från load metoden oc
-		System.out.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
-		System.out.println("[S]ee  - See highscore (treasure points) for character.."); //
-		System.out.println("[R]ead - Read about the characters..");// om spelkaraktärer
-		System.out.println("[E]XIT/SAVE\n");// THen exit automatic save the game
-		input = scanner.next();
+		GuiConsole.io.println("[N]ew  - Create new character..",Color.RED); // tar in hero metoden
+		GuiConsole.io.println("[A]i character ..",Color.GRAY); // läser från load metoden oc
+		GuiConsole.io.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
+		GuiConsole.io.println("[S]ee  - See highscore (treasure points) for character..",Color.GREEN); //
+		GuiConsole.io.println("[R]ead - Read about the characters..",Color.ORANGE);// om spelkaraktärer
+		GuiConsole.io.println("[E]XIT/SAVE\n",Color.WHITE);// THen exit automatic save the game
+		//input = scanner.next();
+		input =GuiConsole.io.nextLine();
 		// Valen i menu
 
 		switch (input.toUpperCase()) {
 
 		case "H":
-			System.out.println(); /* Aiham */
+			GuiConsole.io.println(); /* Aiham */
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			// Fånga denna senare innan demo är klart GÄLLER ALLA DESSA TRY/CATCH
 			// exempel: System.out.printf("BADNESS...",e);
@@ -295,19 +299,19 @@ public class GameMenu {
 		case "L":
 			// Alternativ...1. read from file method in saveLoad
 			// 2. göra metod med allt
-			System.out.println("[L]-DENNA METOD GÖRS SENARE - Load your character..");
+			GuiConsole.io.println("[L]-DENNA METOD GÖRS SENARE - Load your character..");
 			Gamestart();
 			break;
 		case "S":
-			System.out.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..");
+			GuiConsole.io.println("[S]-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..");
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			Gamestart();
 			break;
 		case "R":
-			System.out.println();
+			GuiConsole.io.println();
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			ReadChar();
-			System.out.println();
+			GuiConsole.io.println();
 			break;
 		case "E":
 			try {
@@ -316,16 +320,16 @@ public class GameMenu {
 
 				e.printStackTrace();
 			}
-			System.out.println("You now exit the game....");
+			GuiConsole.io.println("You now exit the game....");
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
 			}
-			System.out.println("Data will be automatic saved.....");
+			GuiConsole.io.println("Data will be automatic saved.....");
 			System.exit(0);
-			System.out.println();
+			GuiConsole.io.println();
 		default:
 			try {
 				Thread.sleep(300);
@@ -333,8 +337,8 @@ public class GameMenu {
 
 				e.printStackTrace();
 			}
-			System.out.println("No such option in menu");
-			System.out.println("\t try again........");
+			GuiConsole.io.println("No such option in menu");
+			GuiConsole.io.println("\t try again........");
 			Gamestart();
 			break;
 
