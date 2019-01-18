@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Map {
+	static boolean clearScreenWhenEnteringRoom = false;
 	ArrayList<Room> room = new ArrayList<Room>();
 	ArrayList<Room> visitedrooms = new ArrayList<Room>();
 	int lastroomvisitedx; //coordinates for last room
@@ -158,13 +159,16 @@ public class Map {
 		part[0] = "";
 		part[1] = "";
 		String heroHere;
-		GuiConsole.io.clear();
+		// The following line presents a new room much cleaner, at the cost of being able to scroll up.
+		if (clearScreenWhenEnteringRoom) {
+			GuiConsole.io.clear();
+		}
 		if (showMap) {
-			GuiConsole.io.print("\n█",Color.RED);
+			GuiConsole.io.print("\n█",Color.DARK_GRAY);
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.RED);
+				GuiConsole.io.print("█████",Color.DARK_GRAY);
 			}
-			GuiConsole.io.print("█\n",Color.RED);
+			GuiConsole.io.print("█\n",Color.DARK_GRAY);
 			for(int x = 0; x<=sizex; x++) {
 				for(int y = 0; y<=sizex; y++) {
 					for(Room room : this.room) {
@@ -200,20 +204,20 @@ public class Map {
 						}
 					}
 				} // Y
-				GuiConsole.io.print("█",Color.RED);
+				GuiConsole.io.print("█",Color.DARK_GRAY);
 				GuiConsole.io.print(part[1],Color.ORANGE);
-				GuiConsole.io.print("█\n",Color.RED);
-				GuiConsole.io.print("█",Color.RED);
+				GuiConsole.io.print("█\n",Color.DARK_GRAY);
+				GuiConsole.io.print("█",Color.DARK_GRAY);
 				GuiConsole.io.print(part[0],Color.ORANGE);
-				GuiConsole.io.print("█\n",Color.RED);
+				GuiConsole.io.print("█\n",Color.DARK_GRAY);
 				part[0] = "";
 				part[1] = "";
 			} // X
-			GuiConsole.io.print("█",Color.RED);
+			GuiConsole.io.print("█",Color.DARK_GRAY);
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.RED);
+				GuiConsole.io.print("█████",Color.DARK_GRAY);
 			}
-			GuiConsole.io.print("█\n\n",Color.RED);
+			GuiConsole.io.print("█\n\n",Color.DARK_GRAY);
 		}
 }
 }

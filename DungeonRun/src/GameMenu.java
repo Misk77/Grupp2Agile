@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameMenu {
@@ -75,6 +76,15 @@ public class GameMenu {
 		}
 		objectList[2] = corner;
 	}  
+	
+	public void cornerRandom() {
+		Random rand = new Random();
+		String[] corners = { "NW ", "NE ", "SW", "SE " };
+		String corner = corners[rand.nextInt(corners.length)];
+		objectList[2] = corner;
+	}
+	
+	
 
 	// Välj herotype for player
 	public void HeroChoice() {
@@ -110,29 +120,30 @@ public class GameMenu {
 	}
 
 	public void AiHeroChoice() {
-		GuiConsole.io.println("Press 1 for \"AI Knight\nPress 2 for \"AI Rogue\nPress 3 for AI Wizard",Color.GREEN);
+		GuiConsole.io.println("Press 1 for AI Knight\nPress 2 for AI Rogue\nPress 3 for AI Wizard",Color.GREEN);
 
 		int operator = GuiConsole. io.nextInt();
 		String type = "";
 
 		switch (operator) {
 		case 1:
-			type = "AI Knight";
+			type = "Knight";
 			break;
 		case 2:
-			type = "AI Rogue";
+			type = "Rogue";
 			break;
 		case 3:
-			type = "AI Wizard";
+			type = "Wizard";
 			break;
 
 		default:
 			GuiConsole.io.println("Something went wrong, please try again!",Color.RED);
 			AiHeroChoice();
 		}
-		AiHero aihero = new AiHero(type);
+		Hero hero = new Hero(type, "AI "+type);
+		hero.ai = true;
+		objectList[1] = hero;
 
-		objectList[1] = aihero;
 
 	}
 
@@ -305,13 +316,12 @@ public class GameMenu {
 			break;
 		// System.out.println("[C]-Choose your charachter..");// När Hero metoden är
 		// klar....Disk med Daniel senare
-		case "A": // Returnera en object list för map och hero för att köra spelet.
-			// playerName();
+		case "A":
 			AiHeroChoice();
 			maping();
-			AiHero.cornerRandom();
-			// game.playerCombatAction(); parametrar? scanner,hero,monster,maps?
-			// Här ska den in i battle??
+			Game.dramaticPause = 80;
+			Map.clearScreenWhenEnteringRoom = true;
+			cornerRandom();
 			break;
 
 		case "L":

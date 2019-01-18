@@ -8,26 +8,23 @@ public class Game implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static int dramaticPause = 500;
 
 	public static void main(String[] args) {
-		//Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {
 			int deadmonstercount = 0;
+			
 			GameMenu gamemenu = new GameMenu();
 			Object [] objects = gamemenu.GameMenuFirst();
 			Hero hero = (Hero) objects[1]; //need the correct index
-			AiHero aihero = (AiHero)objects[3];
+			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index
+			//Map.clearScreenWhenEnteringRoom = true; // Testa gärna denna och säg vad ni tycker! Cleanare enligt mig. /Johannes
 			String corner = (String) objects[2]; //need the correct index
-			//map.generateMap(4, 4);
 			Game game = new Game();
 			AI ai = new AI();
-			//Hero hero = new Hero("Rogue", "myfirstrogue");
-			//for(Room room : map.room) {
-			//	System.out.println(room.x+" "+room.y);
-			//}
 			Room currentroom = map.startingPoint(corner);
 			map.generateExit();
 			map.clearCurrentRoom();
@@ -74,27 +71,27 @@ public class Game implements java.io.Serializable {
 				if(!currentroom.monsterlist.isEmpty()) {
 					GuiConsole.io.println("In the darkness something are waiting.......",Color.RED);
 					try {
-						Thread.sleep(500);
+						Thread.sleep(dramaticPause);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					try {
-						Thread.sleep(500);
+						Thread.sleep(dramaticPause);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					System.out.println("Somethings in the dark starring at you.......");
 					try {
-						Thread.sleep(500);
+						Thread.sleep(dramaticPause);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 					try {
-						Thread.sleep(500);
+						Thread.sleep(dramaticPause);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -291,7 +288,7 @@ public class Game implements java.io.Serializable {
 			if(fleeorattack.equals("f")) {
 				wronginput = false;
 				if(hero.flee()) {
-					GuiConsole.io.println("You fled back to the previous room successfully!",Color.GREEN);
+					
 					for(Monster monster : monsterlist) {
 						monster.resetMonsterHealth();
 					}
