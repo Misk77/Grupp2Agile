@@ -24,10 +24,10 @@ public class GameMenu {
 	public void maping() {
 		Map map = new Map();
 		GuiConsole.io.println();
-		GuiConsole.io.println("Choose map size:",Color.MAGENTA);
+		GuiConsole.io.println("Choose map size:",Color.WHITE);
 		GuiConsole.io.println("Press 1 for map: 4x4",Color.BLUE);
 		GuiConsole.io.println("Press 2 for map: 5x5",Color.RED);
-		GuiConsole.io.println("Press 3 for map: 8x8",Color.WHITE);
+		GuiConsole.io.println("Press 3 for map: 8x8",Color.YELLOW);
 		GuiConsole.io.println();
 		int operator = GuiConsole. io.nextInt();
 		switch (operator) {
@@ -49,7 +49,7 @@ public class GameMenu {
 
 	public void cornerChoice() {
 		GuiConsole.io.println();
-		GuiConsole.io.println("Choose a corner to start in:",Color.GREEN);
+		GuiConsole.io.println("Choose a corner to start in:",Color.WHITE);
 		// System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1 2┆\n┆ ┆\n┆ ┆\n┆3 4┆\n╰┄┄┄┄┄┄┄┄┄╯");
 		GuiConsole.io.println(
 				" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|",Color.CYAN);
@@ -78,8 +78,7 @@ public class GameMenu {
 
 	// Välj herotype for player
 	public void HeroChoice() {
-		GuiConsole.io.println("Choose your character:\n",Color.GREEN);
-		GuiConsole.io.println();
+		GuiConsole.io.println("Choose your character:\n",Color.WHITE);
 		GuiConsole.io.println("Press 1 for Knight",Color.RED);
 		GuiConsole.io.println("Press 2 for Rogue",Color.GREEN);
 		GuiConsole.io.println("Press 3 for Wizard",Color.YELLOW);
