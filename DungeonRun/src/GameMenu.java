@@ -372,15 +372,15 @@ public class GameMenu {
 			GuiConsole.io.println("Your adventures are over, these are your accomplishments:",Color.YELLOW);
 		else
 			GuiConsole.io.println("You managed to get out of the dungeon alive, these are your accomplishments:",Color.BLUE);
-		GuiConsole.io.println("Treasure worth "+hero.treasure+" coins collected\n"
-						+ hero.visitedrooms+" rooms visited\n"
-						+ hero.deadgiantspiders+" Giant Spiders slain\n"
-						+ hero.deadskeletons+" Skeletons slain\n"
-						+ hero.deadorcs+" Orcs slain\n"
-						+ hero.deadtrolls+" Trolls slain\n"
-						+ (hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls)+" monsters slain in total\n"
-						+ hero.adventures+" adventures undertaken\n",Color.RED);
-		GuiConsole.io.println("[M]ain menu\n[Q]uit game",Color.GREEN);
+		GuiConsole.io.println("Treasure worth "+hero.treasure+" coins collected\n",Color.WHITE);
+				GuiConsole.io.println(hero.visitedrooms+" rooms visited\n",Color.RED);
+				GuiConsole.io.println(hero.deadgiantspiders+" Giant Spiders slain\n",Color.GRAY);
+				GuiConsole.io.println(hero.deadskeletons+" Skeletons slain\n",Color.YELLOW);
+				GuiConsole.io.println( hero.deadorcs+" Orcs slain\n",Color.MAGENTA);
+				GuiConsole.io.println( hero.deadtrolls+" Trolls slain\n",Color.ORANGE);
+				GuiConsole.io.println( (hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls)+" monsters slain in total\n",Color.GREEN);
+				GuiConsole.io.println(hero.adventures+" adventures undertaken\n",Color.RED);
+		GuiConsole.io.println("[M]ain menu\n[Q]uit game",Color.WHITE);
 		while(true) {
 			String option = GuiConsole.io.nextLine().toLowerCase();
 			if(option.equals("m")) {
