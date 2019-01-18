@@ -21,7 +21,7 @@ public class Game implements java.io.Serializable {
 			Hero hero = (Hero) objects[1]; //need the correct index
 			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index
-			//Map.clearScreenWhenEnteringRoom = true; // Testa g�rna denna och s�g vad ni tycker! Cleanare enligt mig. /Johannes
+			//Map.clearScreenWhenEnteringRoom = true;
 			String corner = (String) objects[2]; //need the correct index
 			Game game = new Game();
 			AI ai = new AI();
@@ -241,13 +241,7 @@ public class Game implements java.io.Serializable {
 		}
 	}
 
-
 	public void collectTreasures(Map map, Hero hero) {
-	//public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
-		/* Johannes Ã¤ndrat:
-		 * Eftersom collectTreasures kallas efter ev. flykt, och game.currentroom inte uppdateras av map.goLast()
-		 * sÃ¥ fick man skatterna frÃ¥n ett rum Ã¤ven om man flytt dÃ¤rifrÃ¥n. HÃ¤mtar dÃ¤rfÃ¶r treasurelist via map.currentx/y istÃ¤llet.
-		 */
 		if(!hero.dead) {
 			ArrayList<Treasure> treasurelist = null;
 			for(Room room : map.room) {
@@ -271,7 +265,6 @@ public class Game implements java.io.Serializable {
 				GuiConsole.io.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.\n",Color.WHITE);
 			}
 		}
-	
 	}
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map, AI ai) {
@@ -279,10 +272,10 @@ public class Game implements java.io.Serializable {
 		boolean wronginput = true;
 		while(wronginput) {
 			String fleeorattack = null;
+			GuiConsole.io.print(">> ");
 			if (hero.ai) {
 				fleeorattack = ai.fightOrFlight(monsterlist, hero);
 			} else {
-				GuiConsole.io.print(">> ");
 				fleeorattack = GuiConsole.io.nextLine().toLowerCase();
 			}
 			//allseeingeye

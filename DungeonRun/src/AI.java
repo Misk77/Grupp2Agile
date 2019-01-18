@@ -26,12 +26,14 @@ public class AI {
 						willPower[way] += 10; // Unexplored rooms are always prioritized.
 					} else {
 						if(map.lastroomvisitedx == (map.currentroomx + xDiff[way]) && map.lastroomvisitedy == (map.currentroomy + xDiff[way]) ) {
-							willPower[way] -= 10; // Never look back! If the AI always chose the comfiest path, it'd get stuck.
+							// Never look back! If the AI always chose the comfiest path, it'd get stuck. (doesn't seem to work though)
+							willPower[way] -= 20;
 						}
 
 						for (Monster monster : room.monsterlist) {
 							// The heros can decide differently when faced with a room known to have monsters in them:
 							if (!monster.dead) {
+								hasMonster[way] = true;
 								if(hero.herotype.equals("Knight")) {
 									willPower[way] -= monster.baseattack;
 								}
@@ -43,7 +45,7 @@ public class AI {
 								}
 							}
 						}
-						if(deadSteps > 50) { // We need to stop these cowards from walking in circles
+						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
 							if(rand.nextInt(100)+1 <= 50) {
 								willPower[way] = 100;
 							}
@@ -67,10 +69,12 @@ public class AI {
 		for (int i = 0; i < 4; i++ ) {
 			if (willPower[i] == willPower[bestWay]) {
 				bestChoices.add(direction[i]);
-				if (hasMonster[i]) {
-					endWhatIsStarted = true;
-				}
 			}
+		}
+		
+		if (hasMonster[bestWay]) {
+			// AI is supposed to stay and fight if it entered a room knowing there are monsters in it.  
+			endWhatIsStarted = true;
 		}
 
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
@@ -147,6 +151,7 @@ public class AI {
 			}
 		}
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		System.out.println(target);
 		return target;
 	}
 	
