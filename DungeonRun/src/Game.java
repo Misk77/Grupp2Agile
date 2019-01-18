@@ -173,7 +173,7 @@ public class Game implements java.io.Serializable {
 			}
 			if(!hero.dead) {
 				GuiConsole.io.println("What direction?",Color.RED);
-				GuiConsole.io.println(">> ");
+				GuiConsole.io.print(">> ");
 				while(true) {
 					//count checks
 					/*
@@ -210,7 +210,7 @@ public class Game implements java.io.Serializable {
 						}
 					}
 					else {
-						GuiConsole.io.println("Please choose a direction, North, West, South or East\n>> ",Color.WHITE);
+						GuiConsole.io.print("Please choose a direction, North, West, South or East\n>> ",Color.WHITE);
 						continue;
 					}
 			}
@@ -284,6 +284,7 @@ public class Game implements java.io.Serializable {
 			if (hero.ai) {
 				fleeorattack = ai.fightOrFlight(monsterlist, hero);
 			} else {
+				GuiConsole.io.print(">> ");
 				fleeorattack = GuiConsole.io.nextLine().toLowerCase();
 			}
 			hero.turntaken = true;
@@ -295,6 +296,7 @@ public class Game implements java.io.Serializable {
 						monster.resetMonsterHealth();
 					}
 					map.goLast();
+					GuiConsole.io.println("You fled back to the previous room successfully!",Color.GREEN);
 					//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 					return "break";
 				}
