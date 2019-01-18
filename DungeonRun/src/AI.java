@@ -2,9 +2,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class AI {
-	static int pause = 300;
+	static int pause = 2000;
 	static Random rand = new Random();
 	static int deadSteps = 0;
+	static boolean endWhatIsStarted = false;
 	
 	public AI() {
 		
@@ -14,6 +15,8 @@ public class AI {
 		int[] willPower = new int[4]; // Urge to go in either direction (N,S,W,E)
 		int[] xDiff = new int[] {-1,1,0,0}; 
 		int[] yDiff = new int[] {0,0,-1,1};
+		boolean[] hasMonster = new boolean[4];
+		
 		String[] direction = new String[] {"north","south","west","east"};
 		for(int way=0; way<4; way++) {
 			for(Room room : map.room) {
@@ -64,6 +67,9 @@ public class AI {
 		for (int i = 0; i < 4; i++ ) {
 			if (willPower[i] == willPower[bestWay]) {
 				bestChoices.add(direction[i]);
+				if (hasMonster[i]) {
+					endWhatIsStarted = true;
+				}
 			}
 		}
 
@@ -122,6 +128,9 @@ public class AI {
 				decision = "a";
 			}
 		}
+		
+		if(decision.equals("a")) {endWhatIsStarted = true;}
+		if(endWhatIsStarted) {decision = "a";}
 
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(decision);
@@ -139,6 +148,11 @@ public class AI {
 		}
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		return target;
+	}
+	
+	public void monsterSlain() {
+		deadSteps = 0;
+		endWhatIsStarted = false;
 	}
 
 

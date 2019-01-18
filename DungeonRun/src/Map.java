@@ -219,6 +219,7 @@ public class Map {
 			}
 			GuiConsole.io.print("█\n\n",Color.ORANGE);
 		}
-		System.out.println("deadSteps: " + AI.deadSteps);
+		
+		//System.out.println("deadSteps: " + AI.deadSteps);
 	}
 }
