@@ -85,7 +85,7 @@ public class Game implements java.io.Serializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					System.out.println("Something in the dark starring.......");
+					System.out.println("Somethings in the dark starring at you.......");
 					try {
 						Thread.sleep(300);
 					} catch (InterruptedException e) {
