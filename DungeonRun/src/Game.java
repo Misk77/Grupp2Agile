@@ -72,6 +72,33 @@ public class Game implements java.io.Serializable {
 					
 				}
 				if(!currentroom.monsterlist.isEmpty()) {
+					GuiConsole.io.println("In the darkness something are waiting.......",Color.RED);
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.out.println("Something in the dark starring.......");
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					GuiConsole.io.println("You encountered these monsters in the room:",Color.RED);
 					for(Monster monster : currentroom.monsterlist) {
 						if(!monster.dead)

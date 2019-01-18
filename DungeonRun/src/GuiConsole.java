@@ -39,16 +39,16 @@ public final class GuiConsole {
         	ImageIcon img = new ImageIcon("src/1000.jpg");
             // Orginal windows stil
         	//Ändra stil färg via parametrarna
-            //defaultFont = "Lucida Console";
-         //   defaultFont = "MONOSPACED";
-          //  defaultFont = "HANGING_BASELINE";
-           // defaultFont = "SERIF";
-        	defaultFont = "SANS_SERIF";
-
+            defaultFont = "Lucida Console";
+          //defaultFont = "MONOSPACED";
+           // defaultFont = "HANGING_BASELINE"; // KARTAN BLIR FEL
+           // defaultFont = "SERIF"; // KARTAN BLIR FEL
+        	//defaultFont = "SANS_SERIF";   // KARTAN BLIR FEL
+        //	defaultFont = "BOLD"; // KARTAN blir fel
             pane.setBackground(Color.BLACK);
             pane.setForeground(Color.LIGHT_GRAY);
             pane.setCaretColor(Color.WHITE);
-            pane.setFont(new Font(defaultFont, Font.TYPE1_FONT,14)); 
+            pane.setFont(new Font(defaultFont, Font.BOLD,14)); 
             
             pane.setSize(1300, 1000);
             pane.setLayout(null);
@@ -63,8 +63,8 @@ public final class GuiConsole {
     		//Ändra stil färg via parametrarna
             promptStyle = new SimpleAttributeSet();
             StyleConstants.setFontFamily(promptStyle, defaultFont);
-            StyleConstants.setFontSize(promptStyle, 14);
-            StyleConstants.setForeground(promptStyle, Color.GREEN);
+            StyleConstants.setFontSize(promptStyle, 15);// användaren text storleken
+            StyleConstants.setForeground(promptStyle, Color.MAGENTA);
         }
 
         private void initComponents() {
@@ -77,7 +77,7 @@ public final class GuiConsole {
                     .getAvailableFontFamilyNames();
             InputPolicy cp = new InputPolicy();
             pane.addKeyListener(cp);
-            pane.setMargin(new Insets(0, 10, 0, 10));
+            pane.setMargin(new Insets(0, 100, 0, 30)); // Centrera texten eller vart du vill ha texten i rutan
             pane.setEditable(false);
             caret = pane.getCaret();
             caret.setBlinkRate(250);

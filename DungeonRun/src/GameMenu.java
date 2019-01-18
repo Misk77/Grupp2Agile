@@ -186,10 +186,10 @@ public class GameMenu {
 	public Object[] GameMenuFirst() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("|=======================================================================================================|",Color.RED);
-		GuiConsole.io.println("|================================== ||----------| DUNGEON RUN |----------|| =======================================|",Color.GREEN);
+		GuiConsole.io.println("|================================||----------| DUNGEON RUN |----------||================================|",Color.GREEN);
 		GuiConsole.io.println("|=======================================================================================================|",Color.YELLOW);
 		GuiConsole.io.println();
-		GuiConsole.io.println("======================================== Load or start a new game ========================================||",Color.WHITE);
+		GuiConsole.io.println("        ================================ Load or start a new game ================================",Color.WHITE);
 		GuiConsole.io.println();
 		GuiConsole.io.println("[L]OAD GAME \n",Color.MAGENTA);
 		GuiConsole.io.println("[N]EW GAME \n",Color.BLUE);
