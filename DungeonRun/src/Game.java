@@ -29,7 +29,9 @@ public class Game implements java.io.Serializable {
 		map.clearCurrentRoom();
 		//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		boolean firstround = true;
-		while(true) {
+		map.visitedrooms.clear();
+		boolean dungeoning = true;
+		while(dungeoning) {
 			if(currentroom == null) {
 				System.out.println("You tried to walk through a wall, unsuccessfully");
 			}
@@ -102,7 +104,7 @@ public class Game implements java.io.Serializable {
 							
 						}
 						monstercount++;
-						if(hero.lastinitiativeroll > monster.lastinititativeroll && !hero.turntaken && !monster.dead) {
+						if(hero.lastinitiativeroll > monster.lastinititativeroll && !hero.turntaken && !monster.dead && !hero.dead) {
 							if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
 								fighting = false;
 								break;
@@ -115,7 +117,7 @@ public class Game implements java.io.Serializable {
 							deadmonstercount++;
 						}
 					}
-					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken && deadmonstercount != currentroom.monsterlist.size()) {
+					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken && deadmonstercount != currentroom.monsterlist.size() && !hero.dead) {
 						if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
 							fighting = false;
 							break;
@@ -127,51 +129,59 @@ public class Game implements java.io.Serializable {
 						fighting = false;
 						break;
 					}
+					if(hero.dead) {
+						System.out.println("YOU DIED");
+						dungeoning = false;
+						fighting = false;
+						break;
+					}
 				}
 				fighting = true;
 				//game.collectTreasures(currentroom.treasurelist, hero);
 				game.collectTreasures(map, hero);
 			}
-			System.out.println("What direction?");
-			System.out.print(">> ");
-			while(true) {
-				//count checks
-				System.out.println("ROOMS VISITED "+hero.visitedrooms);
-				System.out.println("GIANT SPIDERS KILLED "+hero.deadgiantspiders);
-				System.out.println("SKELETONS KILLED "+hero.deadskeletons);
-				System.out.println("ORCS KILLED "+hero.deadorcs);
-				System.out.println("TROLLS KILLED "+hero.deadtrolls);
-				//count checks
-				String whereto = scanner.nextLine();
-				hero.block = true;
-				if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
-					if(whereto.equals("north")) {
-						currentroom = map.goNorth();
-						break;
-					}
-					else if(whereto.equals("south")) {
-						currentroom = map.goSouth();
-						break;
+			if(!hero.dead) {
+				System.out.println("What direction?");
+				System.out.print(">> ");
+				while(true) {
+					//count checks
+					System.out.println("ROOMS VISITED "+hero.visitedrooms);
+					System.out.println("GIANT SPIDERS KILLED "+hero.deadgiantspiders);
+					System.out.println("SKELETONS KILLED "+hero.deadskeletons);
+					System.out.println("ORCS KILLED "+hero.deadorcs);
+					System.out.println("TROLLS KILLED "+hero.deadtrolls);
+					//count checks
+					String whereto = scanner.nextLine();
+					hero.block = true;
+					if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
+						if(whereto.equals("north")) {
+							currentroom = map.goNorth();
+							break;
 						}
-					else if(whereto.equals("east")) {
-						currentroom = map.goEast();
-						break;
+						else if(whereto.equals("south")) {
+							currentroom = map.goSouth();
+							break;
+							}
+						else if(whereto.equals("east")) {
+							currentroom = map.goEast();
+							break;
+						}
+						else if(whereto.equals("west")) {
+							currentroom = map.goWest();
+							break;
+						}
 					}
-					else if(whereto.equals("west")) {
-						currentroom = map.goWest();
-						break;
+					else {
+						System.out.println("Please choose a direction, North, West, South or East\n>> ");
+						continue;
 					}
-				}
-				else {
-					System.out.println("Please choose a direction, North, West, South or East\n>> ");
-					continue;
-				}
-				
+			}
 			}
 			//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 		}
 		//cant test this, supposed to count amount of runs
 		hero.adventures++;
+		System.out.println("DO WE GET HERE");
 		//cant test this, supposed to count amount of runs
 	}
 	
@@ -198,26 +208,28 @@ public class Game implements java.io.Serializable {
 		 * Eftersom collectTreasures kallas efter ev. flykt, och game.currentroom inte uppdateras av map.goLast()
 		 * sÃ¥ fick man skatterna frÃ¥n ett rum Ã¤ven om man flytt dÃ¤rifrÃ¥n. HÃ¤mtar dÃ¤rfÃ¶r treasurelist via map.currentx/y istÃ¤llet.
 		 */
-		ArrayList<Treasure> treasurelist = null;
-		for(Room room : map.room) {
-			if(room.x == map.currentroomx && room.y == map.currentroomy) {
-				treasurelist = room.treasurelist;
+		if(!hero.dead) {
+			ArrayList<Treasure> treasurelist = null;
+			for(Room room : map.room) {
+				if(room.x == map.currentroomx && room.y == map.currentroomy) {
+					treasurelist = room.treasurelist;
+				}
 			}
-		}
-		if(!treasurelist.isEmpty()) {
-			System.out.println("\nYou found these treasures in the room:");
+			if(!treasurelist.isEmpty()) {
+				System.out.println("\nYou found these treasures in the room:");
+				for(Treasure treasure : treasurelist) {
+					System.out.println(treasure.treasuretype);
+				}
+			}
+			int treasureSum = 0;
 			for(Treasure treasure : treasurelist) {
-				System.out.println(treasure.treasuretype);
+				treasureSum += treasure.value;
 			}
-		}
-		int treasureSum = 0;
-		for(Treasure treasure : treasurelist) {
-			treasureSum += treasure.value;
-		}
-		treasurelist.clear();
-		if (treasureSum > 0) {
-			hero.treasure += treasureSum;
-			System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.\n");
+			treasurelist.clear();
+			if (treasureSum > 0) {
+				hero.treasure += treasureSum;
+				System.out.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.\n");
+			}
 		}
 	
 	}

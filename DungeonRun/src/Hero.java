@@ -74,7 +74,7 @@ public class Hero {
 	}
 	
 	public void takeDamage(int damageTaken) {
-		if(this.herotype.equals("Knight")) {
+		if(this.herotype.equals("Knight") && this.block) {
 			if(block) {
 				block = false;
 			}
