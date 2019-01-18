@@ -9,8 +9,6 @@ public class AI {
 
 	}
 
-
-	// Ändra hur willPower påverkas av de olika monstrena beroende på herotype?
 	public String chooseDirection(Map map, Hero hero) {
 		int[] willPower = new int[4]; // Urge to go in either direction (N,S,W,E)
 		int[] xDiff = new int[] {-1,1,0,0}; 

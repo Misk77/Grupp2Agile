@@ -152,7 +152,7 @@ public class Map {
 	
 	public void drawMap(boolean atStart) {
 		// atStart hindrar monster från att visas i första rummet, då det inte clearats ännu.
-		boolean showMap = false;
+		boolean showMap = true;
 		String[] part = new String[2];
 		part[0] = "";
 		part[1] = "";

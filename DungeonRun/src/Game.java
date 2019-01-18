@@ -15,7 +15,8 @@ public class Game implements java.io.Serializable {
 		GameMenu gamemenu = new GameMenu();
 		Object [] objects = gamemenu.GameMenuFirst();
 		Hero hero = (Hero) objects[1]; //need the correct index
-		AiHero aihero = (AiHero)objects[3];
+		//AiHero aihero = (AiHero)objects[3];
+		AI ai = new AI();
 		Map map = (Map) objects[0]; //need the correct index
 		String corner = (String) objects[2]; //need the correct index
 		//map.generateMap(4, 4);
@@ -48,7 +49,12 @@ public class Game implements java.io.Serializable {
 				firstround = false;
 				if(currentroom.exit) {
 					System.out.println("You have found the exit, do you want to leave, [Y]es [N]o");
-					String yesorno = scanner.nextLine().toLowerCase();
+					String yesorno = null;
+					if (hero.ai) {
+						yesorno = "y";
+					} else {
+						yesorno = scanner.nextLine().toLowerCase();
+					}
 					if(yesorno.equals("y")) {
 						System.out.println("You have successfully found your way out of the dungeon");
 						System.out.println("You managed to find treasures worth "+hero.treasure+" coins");
@@ -105,7 +111,7 @@ public class Game implements java.io.Serializable {
 						}
 						monstercount++;
 						if(hero.lastinitiativeroll > monster.lastinititativeroll && !hero.turntaken && !monster.dead && !hero.dead) {
-							if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
+							if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map, ai).equals("break")) {
 								fighting = false;
 								break;
 							}
@@ -118,7 +124,7 @@ public class Game implements java.io.Serializable {
 						}
 					}
 					if(monstercount == currentroom.monsterlist.size() && !hero.turntaken && deadmonstercount != currentroom.monsterlist.size() && !hero.dead) {
-						if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map).equals("break")) {
+						if(game.playerCombatAction(scanner, hero, currentroom.monsterlist, map, ai).equals("break")) {
 							fighting = false;
 							break;
 						}
@@ -151,7 +157,12 @@ public class Game implements java.io.Serializable {
 					System.out.println("ORCS KILLED "+hero.deadorcs);
 					System.out.println("TROLLS KILLED "+hero.deadtrolls);
 					//count checks
-					String whereto = scanner.nextLine();
+					String whereto = null;
+					if (hero.ai) {
+						whereto = ai.chooseDirection(map, hero);
+					} else {
+						whereto = scanner.nextLine();
+					}
 					hero.block = true;
 					if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
 						if(whereto.equals("north")) {
@@ -234,11 +245,16 @@ public class Game implements java.io.Serializable {
 	
 	}
 	
-	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map) {
+	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map, AI ai) {
 		System.out.println("Do you want to [F]lee or [A]ttack?");
 		boolean wronginput = true;
 		while(wronginput) {
-			String fleeorattack = scanner.nextLine().toLowerCase();
+			String fleeorattack = null;
+			if (hero.ai) {
+				fleeorattack = ai.fightOrFlight(monsterlist, hero);
+			} else {
+				fleeorattack = scanner.nextLine().toLowerCase();
+			}
 			hero.turntaken = true;
 			if(fleeorattack.equals("f")) {
 				wronginput = false;
@@ -268,7 +284,12 @@ public class Game implements java.io.Serializable {
 				while(attacking) {
 					exists = false;
 					System.out.print(">> ");
-					String attacktarget = scanner.nextLine().toLowerCase();
+					String attacktarget = null;
+					if (hero.ai) {
+						attacktarget = ai.chooseMonster(monsterlist).toLowerCase();
+					} else {
+						attacktarget = scanner.nextLine().toLowerCase();
+					}
 					String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
 					for(Monster monster : monsterlist) {
 						if(monster.monstertype.equals(formattedattacktarget) && !monster.dead) {
