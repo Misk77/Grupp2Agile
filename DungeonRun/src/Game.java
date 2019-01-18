@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+public class Game implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
 		int deadmonstercount = 0;
@@ -10,6 +15,7 @@ public class Game {
 		GameMenu gamemenu = new GameMenu();
 		Object [] objects = gamemenu.GameMenuFirst();
 		Hero hero = (Hero) objects[1]; //need the correct index
+		AiHero aihero = (AiHero)objects[3];
 		Map map = (Map) objects[0]; //need the correct index
 		String corner = (String) objects[2]; //need the correct index
 		//map.generateMap(4, 4);
@@ -170,7 +176,7 @@ public class Game {
 	}
 	
 	
-	public void sortMonsters(ArrayList<Monster> monsterlist) {
+	public static void sortMonsters(ArrayList<Monster> monsterlist) {
 		for(Monster monster : monsterlist) {
 			monster.initiativeRoll();
 		}
