@@ -361,7 +361,7 @@ public class Game implements java.io.Serializable {
 										hero.deadtrolls++;
 									//counting dead monsters
 									GuiConsole.io.println(monsterlist.get(i).monstertype+" has been slain",Color.CYAN);
-									AI.deadSteps = 0;
+									ai.monsterSlain();
 								}
 								break;
 							}
