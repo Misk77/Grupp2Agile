@@ -257,7 +257,11 @@ public class GameMenu {
 
 		// while (running) {
 		GuiConsole.io.println();
-		GuiConsole.io.println("============================== GAME MENU ===================================",Color.BLUE);
+		GuiConsole.io.println();
+		GuiConsole.io.println("|=======================================================================================================|",Color.RED);
+		GuiConsole.io.println("|=================================||----------| GAME MENU |----------||=================================|",Color.GREEN);
+		GuiConsole.io.println("|=======================================================================================================|",Color.YELLOW);
+		GuiConsole.io.println();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
