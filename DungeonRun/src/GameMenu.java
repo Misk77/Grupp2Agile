@@ -349,5 +349,34 @@ public class GameMenu {
 		//save.saveToDisk(objectList);
 		return objectList;
 	}// END GameMenu
+	
+	public String endMenu(Hero hero) {
+		//save here
+		if(hero.dead) 
+			System.out.println("Your adventures are over, these are your accomplishments:");
+		else
+			System.out.println("You managed to get out of the dungeon alive, these are your accomplishments:");
+		System.out.println("Treasure worth "+hero.treasure+" coins collected\n"
+						+ hero.visitedrooms+" rooms visited\n"
+						+ hero.deadgiantspiders+" Giant Spiders slain\n"
+						+ hero.deadskeletons+" Skeletons slain\n"
+						+ hero.deadorcs+" Orcs slain\n"
+						+ hero.deadtrolls+" Trolls slain\n"
+						+ (hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls)+" monsters slain in total\n"
+						+ hero.adventures+" adventures undertaken\n");
+		System.out.println("[M]ain menu\n[Q]uit game");
+		while(true) {
+			String option = scanner.nextLine().toLowerCase();
+			if(option.equals("m")) {
+				return "menu";
+			}
+			else if(option.equals("q")) {
+				System.exit(0);
+			}
+			else {
+				continue;
+			}
+		}
+	}
 
 }

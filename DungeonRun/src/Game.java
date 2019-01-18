@@ -9,30 +9,32 @@ public class Game implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static void main(String[] args) {
-		int deadmonstercount = 0;
 		//Map map = new Map();
 		Scanner scanner = new Scanner(System.in);
-		GameMenu gamemenu = new GameMenu();
-		Object [] objects = gamemenu.GameMenuFirst();
-		Hero hero = (Hero) objects[1]; //need the correct index
-		//AiHero aihero = (AiHero)objects[3];
-		AI ai = new AI();
-		Map map = (Map) objects[0]; //need the correct index
-		String corner = (String) objects[2]; //need the correct index
-		//map.generateMap(4, 4);
-		Game game = new Game();
-		//Hero hero = new Hero("Rogue", "myfirstrogue");
-		//for(Room room : map.room) {
-		//	System.out.println(room.x+" "+room.y);
-		//}
-		Room currentroom = map.startingPoint(corner);
-		map.generateExit();
-		map.clearCurrentRoom();
-		//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
-		boolean firstround = true;
-		map.visitedrooms.clear();
-		boolean dungeoning = true;
-		while(dungeoning) {
+		boolean running = true;
+		while(running) {
+			int deadmonstercount = 0;
+			GameMenu gamemenu = new GameMenu();
+			Object [] objects = gamemenu.GameMenuFirst();
+			Hero hero = (Hero) objects[1]; //need the correct index
+			AiHero aihero = (AiHero)objects[3];
+			Map map = (Map) objects[0]; //need the correct index
+			String corner = (String) objects[2]; //need the correct index
+			//map.generateMap(4, 4);
+			Game game = new Game();
+			AI ai = new AI();
+			//Hero hero = new Hero("Rogue", "myfirstrogue");
+			//for(Room room : map.room) {
+			//	System.out.println(room.x+" "+room.y);
+			//}
+			Room currentroom = map.startingPoint(corner);
+			map.generateExit();
+			map.clearCurrentRoom();
+			//System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
+			boolean firstround = true;
+			map.visitedrooms.clear();
+			boolean dungeoning = true;
+			while(dungeoning) {
 			if(currentroom == null) {
 				System.out.println("You tried to walk through a wall, unsuccessfully");
 			}
@@ -100,11 +102,6 @@ public class Game implements java.io.Serializable {
 					for(Monster monster : currentroom.monsterlist) {
 						if(hero.dead) {
 							System.out.println("YOU DIED");
-							//ENDMENU TIME
-							//dont put an endmenu here
-							//need another loop and then to break out of all of them
-							//if we put a menu here we'll just nest this shit
-							//which will probably work, but seems shit
 							fighting = false;
 							break;
 							
@@ -194,10 +191,14 @@ public class Game implements java.io.Serializable {
 		hero.adventures++;
 		System.out.println("DO WE GET HERE");
 		//cant test this, supposed to count amount of runs
+		String cont = gamemenu.endMenu(hero);
+		if(cont.equals("menu"))
+			continue;
+		}
 	}
 	
 	
-	public static void sortMonsters(ArrayList<Monster> monsterlist) {
+	public void sortMonsters(ArrayList<Monster> monsterlist) {
 		for(Monster monster : monsterlist) {
 			monster.initiativeRoll();
 		}
