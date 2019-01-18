@@ -135,9 +135,11 @@ public class GameMenu {
 	}
 
 	public void ReadChar() {
+		GuiConsole.io.println("|=======================================================================================================|",Color.RED);
+		GuiConsole.io.println("|=========================||----------| READ ABOUT THE CHARACTER |----------||==========================|",Color.GREEN);
+		GuiConsole.io.println("|=======================================================================================================|",Color.YELLOW);
 		GuiConsole.io.println();
-		GuiConsole.io.println("============================== Read about the character ===================================",Color.RED);
-		GuiConsole.io.println();
+		
 		GuiConsole.io.println("\n---------------------------Heros-----------------------",Color.MAGENTA);
 		GuiConsole.io.println("Knight\n"
 				+ "Initiative = 5\nHerotype = Herotype\nHealth = 9\nBaseattack = 6\nAvoidance = 4\n"
@@ -171,9 +173,10 @@ public class GameMenu {
 		GuiConsole.io.println();
 		
 		
+		GuiConsole.io.println("|=======================================================================================================|",Color.RED);
+		GuiConsole.io.println("|=========================||----------| INSTRUCTIONS FOR THE GAME |----------||=========================|",Color.GREEN);
+		GuiConsole.io.println("|=======================================================================================================|",Color.YELLOW);
 		
-		GuiConsole.io.println(
-				"============================== Instructions for the game ===================================",Color.YELLOW);
 		GuiConsole.io.println();
 		GuiConsole.io.println("\n" + "1. You need to pick a character.\r\n"
 				+ "2. Choose the map size: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
