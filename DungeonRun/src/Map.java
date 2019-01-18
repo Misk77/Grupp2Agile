@@ -158,12 +158,13 @@ public class Map {
 		part[0] = "";
 		part[1] = "";
 		String heroHere;
+		GuiConsole.io.clear();
 		if (showMap) {
-			System.out.print(" ");
+			GuiConsole.io.print("\n█",Color.RED);
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.println("▁▁▁▁▁",Color.GREEN);
+				GuiConsole.io.print("█████",Color.RED);
 			}
-			GuiConsole.io.println();
+			GuiConsole.io.print("█\n",Color.RED);
 			for(int x = 0; x<=sizex; x++) {
 				for(int y = 0; y<=sizex; y++) {
 					for(Room room : this.room) {
@@ -199,14 +200,20 @@ public class Map {
 						}
 					}
 				} // Y
-				GuiConsole.io.println("▕" + part[1] + "▏\n",Color.BLACK);
-				GuiConsole.io.println("▕" + part[0] + "▏\n",Color.MAGENTA);
+				GuiConsole.io.print("█",Color.RED);
+				GuiConsole.io.print(part[1],Color.ORANGE);
+				GuiConsole.io.print("█\n",Color.RED);
+				GuiConsole.io.print("█",Color.RED);
+				GuiConsole.io.print(part[0],Color.ORANGE);
+				GuiConsole.io.print("█\n",Color.RED);
 				part[0] = "";
 				part[1] = "";
 			} // X
-			GuiConsole.io.println(" ",Color.RED);
-			for (int i = sizex; i>=0; i--) { GuiConsole.io.println("▔▔▔▔▔",Color.WHITE);}
-			GuiConsole.io.println();
+			GuiConsole.io.print("█",Color.RED);
+			for (int i = sizex; i>=0; i--) {
+				GuiConsole.io.print("█████",Color.RED);
+			}
+			GuiConsole.io.print("█\n\n",Color.RED);
 		}
-	}
+}
 }
