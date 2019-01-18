@@ -19,6 +19,7 @@ public class Hero {
 	int deadtrolls = 0;
 	int adventures = 0;
 	int visitedrooms = 0;
+	boolean ai = false;
 	
 	int lastinitiativeroll = 0;
 	
