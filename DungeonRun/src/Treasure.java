@@ -1,5 +1,10 @@
+import java.io.Serializable;
 
-public class Treasure {
+public class Treasure implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int value;
 	String treasuretype;
 	

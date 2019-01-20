@@ -1,8 +1,13 @@
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Map {
+public class Map implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static boolean clearScreenWhenEnteringRoom = false;
 	ArrayList<Room> room = new ArrayList<Room>();
 	ArrayList<Room> visitedrooms = new ArrayList<Room>();

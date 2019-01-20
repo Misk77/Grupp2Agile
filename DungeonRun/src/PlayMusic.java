@@ -82,4 +82,14 @@ public class PlayMusic implements Runnable
         this.playSong = false;
         this.inputStream = null;
     }
+    public void stopbackground()
+    {
+    	  this.clip.stop();
+          this.clip.close();
+          this.clip = null;
+          this.playSong = false;
+          this.inputStream = null;
+        
+       
+    }
 }

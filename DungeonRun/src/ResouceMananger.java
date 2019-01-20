@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class ResouceMananger {
 
-	public static void save(Serializable data,String filename )throws Exception {
+	public static void save(SaveLoad data,String filename )throws Exception {
 		try(ObjectOutputStream DungensSave = new ObjectOutputStream(Files.newOutputStream(Paths.get(filename)))){
 			DungensSave.writeObject(data);
 		}

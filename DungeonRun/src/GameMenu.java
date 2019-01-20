@@ -1,40 +1,46 @@
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GameMenu  implements Runnable{
+public class GameMenu implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
 
-	
-	
-	
 	@Override
 	public String toString() {
 		return "GameMenu [name=" + name + ", input=" + input + ", herotype=" + herotype + ", objectList="
-				+ Arrays.toString(objectList) + ", fd=" + fd + ", game=" + game + "]";
+				+ Arrays.toString(objectList) + ", fd=" + fd + ", game=" + game + ", GameMenuFirst()="
+				+ Arrays.toString(GameMenuFirst()) + ", playerName()=" + playerName() + ", Gamestart()="
+				+ Arrays.toString(Gamestart()) + ", getName()=" + getName() + ", getInput()=" + getInput()
+				+ ", getHerotype()=" + getHerotype() + ", getObjectList()=" + Arrays.toString(getObjectList())
+				+ ", getFd()=" + getFd() + ", getGame()=" + getGame() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
+
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-	
-	// System objects
 
+	// System objects
+	
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
-	
-	
+
 	// String[] corners = { "NW ", "NE ", "SW", "SE " };
 	// AiHero ahero = new AiHero(herotype);
-	//SaveLoad save = new SaveLoad();// Maybe shouldnt be here
+	// SaveLoad save = new SaveLoad();// Maybe shouldnt be here
 	FileData fd = new FileData();
 	Game game = new Game();
 
@@ -100,14 +106,16 @@ public class GameMenu  implements Runnable{
 		String corner = corners[rand.nextInt(corners.length)];
 		objectList[2] = corner;
 	}
-	//AllseeingEyes
+
+	// AllseeingEyes
 	/*
-	 void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
-		 System.out.println("╔══════════════════════════════════════════════════════════════════╗\n");
-			System.out.println(hero.name + "see a gliming " + tresure.treasuretype + "behind the " +monster.monstertype);
-			System.out.println("╚══════════════════════════════════════════════════════════════════╝\n");
-	 }
-*/
+	 * void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
+	 * System.out.println(
+	 * "╔══════════════════════════════════════════════════════════════════╗\n");
+	 * System.out.println(hero.name + "see a gliming " + tresure.treasuretype +
+	 * "behind the " +monster.monstertype); System.out.println(
+	 * "╚══════════════════════════════════════════════════════════════════╝\n"); }
+	 */
 	// Välj herotype for player
 	public void HeroChoice() {
 		GuiConsole.io.println("Choose your character:\n", Color.WHITE);
@@ -240,8 +248,11 @@ public class GameMenu  implements Runnable{
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() {
+		 PlayMusic playmusic = new  PlayMusic();
+         
+		 String backgroundmusic = "/Hypnotic-Puzzle3";
+		playmusic.playBackGround(backgroundmusic);
 		
-	
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
 				Color.RED);
@@ -296,7 +307,8 @@ public class GameMenu  implements Runnable{
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
-			//save.LoadFromDisk(0, 0, 0, 0, herotype, herotype, 0, 0, 0);
+			
+			// save.LoadFromDisk(0, 0, 0, 0, herotype, herotype, 0, 0, 0);
 			GuiConsole.io.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
 			GameMenuFirst();
 
@@ -308,12 +320,15 @@ public class GameMenu  implements Runnable{
 		return objectList;
 	}
 
+	
+
 	public String playerName() {
 		GuiConsole.io.println("Welcome player! \nPlease enter your name: ", Color.GREEN);
 		name = GuiConsole.io.nextLine();
 		return name;
 
 	}
+	// if player exist
 
 	public Object[] Gamestart() {
 		// boolean running = true;
@@ -363,8 +378,9 @@ public class GameMenu  implements Runnable{
 			HeroChoice();
 			maping();
 			cornerChoice();
-			//save.saveToDisk(hero.deadgiantspiders, hero.deadorcs, hero.deadskeletons, hero.deadtrolls, hero.herotype,
-					//hero.name, hero.treasure, hero.visitedrooms, hero.adventures);
+			// save.saveToDisk(hero.deadgiantspiders, hero.deadorcs, hero.deadskeletons,
+			// hero.deadtrolls, hero.herotype,
+			// hero.name, hero.treasure, hero.visitedrooms, hero.adventures);
 			break;
 		case "A":
 			AiHeroChoice();
@@ -375,22 +391,21 @@ public class GameMenu  implements Runnable{
 			break;
 		case "L":
 			
-			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			
 			GuiConsole.io.println("[L]oad-DENNA METOD GÖRS SENARE - LOAD your character..", Color.YELLOW);
 			Gamestart();
 			break;
 		case "S":
-			//endMenu(Hero hero);
+			// endMenu(Hero hero);
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			GuiConsole.io.println("[S]ave-DENNA METOD GÖRS SENARE(TEST) - SAVE your character..", Color.YELLOW);
-			//SaveLoad.saveToDisk();
+			// SaveLoad.saveToDisk();
 			Gamestart();
 			break;
 		case "H":
 			GuiConsole.io.println(
 					"[H]ighscore-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..", Color.RED);
-			endMenu(null); // Måste ha parameter
+		//	endMenu(null); // Måste ha parameter
 			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
 			Gamestart();
 			break;
@@ -430,19 +445,29 @@ public class GameMenu  implements Runnable{
 			break;
 
 		}
-		// }
-		// save.saveToDisk(objectList);
-		// save.saveToDisk(name,herotype);
-		// save.saveToDisk(objectList);
+
 		return objectList;
 	}// END GameMenu
 
 	public String endMenu(Hero hero) {
 		//save goes here
+		SaveLoad data=new  SaveLoad(name);
+		try {
+			data.save(hero, "Dungensave.ser");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
+		// save goes here
+		/*
+		 * Detta funkar inte.. else klagar.... PlayMusic playmusic = new PlayMusic();
+		 * String gameover; playmusic.playBackGround(gameover);
+		 */
 		if (hero.dead)
-			GuiConsole.io.println(name+"Your adventures are over, these are your accomplishments:", Color.YELLOW);
+
+			GuiConsole.io.println(getName() +getHerotype()+ "Your adventures are over, these are your accomplishments:", Color.YELLOW);
+
 		else
 			GuiConsole.io.println("You managed to get out of the dungeon alive, these are your accomplishments:",
 					Color.BLUE);
@@ -455,11 +480,13 @@ public class GameMenu  implements Runnable{
 		GuiConsole.io.println((hero.deadgiantspiders + hero.deadskeletons + hero.deadorcs + hero.deadtrolls)
 				+ " monsters slain in total\n", Color.GREEN);
 		GuiConsole.io.println(hero.adventures + " adventures undertaken\n", Color.RED);
-		
+
 		GuiConsole.io.println("[M]ain menu\n[Q]uit game", Color.WHITE);
+
 		while (true) {
 			String option = GuiConsole.io.nextLine().toLowerCase();
 			if (option.equals("m")) {
+
 				return "menu";
 			} else if (option.equals("q")) {
 				System.exit(0);
@@ -468,8 +495,7 @@ public class GameMenu  implements Runnable{
 			}
 		}
 	}
-	//play a music
-	
+	// play a music
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -537,12 +563,6 @@ public class GameMenu  implements Runnable{
 
 	public void setGame(Game game) {
 		this.game = game;
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

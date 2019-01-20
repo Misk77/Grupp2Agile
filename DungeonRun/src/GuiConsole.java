@@ -54,9 +54,9 @@ public final class GuiConsole {
             
             //Music background This must be here start with console and then must be in the main
             PlayMusic playmusic = new  PlayMusic();
-           getClass().getResource("/ExternalItems/1000.jpg");
-			 String music = "Hypnotic-Puzzle3";
-			playmusic.playBackGround(music);
+            
+   		 String backgroundmusic = "/Hypnotic-Puzzle3";
+   		playmusic.playBackGround(backgroundmusic);
            
             //pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
                   

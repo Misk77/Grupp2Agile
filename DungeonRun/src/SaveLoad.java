@@ -7,29 +7,31 @@ import java.nio.file.Paths;
 
 public class SaveLoad implements  java.io.Serializable {
 
+	
+	
+	
+
+	
+
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public String heroName;
-	public int adventures;
-	public int visitedrooms;
-	public int deadgiantspiders;
-	public int deadskeletons;
-	public int deadorcs;
-	public int deadtrolls;
-	public int treasure;
-	
-	
 
-	
-
-	
 	public SaveLoad(String endMenu) {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void save(Serializable data,String filename )throws Exception {
+	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+
+	public void save(Serializable data,String filename )throws Exception {
 		try(ObjectOutputStream DungensSave = new ObjectOutputStream(Files.newOutputStream(Paths.get(filename)))){
 			DungensSave.writeObject(data);
 		}
@@ -48,5 +50,3 @@ public class SaveLoad implements  java.io.Serializable {
 	
 
 	}
-
-	

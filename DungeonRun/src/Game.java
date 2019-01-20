@@ -1,8 +1,9 @@
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game implements Runnable{
+public class Game implements Serializable{
 
 	/**
 	 * 
@@ -16,10 +17,11 @@ public class Game implements Runnable{
 		while(running) {
 			int deadmonstercount = 0;
 			 //Music background This must be here start with MAIN METHOD and then must be in the Guiconsole, so start with also with gui
-			PlayMusic playmusic = new  PlayMusic();
-			 String music = "/Hypnotic-Puzzle3";
-			playmusic.playBackGround(music);
-			
+			  PlayMusic playmusic = new  PlayMusic();
+	          
+				 String backgroundmusic = "Hypnotic-Puzzle3";
+				playmusic.playBackGround(backgroundmusic);
+	           
 			GameMenu gamemenu = new GameMenu();
 			Object [] objects = gamemenu.GameMenuFirst();
 			Hero hero = (Hero) objects[1]; //need the correct index
@@ -408,7 +410,6 @@ public class Game implements Runnable{
 	}
 
 
-	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		

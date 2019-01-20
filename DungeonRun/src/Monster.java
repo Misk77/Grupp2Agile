@@ -1,6 +1,11 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class Monster {
+public class Monster implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int initiative;
 	int health;
 	int baseattack;
