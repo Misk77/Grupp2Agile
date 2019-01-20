@@ -54,7 +54,7 @@ public final class GuiConsole {
             
             //Music background This must be here start with console and then must be in the main
             PlayMusic playmusic = new  PlayMusic();
-         //  getClass().getResource("/resources/ExternalItems/1000.jpg");
+           getClass().getResource("/ExternalItems/1000.jpg");
 			 String music = "Hypnotic-Puzzle3";
 			playmusic.playBackGround(music);
            
@@ -90,7 +90,7 @@ public final class GuiConsole {
             paneImage=new JTextPane();
             pane.add(paneImage);
           //  getClass().getResource("ExternalItems/1000.jpg");
-          // String path="ExternalItems/1000.jpg";
+         //  String path="ExternalItems/1000.jpg";
            Image icon= new ImageIcon (getClass().getResource("/ExternalItems/1000.jpg")).getImage();
             paneImage.insertIcon ( new ImageIcon(icon));
             paneImage.setVisible(true);
