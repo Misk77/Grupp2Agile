@@ -15,6 +15,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 
+import resources.ResourceLoader;
+
 public final class GuiConsole {
 
    
@@ -52,6 +54,7 @@ public final class GuiConsole {
             
             //Music background This must be here start with console and then must be in the main
             PlayMusic playmusic = new  PlayMusic();
+         //  getClass().getResource("/resources/ExternalItems/1000.jpg");
 			 String music = "Hypnotic-Puzzle3";
 			playmusic.playBackGround(music);
            
@@ -83,17 +86,20 @@ public final class GuiConsole {
             frame. setLocationRelativeTo(null);
             doc = pane.getStyledDocument();
             
-          
+          // "src/1000.jpg"));
             paneImage=new JTextPane();
             pane.add(paneImage);
-            paneImage.insertIcon ( new ImageIcon ( "1000.jpg"));
+          //  getClass().getResource("ExternalItems/1000.jpg");
+          // String path="ExternalItems/1000.jpg";
+           Image icon= new ImageIcon (getClass().getResource("/ExternalItems/1000.jpg")).getImage();
+            paneImage.insertIcon ( new ImageIcon(icon));
             paneImage.setVisible(true);
             paneImage.setSize(1200, 700);
             paneImage.setLayout(null);
     		//setDefaultCloseOperation(EXIT_ON_CLOSE);
     		//pane.background = new JLabel("", img, JLabel.CENTER);
             paneImage.setBounds(75, 0, 1006, 500);
-          
+            
             defaultStyles();
             redirectSystemStreams();
             

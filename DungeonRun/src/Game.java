@@ -17,7 +17,7 @@ public class Game implements Runnable{
 			int deadmonstercount = 0;
 			 //Music background This must be here start with MAIN METHOD and then must be in the Guiconsole, so start with also with gui
 			PlayMusic playmusic = new  PlayMusic();
-			 String music = "Hypnotic-Puzzle3";
+			 String music = "/Hypnotic-Puzzle3";
 			playmusic.playBackGround(music);
 			
 			GameMenu gamemenu = new GameMenu();
