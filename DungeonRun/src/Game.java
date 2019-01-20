@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game implements java.io.Serializable {
+public class Game implements Runnable{
 
 	/**
 	 * 
@@ -15,6 +15,10 @@ public class Game implements java.io.Serializable {
 		boolean running = true;
 		while(running) {
 			int deadmonstercount = 0;
+			 //Music background This must be here start with MAIN METHOD and then must be in the Guiconsole, so start with also with gui
+			PlayMusic playmusic = new  PlayMusic();
+			 String music = "Hypnotic-Puzzle3";
+			playmusic.playBackGround(music);
 			
 			GameMenu gamemenu = new GameMenu();
 			Object [] objects = gamemenu.GameMenuFirst();
@@ -401,6 +405,13 @@ public class Game implements java.io.Serializable {
 		else {
 			GuiConsole.io.println(monster.monstertype+" missed its attack!",Color.RED);
 		}
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
