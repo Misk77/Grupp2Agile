@@ -36,7 +36,7 @@ public class GameMenu implements Serializable {
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-
+	 PlayMusic playmusic = new  PlayMusic();
 	// System objects
 	
 	// Scanner scanner = new Scanner(System.in);
@@ -252,7 +252,7 @@ public class GameMenu implements Serializable {
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
-		 PlayMusic playmusic = new  PlayMusic();
+		
          
 		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
 		playmusic.playBackGround(backgroundmusic);

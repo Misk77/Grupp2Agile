@@ -20,6 +20,7 @@ public class AI {
 		String[] direction = new String[] {"north","south","west","east"};
 		for(int way=0; way<4; way++) {
 			for(Room room : map.room) {
+				GuiConsole.io.gotoEnd();
 				if(room.x == (map.currentroomx + xDiff[way] ) && room.y == (map.currentroomy + yDiff[way]) ) {
 					willPower[way] = 20; // Room exists and the direction will be evaluated.
 					if (!room.visited) {
@@ -43,7 +44,8 @@ public class AI {
 								if(hero.herotype.equals("Rogue")) {
 									willPower[way] -= monster.baseattack;
 								}
-							}GuiConsole.io.gotoEnd();
+							}
+							//GuiConsole.io.gotoEnd();
 						}
 						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
 							if(rand.nextInt(100)+1 <= 50) {
