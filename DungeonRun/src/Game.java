@@ -11,7 +11,7 @@ public class Game implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static int dramaticPause = 500;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {

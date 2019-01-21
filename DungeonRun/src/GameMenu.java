@@ -1,5 +1,10 @@
 
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
@@ -20,7 +25,7 @@ public class GameMenu implements Serializable {
 	public String toString() {
 		return "GameMenu [name=" + name + ", input=" + input + ", herotype=" + herotype + ", objectList="
 				+ Arrays.toString(objectList) + ", fd=" + fd + ", game=" + game + ", GameMenuFirst()="
-				+ Arrays.toString(GameMenuFirst()) + ", playerName()=" + playerName() + ", Gamestart()="
+				 + ", playerName()=" + playerName() + ", Gamestart()="
 				+ Arrays.toString(Gamestart()) + ", getName()=" + getName() + ", getInput()=" + getInput()
 				+ ", getHerotype()=" + getHerotype() + ", getObjectList()=" + Arrays.toString(getObjectList())
 				+ ", getFd()=" + getFd() + ", getGame()=" + getGame() + ", getClass()=" + getClass() + ", hashCode()="
@@ -247,7 +252,7 @@ public class GameMenu implements Serializable {
 	}
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
-	public Object[] GameMenuFirst() {
+	public Object[] GameMenuFirst() throws ClassNotFoundException {
 		 PlayMusic playmusic = new  PlayMusic();
          
 		 String backgroundmusic = "/Hypnotic-Puzzle3";
@@ -307,9 +312,23 @@ public class GameMenu implements Serializable {
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
+			 try {
+				 FileInputStream fileIn = new FileInputStream("Dungensave.ser");
+		         ObjectInputStream in = new ObjectInputStream(fileIn);
+		         in.close();
+		         fileIn.close();
+		      } catch (IOException i) {
+		         i.printStackTrace();
+		         return objectList ;
+		      }
+		      
+			 GuiConsole.io.println("Deserialized Dungensave...", Color.YELLOW);
+			 GuiConsole.io.println("Name: " +getName(), Color.YELLOW);
+			 GuiConsole.io.println("getHerotype: " + getHerotype(), Color.YELLOW);
 			
+		   
 			// save.LoadFromDisk(0, 0, 0, 0, herotype, herotype, 0, 0, 0);
-			GuiConsole.io.println("Denna metod görs senare.. LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
+			GuiConsole.io.println("Denna metod görs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÖRS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
 			GameMenuFirst();
 
 		} else {
@@ -390,9 +409,21 @@ public class GameMenu implements Serializable {
 			cornerRandom();
 			break;
 		case "L":
+			 try {
+				 FileInputStream fileIn = new FileInputStream("Dungensave.ser");
+		         ObjectInputStream in = new ObjectInputStream(fileIn);
+		         in.close();
+		         fileIn.close();
+		      } catch (IOException i) {
+		         i.printStackTrace();
+		         return objectList ;
+		      }
+		      
+			 GuiConsole.io.println("Deserialized Dungensave...", Color.YELLOW);
+			 GuiConsole.io.println("Name: " +getName(), Color.YELLOW);
+			 GuiConsole.io.println("getHerotype: " + getHerotype(), Color.YELLOW);
 			
-			
-			GuiConsole.io.println("[L]oad-DENNA METOD GÖRS SENARE - LOAD your character..", Color.YELLOW);
+			GuiConsole.io.println("[L]oad-DENNA METOD GÖRS SENARE -TEST NU MED SERI LOAD your character..", Color.YELLOW);
 			Gamestart();
 			break;
 		case "S":
@@ -451,14 +482,28 @@ public class GameMenu implements Serializable {
 
 	public String endMenu(Hero hero) {
 		//save goes here
-		SaveLoad data=new  SaveLoad(name);
+		//SaveLoad data=new  SaveLoad(name);
+		/*  Denna verkar spara
 		try {
 			data.save(hero, "Dungensave.ser");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
+		//SaveLoad data=new  SaveLoad(name);
+		//test imorse
+		 try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("Dungeonsave.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(hero);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in Dungeonsave.ser");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
 		// save goes here
 		/*
 		 * Detta funkar inte.. else klagar.... PlayMusic playmusic = new PlayMusic();

@@ -9,7 +9,7 @@ public class Hero implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String name;
+	static String name;
 	
 	int initiative;
 	int health;
@@ -33,6 +33,7 @@ public class Hero implements Serializable {
 	boolean block = false;
 	
 	Random rand;
+	
 	
 	public Hero(String herotype, String name) {
 		rand = new Random();
