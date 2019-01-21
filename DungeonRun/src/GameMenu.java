@@ -254,7 +254,7 @@ public class GameMenu implements Serializable {
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
 		 PlayMusic playmusic = new  PlayMusic();
          
-		 String backgroundmusic = "/Hypnotic-Puzzle3";
+		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
 		playmusic.playBackGround(backgroundmusic);
 		
 		GuiConsole.io.println(
@@ -280,27 +280,12 @@ public class GameMenu implements Serializable {
 
 		input = GuiConsole.io.nextLine();
 
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e2) {
-			GuiConsole.io.println("Badness...", Color.RED);
-		}
-
+	
 		if (input.equalsIgnoreCase("N")) {
 			GuiConsole.io.println("Let the Adventures Begin...", Color.GREEN);
 			objectList = Gamestart();
 
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness", Color.RED);
-			}
-
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness", Color.RED);
-			}
+			
 		} else if (input.equalsIgnoreCase("A")) {
 			AiHeroChoice();
 			maping();
@@ -366,12 +351,7 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
+		
 		GuiConsole.io.println("[I]nstructions-How to play the game...", Color.YELLOW); // Readfile eller metod där allt
 																						// står om spelet, spelrunda
 		GuiConsole.io.println("[N]ew-Create new character..", Color.RED); // tar in hero metoden
@@ -446,29 +426,14 @@ public class GameMenu implements Serializable {
 			GuiConsole.io.println();
 			break;
 		case "E":
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("You now exit the game....", Color.YELLOW);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("Data will be automatic saved.....", Color.YELLOW);
 			System.exit(0);
 			GuiConsole.io.println();
 		default:
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("No such option in menu", Color.RED);
 			GuiConsole.io.println("\t try again........", Color.YELLOW);
 			Gamestart();
