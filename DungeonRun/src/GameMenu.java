@@ -384,7 +384,7 @@ public class GameMenu implements Serializable {
 			AiHeroChoice();
 			maping();
 			Game.dramaticPause = 80;
-			Map.clearScreenWhenEnteringRoom = true;
+			//Map.clearScreenWhenEnteringRoom = true;
 			cornerRandom();
 			break;
 		case "L":

@@ -77,7 +77,7 @@ public class AI {
 			endWhatIsStarted = true;
 		}
 
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		String theWay = bestChoices.get(rand.nextInt(bestChoices.size()));
 		System.out.println(theWay);
 		return theWay;
@@ -136,7 +136,7 @@ public class AI {
 		if(decision.equals("a")) {endWhatIsStarted = true;}
 		if(endWhatIsStarted) {decision = "a";}
 
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(decision);
 		return decision;
 	}
@@ -150,7 +150,7 @@ public class AI {
 				target = monster.monstertype;
 			}
 		}
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(target);
 		return target;
 	}
