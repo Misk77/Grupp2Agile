@@ -43,7 +43,7 @@ public class AI {
 								if(hero.herotype.equals("Rogue")) {
 									willPower[way] -= monster.baseattack;
 								}
-							}
+							}GuiConsole.io.gotoEnd();
 						}
 						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
 							if(rand.nextInt(100)+1 <= 50) {
