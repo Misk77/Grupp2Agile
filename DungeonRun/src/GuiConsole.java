@@ -36,11 +36,11 @@ public final class GuiConsole {
 
        
         private void defaultStyles() {
-        	ImageIcon img = new ImageIcon("src/1000.jpg");
+        	//ImageIcon img = new ImageIcon("src/1000.jpg");
             // Orginal windows stil
         	//Ändra stil färg via parametrarna
             defaultFont = "Lucida Console";
-          //defaultFont = "MONOSPACED";
+            //defaultFont = "MONOSPACED";
            // defaultFont = "HANGING_BASELINE"; // KARTAN BLIR FEL
            // defaultFont = "SERIF"; // KARTAN BLIR FEL
         	//defaultFont = "SANS_SERIF";   // KARTAN BLIR FEL
@@ -64,7 +64,7 @@ public final class GuiConsole {
             promptStyle = new SimpleAttributeSet();
             StyleConstants.setFontFamily(promptStyle, defaultFont);
             StyleConstants.setFontSize(promptStyle, 15);// användaren text storleken
-            StyleConstants.setForeground(promptStyle, Color.MAGENTA);
+            StyleConstants.setForeground(promptStyle, Color.white);
         }
 
         private void initComponents() {
@@ -77,7 +77,7 @@ public final class GuiConsole {
                     .getAvailableFontFamilyNames();
             InputPolicy cp = new InputPolicy();
             pane.addKeyListener(cp);
-            pane.setMargin(new Insets(0, 100, 0, 30)); // Centrera texten eller vart du vill ha texten i rutan
+            pane.setMargin(new Insets(0, 20, 0, 30)); // Centrera texten eller vart du vill ha texten i rutan
             pane.setEditable(false);
             caret = pane.getCaret();
             caret.setBlinkRate(250);

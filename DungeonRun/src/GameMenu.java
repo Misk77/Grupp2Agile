@@ -215,18 +215,18 @@ public class GameMenu {
 		// System.out.println("[M]eny\n");
 
 		input =GuiConsole.io.nextLine();
-
+		/*
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e2) {
 			GuiConsole.io.println("Badness...",Color.RED);
-		}
-
+		}*/
+		
 		if (input.equalsIgnoreCase("N")) {
 			GuiConsole.io.println("Let the Adventures Begin...",Color.GREEN);
 			objectList = Gamestart();
-
-			try {
+			
+			/*try {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
 				GuiConsole.io.println("Badness",Color.RED);
@@ -236,14 +236,14 @@ public class GameMenu {
 				Thread.sleep(300);
 			} catch (InterruptedException e2) {
 				GuiConsole.io.println("Badness",Color.RED);
-			}
+			}*/
 		} else if (input.equalsIgnoreCase("A")) {
 			AiHeroChoice();
 			maping();
 			AiHero.cornerRandom();
 		} else if (input.equalsIgnoreCase("E")) {
-			GuiConsole.io.println("Too bad you're leaving....",Color.ORANGE);
-			GuiConsole.io.println("Come back when you dare to enter the dungeons.....",Color.BLUE);
+			GuiConsole.io.println("Too bad you're leaving",Color.ORANGE);
+			GuiConsole.io.println("Come back when you dare to enter the dungeons",Color.BLUE);
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
@@ -253,7 +253,7 @@ public class GameMenu {
 
 		} else {
 			GuiConsole.io.println("No such option in menu",Color.RED);
-			GuiConsole.io.println("\t try again........",Color.RED);
+			GuiConsole.io.println("\t try again",Color.RED);
 			GameMenuFirst();
 		}
 		return objectList;
@@ -278,20 +278,20 @@ public class GameMenu {
 		GuiConsole.io.println("|=================================||----------| GAME MENU |----------||=================================|",Color.GREEN);
 		GuiConsole.io.println("|=======================================================================================================|",Color.YELLOW);
 		GuiConsole.io.println();
-		try {
+		/*try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 
 			e.printStackTrace();
-		}
-		GuiConsole.io.println("[H]elp - Read about the game...",Color.YELLOW); // Readfile eller metod där allt står om spelet, //
+		}*/
 																// spelrunda
-		GuiConsole.io.println("[N]ew  - Create new character..",Color.RED); // tar in hero metoden
-		GuiConsole.io.println("[A]i character ..",Color.GRAY); // läser från load metoden oc
-		GuiConsole.io.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
-		GuiConsole.io.println("[S]ee  - See highscore (treasure points) for character..",Color.GREEN); //
-		GuiConsole.io.println("[R]ead - Read about the characters..",Color.ORANGE);// om spelkaraktärer
-		GuiConsole.io.println("[E]XIT/SAVE\n",Color.WHITE);// THen exit automatic save the game
+		GuiConsole.io.println("[N]ew  - Create new character",Color.RED); // tar in hero metoden
+		GuiConsole.io.println("[L]oad - Load your character"); // läser från load metoden och tar in befiltlig spelare
+		GuiConsole.io.println("[A]i character",Color.GRAY); // läser från load metoden oc
+		GuiConsole.io.println("[S]ee  - See highscore (treasure points) for character",Color.GREEN); //
+		GuiConsole.io.println("[R]ead - Read about the characters",Color.ORANGE);// om spelkaraktärer
+		GuiConsole.io.println("[H]elp - Read about the game",Color.YELLOW); // Readfile eller metod där allt står om spelet, //
+		GuiConsole.io.println("[E]xit/save\n",Color.WHITE);// THen exit automatic save the game
 		//input = scanner.next();
 		input =GuiConsole.io.nextLine();
 		// Valen i menu
@@ -381,19 +381,63 @@ public class GameMenu {
 	
 	public String endMenu(Hero hero) {
 		//save here
-		if(hero.dead) 
-			GuiConsole.io.println("Your adventures are over, these are your accomplishments:",Color.YELLOW);
-		else
-			GuiConsole.io.println("You managed to get out of the dungeon alive, these are your accomplishments:",Color.BLUE);
-		GuiConsole.io.println("Treasure worth "+hero.treasure+" coins collected\n",Color.WHITE);
-				GuiConsole.io.println(hero.visitedrooms+" rooms visited\n",Color.RED);
-				GuiConsole.io.println(hero.deadgiantspiders+" Giant Spiders slain\n",Color.GRAY);
-				GuiConsole.io.println(hero.deadskeletons+" Skeletons slain\n",Color.YELLOW);
-				GuiConsole.io.println( hero.deadorcs+" Orcs slain\n",Color.MAGENTA);
-				GuiConsole.io.println( hero.deadtrolls+" Trolls slain\n",Color.ORANGE);
-				GuiConsole.io.println( (hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls)+" monsters slain in total\n",Color.GREEN);
-				GuiConsole.io.println(hero.adventures+" adventures undertaken\n",Color.RED);
-		GuiConsole.io.println("[M]ain menu\n[Q]uit game",Color.WHITE);
+		if(hero.dead) {
+			GuiConsole.io.print("Your");
+			GuiConsole.io.print(" adventures ",Color.white);
+			GuiConsole.io.print("are over, these are your ");
+			GuiConsole.io.print("accomplishments", Color.white);
+			GuiConsole.io.println(":");
+		}
+		else {
+			GuiConsole.io.print("You managed to get out of the dungeon");
+			GuiConsole.io.print(" alive ", Color.green);
+			GuiConsole.io.print(", these are your ");
+			GuiConsole.io.print("accomplishments", Color.white);
+			GuiConsole.io.println(":");
+		}
+		GuiConsole.io.print("Treasure", Color.orange);
+		GuiConsole.io.print(" worth ");
+		GuiConsole.io.print(hero.treasure, Color.white);
+		GuiConsole.io.println(" coins collected");
+		
+		GuiConsole.io.print(hero.visitedrooms, Color.white);
+		GuiConsole.io.print(" rooms ", Color.white);
+		GuiConsole.io.println("visited");
+		
+		GuiConsole.io.print(hero.deadgiantspiders, Color.white);
+		GuiConsole.io.print(" Giant spiders ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+		
+		GuiConsole.io.print(hero.deadskeletons, Color.white);
+		GuiConsole.io.print(" Skeletons ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+
+		GuiConsole.io.print(hero.deadorcs, Color.white);
+		GuiConsole.io.print(" Orcs ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+	
+		GuiConsole.io.print(hero.deadtrolls, Color.white);
+		GuiConsole.io.print(" Trolls ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+		
+		GuiConsole.io.print((hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls), Color.white);
+		GuiConsole.io.print(" monsters ", Color.orange.darker());
+		GuiConsole.io.print("slain", Color.white);
+		GuiConsole.io.println(" in total");
+		
+		GuiConsole.io.print(hero.adventures, Color.white);
+		GuiConsole.io.print(" adventures ", Color.green);
+		GuiConsole.io.println("undertaken\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("M", Color.white);
+		GuiConsole.io.print("]");
+		GuiConsole.io.println("ain menu", Color.white);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("Q", Color.red);
+		GuiConsole.io.print("]");
+		GuiConsole.io.println("uit game", Color.red);
 		while(true) {
 			String option = GuiConsole.io.nextLine().toLowerCase();
 			if(option.equals("m")) {
@@ -407,5 +451,4 @@ public class GameMenu {
 			}
 		}
 	}
-
 }

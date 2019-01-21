@@ -21,7 +21,7 @@ public class Game implements java.io.Serializable {
 			Hero hero = (Hero) objects[1]; //need the correct index
 			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index
-			//Map.clearScreenWhenEnteringRoom = true; // Testa gärna denna och säg vad ni tycker! Cleanare enligt mig. /Johannes
+			//Map.clearScreenWhenEnteringRoom = true; // Testa gï¿½rna denna och sï¿½g vad ni tycker! Cleanare enligt mig. /Johannes
 			String corner = (String) objects[2]; //need the correct index
 			Game game = new Game();
 			AI ai = new AI();
@@ -34,7 +34,9 @@ public class Game implements java.io.Serializable {
 			boolean dungeoning = true;
 			while(dungeoning) {
 			if(currentroom == null) {
-				GuiConsole.io.println("You tried to walk through a wall, unsuccessfully",Color.GREEN);
+				GuiConsole.io.print("You tried to walk through a");
+				GuiConsole.io.print(" wall ",Color.GRAY);
+				GuiConsole.io.println("unsuccessfully");
 			}
 			else {
 				//counting rooms
@@ -44,11 +46,15 @@ public class Game implements java.io.Serializable {
 				}
 				//counting rooms
 				if(currentroom.monsterlist.isEmpty() && currentroom.treasurelist.isEmpty() && !currentroom.exit && !firstround) {
-					GuiConsole.io.println("There is nothing here...");
+					GuiConsole.io.print("There is");
+					GuiConsole.io.print(" nothing ",Color.gray);
+					GuiConsole.io.println("here...");
 				}
 				firstround = false;
 				if(currentroom.exit) {
-					GuiConsole.io.println("You have found the exit, do you want to leave, [Y]es [N]o",Color.WHITE);
+					GuiConsole.io.print("You have found the");
+					GuiConsole.io.print(" exit ",Color.green);
+					GuiConsole.io.println(", do you want to leave, [Y]es [N]o");
 					String yesorno = null;
 					if (hero.ai) {
 						yesorno = "y";
@@ -56,20 +62,24 @@ public class Game implements java.io.Serializable {
 						yesorno = GuiConsole.io.nextLine().toLowerCase();
 					}
 					if(yesorno.equals("y")) {
-						GuiConsole.io.println("You have successfully found your way out of the dungeon",Color.BLACK);
-						GuiConsole.io.println("You managed to find treasures worth "+hero.treasure+" coins",Color.RED);
+						GuiConsole.io.print("You have");
+						GuiConsole.io.print(" successfully ",Color.green);
+						GuiConsole.io.println("found your way out of the dungeon");
+						//GuiConsole.io.print("You managed to find treasures worth "+hero.treasure+" coins");
+						//GuiConsole.io.print(" treasure ",Color.orange);
+						//GuiConsole.io.print("worth "+hero.treasure+" coins");
 						break;
 					}
 					else if(yesorno.equals("n")) {
-						GuiConsole.io.println("Continuing on...",Color.YELLOW);
+						GuiConsole.io.println("Continuing on...");
 					}
 					else {
-						GuiConsole.io.println("Please enter a valid option",Color.RED);
+						GuiConsole.io.println("Please enter a valid option");
 					}
 					
 				}
 				if(!currentroom.monsterlist.isEmpty()) {
-					GuiConsole.io.println("In the darkness something are waiting.......",Color.RED);
+					/*GuiConsole.io.println("In the darkness something are waiting.......",Color.RED);
 					try {
 						Thread.sleep(dramaticPause);
 					} catch (InterruptedException e) {
@@ -95,12 +105,13 @@ public class Game implements java.io.Serializable {
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
-					GuiConsole.io.println("You encountered these monsters in the room:",Color.RED);
+					}*/
+					GuiConsole.io.println("You encountered these monsters in the room:");
 					for(Monster monster : currentroom.monsterlist) {
 						if(!monster.dead)
-							GuiConsole.io.println(monster.monstertype,Color.WHITE);
+							GuiConsole.io.println(monster.monstertype, Color.orange.darker());
 					}
+					GuiConsole.io.println();
 				}
 				
 				//System.out.println("\nTREASURES");
@@ -152,7 +163,10 @@ public class Game implements java.io.Serializable {
 						}
 					}
 					if(deadmonstercount == currentroom.monsterlist.size()) {
-						GuiConsole.io.println("All monsters in the room have been slain",Color.RED);
+						GuiConsole.io.print("All");
+						GuiConsole.io.print(" monsters ",Color.orange.darker());
+						GuiConsole.io.print("in the room have been ");
+						GuiConsole.io.println("slain\n", Color.white);
 						currentroom.monsterlist.clear();
 						fighting = false;
 						break;
@@ -169,7 +183,7 @@ public class Game implements java.io.Serializable {
 				game.collectTreasures(map, hero);
 			}
 			if(!hero.dead) {
-				GuiConsole.io.println("What direction?",Color.RED);
+				GuiConsole.io.println("What direction?", Color.white);
 				GuiConsole.io.print(">> ");
 				while(true) {
 					//count checks
@@ -185,7 +199,7 @@ public class Game implements java.io.Serializable {
 					if (hero.ai) {
 						whereto = ai.chooseDirection(map, hero);
 					} else {
-						whereto = GuiConsole.io.nextLine();
+						whereto = GuiConsole.io.nextLine().toLowerCase();
 					}
 					hero.block = true;
 					if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
@@ -216,7 +230,7 @@ public class Game implements java.io.Serializable {
 		}
 		//cant test this, supposed to count amount of runs
 		hero.adventures++;
-		GuiConsole.io.println("DO WE GET HERE",Color.RED);
+		//GuiConsole.io.println("DO WE GET HERE",Color.RED);
 		//cant test this, supposed to count amount of runs
 		String cont = gamemenu.endMenu(hero);
 		if(cont.equals("menu"))
@@ -255,9 +269,11 @@ public class Game implements java.io.Serializable {
 				}
 			}
 			if(!treasurelist.isEmpty()) {
-				GuiConsole.io.println("\nYou found these treasures in the room:",Color.RED);
+				GuiConsole.io.print("\nYou found these");
+				GuiConsole.io.print(" treasures ", Color.orange);
+				GuiConsole.io.println("in the room:");
 				for(Treasure treasure : treasurelist) {
-					System.out.println(treasure.treasuretype);
+					GuiConsole.io.println(treasure.treasuretype, Color.orange);
 				}
 			}
 			int treasureSum = 0;
@@ -267,14 +283,32 @@ public class Game implements java.io.Serializable {
 			treasurelist.clear();
 			if (treasureSum > 0) {
 				hero.treasure += treasureSum;
-				GuiConsole.io.println("\nCollected treasures worth " + treasureSum + " coins.\nYou now have " + hero.treasure + " coins.\n",Color.WHITE);
+				GuiConsole.io.print("\nCollected");
+				GuiConsole.io.print(" treasures ", Color.orange);
+				GuiConsole.io.print("worth ");
+				GuiConsole.io.print(treasureSum, Color.white);
+				GuiConsole.io.print(" coins.\nYou now have ");
+				GuiConsole.io.print(hero.treasure, Color.white);
+				GuiConsole.io.println(" coins.\n");
 			}
 		}
 	
 	}
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map, AI ai) {
-		GuiConsole.io.println("Do you want to [F]lee or [A]ttack?",Color.RED);
+		GuiConsole.io.print("Do you want to");
+		GuiConsole.io.print(" [");
+		GuiConsole.io.print("F", Color.white);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("lee", Color.white);
+		//GuiConsole.io.print(" [F]lee ", Color.white);
+		GuiConsole.io.print(" or ");
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("A", Color.red);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ttack", Color.red);
+		//GuiConsole.io.print("[A]ttack", Color.red);
+		GuiConsole.io.println("?");
 		boolean wronginput = true;
 		while(wronginput) {
 			String fleeorattack = null;
@@ -293,22 +327,33 @@ public class Game implements java.io.Serializable {
 						monster.resetMonsterHealth();
 					}
 					map.goLast();
-					GuiConsole.io.println("You fled back to the previous room successfully!",Color.GREEN);
+					GuiConsole.io.print("You");
+					GuiConsole.io.print(" fled ", Color.white);
+					GuiConsole.io.print("back to the previous room ");
+					GuiConsole.io.println("successfully", Color.green);
 					//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 					return "break";
 				}
 				else {
-					GuiConsole.io.println("Your attempt to flee failed",Color.RED);
+					GuiConsole.io.print("Your attempt to");
+					GuiConsole.io.print(" flee ", Color.white);
+					GuiConsole.io.print("back to the previous room");
+					GuiConsole.io.println(" failed", Color.red);
 				}
 			}
 			else if(fleeorattack.equals("a")) {
 				wronginput = false;
-				GuiConsole.io.println("Which monster do you want to attack?",Color.YELLOW);
+				GuiConsole.io.print("Which");
+				GuiConsole.io.print(" monster ", Color.orange.darker());
+				GuiConsole.io.print("do you want to");
+				GuiConsole.io.print(" attack", Color.red);
+				GuiConsole.io.println("?");
 				for(Monster monster : monsterlist) {
 					if(!monster.dead) {
-						GuiConsole.io.println(monster.monstertype,Color.WHITE);
+						GuiConsole.io.println(monster.monstertype,Color.orange.darker());
 					}
 				}
+				GuiConsole.io.println();
 				boolean exists = false;
 				boolean attacking = true;
 				while(attacking) {
@@ -333,9 +378,16 @@ public class Game implements java.io.Serializable {
 								int herodmg = hero.dealDamage();
 								int monsterhealth = monsterlist.get(i).health;
 								monsterlist.get(i).takeDamage(herodmg);
-								GuiConsole.io.println(hero.name+" hit "+monsterlist.get(i).monstertype+" for "+herodmg,Color.RED);
+								GuiConsole.io.print(hero.name, Color.cyan);
+								GuiConsole.io.print(" hit ");
+								GuiConsole.io.print(monsterlist.get(i).monstertype, Color.ORANGE.darker());
+								GuiConsole.io.print(" for ");
+								GuiConsole.io.println(herodmg, Color.white);
 								if(monsterhealth != monsterlist.get(i).health && monsterlist.get(i).health > 0) {
-									GuiConsole.io.println(monsterlist.get(i).monstertype+"'s health is "+monsterlist.get(i).health,Color.GREEN);
+									GuiConsole.io.print(monsterlist.get(i).monstertype+"'s", Color.orange.darker());
+									GuiConsole.io.print(" health ");
+									GuiConsole.io.print("is ");
+									GuiConsole.io.println(monsterlist.get(i).health, Color.white);
 								}
 								if(monsterlist.get(i).dead) {
 									//counting dead monsters
@@ -348,12 +400,15 @@ public class Game implements java.io.Serializable {
 									else if(monsterlist.get(i).monstertype.equals("Troll"))
 										hero.deadtrolls++;
 									//counting dead monsters
-									GuiConsole.io.println(monsterlist.get(i).monstertype+" has been slain",Color.CYAN);
+									GuiConsole.io.print(monsterlist.get(i).monstertype, Color.orange.darker());
+									GuiConsole.io.print(" has been ");
+									GuiConsole.io.println("slain", Color.white);
 								}
 								break;
 							}
 							else {
-								GuiConsole.io.println("Player's attack missed",Color.RED);
+								GuiConsole.io.print("Player's attack");
+								GuiConsole.io.println(" missed", Color.white);
 								break;
 							}
 						}
@@ -362,13 +417,13 @@ public class Game implements java.io.Serializable {
 					break;
 					}
 					else {
-						GuiConsole.io.println("Please enter a valid target",Color.ORANGE);
+						GuiConsole.io.println("Please enter a valid target");
 						continue;
 					}
 				}
 			}
 			else {
-				GuiConsole.io.println("Please enter a valid option",Color.RED);
+				GuiConsole.io.println("Please enter a valid option");
 				continue;
 			}
 		}
@@ -381,19 +436,33 @@ public class Game implements java.io.Serializable {
 		//System.out.println("ROLLS MONSTERATTACKROLL "+monsterattackroll+"\nHERO DEFENDROLL "+herodefendroll);
 		if(hero.herotype.equals("Knight") && hero.block) {
 			hero.takeDamage(monster.dealDamage());
-			GuiConsole.io.println(hero.name+" blocked the "+monster.monstertype+"'s attack!",Color.WHITE);
+			GuiConsole.io.print(hero.name, Color.cyan);
+			GuiConsole.io.print(" blocked the ");
+			GuiConsole.io.print(monster.monstertype+"'s ", Color.orange.darker());
+			GuiConsole.io.println("attack!");
 		}
 		else if(monsterattackroll > herodefendroll) {
 			int monsterdmg = monster.dealDamage();
 			int herohealth = hero.health;
 			hero.takeDamage(monsterdmg);
-			GuiConsole.io.println(monster.monstertype+" hit the player for "+monsterdmg,Color.RED);
+			GuiConsole.io.print(monster.monstertype, Color.orange.darker());
+			GuiConsole.io.print(" hit ");
+			GuiConsole.io.print(hero.name, Color.cyan);
+			GuiConsole.io.print(" for ");
+			GuiConsole.io.println(monsterdmg, Color.white);
 			if(hero.health != herohealth) {
-				GuiConsole.io.println(hero.name+"'s health is "+hero.health,Color.WHITE);
+				GuiConsole.io.print(hero.name, Color.cyan);
+				GuiConsole.io.print(" health is ");
+				GuiConsole.io.println(hero.health, Color.white);
 			}
 		}
 		else {
-			GuiConsole.io.println(monster.monstertype+" missed its attack!",Color.RED);
+			GuiConsole.io.print("the ");
+			GuiConsole.io.print(monster.monstertype, Color.orange.darker());
+			GuiConsole.io.print(" strikes at you, but you");
+			GuiConsole.io.print(" dodge ", Color.white);
+			GuiConsole.io.println("just in time");
+			
 		}
 	}
 }
