@@ -223,7 +223,9 @@ public class Game{
 				game.collectTreasures(map, hero);
 			}
 			if(!hero.dead) {
-				GuiConsole.io.println("What direction?", Color.white);
+				GuiConsole.io.print("What ");
+				GuiConsole.io.print("direction", Color.white);
+				GuiConsole.io.println("?");
 				GuiConsole.io.print(">> ");
 				while(true) {
 					//count checks

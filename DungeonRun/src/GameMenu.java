@@ -39,7 +39,7 @@ public class GameMenu implements Serializable {
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-	 PlayMusic playmusic = new  PlayMusic();
+	 //PlayMusic playmusic = new  PlayMusic();
 	// System objects
 	
 	// Scanner scanner = new Scanner(System.in);
@@ -319,7 +319,7 @@ public class GameMenu implements Serializable {
 		
          
 		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
-		playmusic.playBackGround(backgroundmusic);
+		//playmusic.playBackGround(backgroundmusic);
 		
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -335,18 +335,26 @@ public class GameMenu implements Serializable {
 				"        ================================ Load or start a new game ================================",
 				Color.WHITE);
 		GuiConsole.io.println();
-		GuiConsole.io.println("[L]OAD GAME \n", Color.MAGENTA);
-		GuiConsole.io.println("[N]EW GAME \n", Color.BLUE);
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("N", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.println("ew game", Color.orange);
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("L", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.println("oad game\n", Color.orange);
 		// System.out.println("[A]i Character \n");
-		GuiConsole.io.println("[E]XIT\n", Color.RED);
-		GuiConsole.io.println();
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("E", Color.red);
+		GuiConsole.io.print("]");
+		GuiConsole.io.println("xit\n", Color.red);
 		// System.out.println("[M]eny\n");
-
+		GuiConsole.io.print(">> ");
 		input = GuiConsole.io.nextLine();
 
 	
 		if (input.equalsIgnoreCase("N")) {
-			GuiConsole.io.println("Let the Adventures Begin...", Color.GREEN);
+			GuiConsole.io.println("Let the Adventure Begin...", Color.GREEN);
 			objectList = Gamestart();
 
 			
@@ -405,16 +413,16 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-		
-		GuiConsole.io.println("[I]nstructions-How to play the game...", Color.YELLOW); // Readfile eller metod där allt
-																						// står om spelet, spelrunda
-		GuiConsole.io.println("[N]ew-Create new character..", Color.RED); // tar in hero metoden
-		GuiConsole.io.println("[A]i character ..", Color.GRAY); //
-		GuiConsole.io.println("[L]oad - Load your character.."); // läser från load metoden och tar in befiltlig spelare
-		GuiConsole.io.println("[S]ave - Save your character.."); // läser från save metoden och sparar befiltlig spelare
-		GuiConsole.io.println("[H]ighscore - See highscore (treasure points) for character..", Color.GREEN); //
-		GuiConsole.io.println("[R]ead - Read about the characters..", Color.ORANGE);// om spelkaraktärer
+																								// står om spelet, spelrunda
+		GuiConsole.io.println("[N]ew-Create new character", Color.RED); // tar in hero metoden
+		GuiConsole.io.println("[L]oad - Load your character"); // läser från load metoden och tar in befiltlig spelare
+		GuiConsole.io.println("[A]i character", Color.GRAY); //
+		//GuiConsole.io.println("[S]ave - Save your character"); // läser från save metoden och sparar befiltlig spelare
+		GuiConsole.io.println("[H]ighscore - See highscore (treasure points) for character", Color.GREEN); //
+		GuiConsole.io.println("[R]ead - Read about the characters", Color.ORANGE);// om spelkaraktärer
+		GuiConsole.io.println("[I]nstructions-How to play the game", Color.YELLOW); // Readfile eller metod där allt
 		GuiConsole.io.println("[E]XIT/SAVE\n", Color.WHITE);// THen exit automatic save the game
+		GuiConsole.io.print(">> ");
 		// input = scanner.next();
 		input = GuiConsole.io.nextLine();
 		// Valen i menu
