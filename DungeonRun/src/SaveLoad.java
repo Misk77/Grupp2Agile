@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SaveLoad {
 	
-	final static String filename = "C:\\Users\\Daniel\\Desktop\\qwer.txt";
+	final static String filename = "DungeonRunSaveData.txt";
 	
 	public SaveLoad() {
 		try {
@@ -69,7 +69,7 @@ public class SaveLoad {
 				String[] linearray = line.split("%");
 				if(linearray[1].equals(hero.name)) {
 					exists = true;
-					tester.add((hero.herotype + "%" + hero.name + "%" + hero.treasure + "%" + hero.deadgiantspiders + "%" + hero.deadskeletons + "%" + hero.deadorcs + "%" + hero.deadtrolls));
+					tester.add((hero.herotype + "%" + hero.name + "%" + hero.treasure + "%" + hero.deadgiantspiders + "%" + hero.deadskeletons + "%" + hero.deadorcs + "%" + hero.deadtrolls + "%" + hero.dead));
 				}
 				else {
 					tester.add(line);
@@ -78,11 +78,10 @@ public class SaveLoad {
 			br.close();
 			BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
 			for(String line : tester) {
-				System.out.println(line);
 				bw.write(line+System.getProperty("line.separator"));
 			}
 			if(!exists) {
-				bw.write("This is just a test"+System.getProperty("line.separator"));
+				bw.write((hero.herotype + "%" + hero.name + "%" + hero.treasure + "%" + hero.deadgiantspiders + "%" + hero.deadskeletons + "%" + hero.deadorcs + "%" + hero.deadtrolls + "%" + hero.dead));
 			}
 			
 			bw.close();
@@ -93,7 +92,7 @@ public class SaveLoad {
 		}
 	}
 	
-	public String [] load(String filename, Hero hero) {
+	public String [] load(Hero hero) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {

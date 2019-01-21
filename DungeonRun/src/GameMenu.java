@@ -18,8 +18,11 @@ public class GameMenu implements Serializable {
 	/**
 	 * 
 	 */
+	SaveLoad saveload;
 	
-
+	public GameMenu(){
+		saveload = new SaveLoad();
+	}
 	@Override
 	public String toString() {
 		return "GameMenu [name=" + name + ", input=" + input + ", herotype=" + herotype + ", objectList="
@@ -480,7 +483,7 @@ public class GameMenu implements Serializable {
 	}// END GameMenu
 
 	public String endMenu(Hero hero) {
-		//save goes here
+		saveload.save(hero);
 		//SaveLoad data=new  SaveLoad(name);
 		/*  Denna verkar spara
 		try {

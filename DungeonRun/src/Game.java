@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,10 +14,18 @@ public class Game{
 	public static int dramaticPause = 500;
 
 	public static void main(String[] args) {
-		System.out.println("WHAT");
-		Hero herotest = new Hero("Rogue", "whatup");
+		/*
+		System.out.println("WH");
+		Hero herotest = new Hero("Wizard", "anotherchar");
 		SaveLoad sl = new SaveLoad();
 		sl.printall();
+		sl.save(herotest);
+		String []  ar = sl.load(herotest);
+		for(int i = 0; i<ar.length; i++) {
+			System.out.println(ar[i]);
+		}
+		*/
+		//savetests
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {
