@@ -111,7 +111,7 @@ public class GameMenu implements Serializable {
 		objectList[2] = corner;
 	}
 
-	// AllseeingEyes
+	// AllseeingEyes EASTEREGG!!
 	/*
 	 * void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
 	 * System.out.println(
