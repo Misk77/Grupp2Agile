@@ -20,6 +20,7 @@ public class AI {
 		String[] direction = new String[] {"north","south","west","east"};
 		for(int way=0; way<4; way++) {
 			for(Room room : map.room) {
+				GuiConsole.io.gotoEnd();
 				if(room.x == (map.currentroomx + xDiff[way] ) && room.y == (map.currentroomy + yDiff[way]) ) {
 					willPower[way] = 20; // Room exists and the direction will be evaluated.
 					if (!room.visited) {
@@ -44,6 +45,7 @@ public class AI {
 									willPower[way] -= monster.baseattack;
 								}
 							}
+							//GuiConsole.io.gotoEnd();
 						}
 						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
 							if(rand.nextInt(100)+1 <= 50) {
@@ -77,7 +79,7 @@ public class AI {
 			endWhatIsStarted = true;
 		}
 
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		String theWay = bestChoices.get(rand.nextInt(bestChoices.size()));
 		System.out.println(theWay);
 		return theWay;
@@ -136,7 +138,7 @@ public class AI {
 		if(decision.equals("a")) {endWhatIsStarted = true;}
 		if(endWhatIsStarted) {decision = "a";}
 
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(decision);
 		return decision;
 	}
@@ -150,7 +152,7 @@ public class AI {
 				target = monster.monstertype;
 			}
 		}
-		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(target);
 		return target;
 	}

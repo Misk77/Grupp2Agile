@@ -39,35 +39,62 @@ public class GameMenu implements Serializable {
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-
+	 PlayMusic playmusic = new  PlayMusic();
 	// System objects
 	
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
 
-	// String[] corners = { "NW ", "NE ", "SW", "SE " };
-	// AiHero ahero = new AiHero(herotype);
 	// SaveLoad save = new SaveLoad();// Maybe shouldnt be here
 	FileData fd = new FileData();
 	Game game = new Game();
+	
+	public String playerName() {
+		GuiConsole.io.println("\nWelcome player! \nPlease enter your name: ", Color.WHITE);
+		GuiConsole.io.print(">> ");
+		name = GuiConsole.io.nextLine();
+		if (name.length() < 1) {
+			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
+			playerName();
+		}
+		return name;
+	}
+	// if player exist
 
 	public void maping() {
 		Map map = new Map();
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose map size:", Color.WHITE);
-		GuiConsole.io.println("Press 1 for map: 4x4", Color.BLUE);
-		GuiConsole.io.println("Press 2 for map: 5x5", Color.RED);
-		GuiConsole.io.println("Press 3 for map: 8x8", Color.YELLOW);
-		GuiConsole.io.println();
-		int operator = GuiConsole.io.nextInt();
-		switch (operator) {
-		case 1:
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("S", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("mall ", Color.orange);
+		GuiConsole.io.print("(4x4)\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("M", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("edium ", Color.orange);
+		GuiConsole.io.print("(5x5)\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("L", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("arge ", Color.orange);
+		GuiConsole.io.print("(8x8)\n");
+		
+		GuiConsole.io.print(">> ");
+		input = GuiConsole.io.nextLine();
+
+		switch (input.toUpperCase()) {
+		case "S":
 			map.generateMap(4, 4);
 			break;
-		case 2:
+		case "M":
 			map.generateMap(5, 5);
 			break;
-		case 3:
+		case "L":
 			map.generateMap(8, 8);
 			break;
 		default:
@@ -79,29 +106,37 @@ public class GameMenu implements Serializable {
 
 	public void cornerChoice() {
 		GuiConsole.io.println();
-		GuiConsole.io.println("Choose a corner to start in:", Color.WHITE);
+		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
 		// System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1 2┆\n┆ ┆\n┆ ┆\n┆3 4┆\n╰┄┄┄┄┄┄┄┄┄╯");
-		GuiConsole.io.println(
-				" ___________ \n|           |\n| 1       2 |\n|           |\n|           |\n| 3       4 |\n|___________|",
-				Color.CYAN);
-		GuiConsole.io.println();
+		GuiConsole.io.print("█████████████\n█",Color.GRAY);
+		GuiConsole.io.print(" A ", Color.orange);
+		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print(" B ", Color.orange);
+		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█",Color.GRAY);
+		GuiConsole.io.print(" C ", Color.orange);
+		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print(" D ", Color.orange);
+		GuiConsole.io.print("█\n█████████████\n",Color.GRAY);
+
 		String corner = null;
-		int operator = GuiConsole.io.nextInt();
-		switch (operator) {
-		case 1:
+		GuiConsole.io.print(">> ");
+		input = GuiConsole.io.nextLine();
+
+		switch (input.toUpperCase()) {
+		case "A":
 			corner = "NW";
 			break;
-		case 2:
+		case "B":
 			corner = "NE";
 			break;
-		case 3:
+		case "C":
 			corner = "SW";
 			break;
-		case 4:
+		case "D":
 			corner = "SE";
 			break;
 		default:
-			GuiConsole.io.println("Something went wrong, please try again!", Color.BLUE);
+			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
 			cornerChoice();
 		}
 		objectList[2] = corner;
@@ -114,7 +149,7 @@ public class GameMenu implements Serializable {
 		objectList[2] = corner;
 	}
 
-	// AllseeingEyes
+	// AllseeingEyes EASTEREGG!!
 	/*
 	 * void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
 	 * System.out.println(
@@ -123,66 +158,92 @@ public class GameMenu implements Serializable {
 	 * "behind the " +monster.monstertype); System.out.println(
 	 * "╚══════════════════════════════════════════════════════════════════╝\n"); }
 	 */
+	
+	
 	// Välj herotype for player
-	public void HeroChoice() {
-		GuiConsole.io.println("Choose your character:\n", Color.WHITE);
-		GuiConsole.io.println("Press 1 for Knight", Color.RED);
-		GuiConsole.io.println("Press 2 for Rogue", Color.GREEN);
-		GuiConsole.io.println("Press 3 for Wizard", Color.YELLOW);
+	public void heroChoice() {
 		GuiConsole.io.println();
-		int operator = GuiConsole.io.nextInt();
-		String type = "";
-		switch (operator) {
-		case 1:
-			type = "Knight";
-			break;
-		case 2:
-			type = "Rogue";
-			break;
-		case 3:
-			type = "Wizard";
-			break;
-		case 4:
-			AiHeroChoice();
-			break;
+		GuiConsole.io.println("Choose your character:", Color.WHITE);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("K", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("night\n", Color.orange);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("R", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ogue\n", Color.orange);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("W", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("izard\n", Color.orange);
 
-		default:
-			GuiConsole.io.println("Something went wrong, please try again!", Color.GREEN);
-			HeroChoice();
-		}
-		Hero hero = new Hero(type, name);
+		
+		GuiConsole.io.print(">> ");
+		String input = GuiConsole.io.nextLine();
 
-		objectList[1] = hero;
-
-	}
-
-	public void AiHeroChoice() {// Denna ska bort? Johannes har en bättre
-		GuiConsole.io.println("Press 1 for AI Knight\nPress 2 for AI Rogue\nPress 3 for AI Wizard", Color.GREEN);
-
-		int operator = GuiConsole.io.nextInt();
-		String type = "";
-
-		switch (operator) {
-		case 1:
-			type = "Knight";
+		switch (input.toUpperCase()) {
+		case "K":
+			input = "Knight";
 			break;
-		case 2:
-			type = "Rogue";
+		case "R":
+			input = "Rogue";
 			break;
-		case 3:
-			type = "Wizard";
+		case "W":
+			input = "Wizard";
 			break;
-
 		default:
 			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
-			AiHeroChoice();
+			heroChoice();
 		}
-		Hero hero = new Hero(type, "AI" + type);
+		Hero hero = new Hero(input, name);
+		objectList[1] = hero;
+	}
+	
+	public void aiHeroChoice() {
+		GuiConsole.io.println();
+		GuiConsole.io.println("Choose AI character:", Color.WHITE);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("K", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("night\n", Color.orange);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("R", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ogue\n", Color.orange);
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("W", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("izard\n", Color.orange);
+
+		GuiConsole.io.print(">> ");
+		String input = GuiConsole.io.nextLine();
+
+		switch (input.toUpperCase()) {
+		case "K":
+			input = "Knight";
+			break;
+		case "R":
+			input = "Rogue";
+			break;
+		case "W":
+			input = "Wizard";
+			break;
+		default:
+			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
+			heroChoice();
+		}
+		Hero hero = new Hero(input, "AI " + input);
 		hero.ai = true;
 		objectList[1] = hero;
-
 	}
-
+	
+	
 	public void ReadChar() {
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -255,9 +316,9 @@ public class GameMenu implements Serializable {
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
-		 PlayMusic playmusic = new  PlayMusic();
+		
          
-		 String backgroundmusic = "/Hypnotic-Puzzle3";
+		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
 		playmusic.playBackGround(backgroundmusic);
 		
 		GuiConsole.io.println(
@@ -283,31 +344,16 @@ public class GameMenu implements Serializable {
 
 		input = GuiConsole.io.nextLine();
 
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e2) {
-			GuiConsole.io.println("Badness...", Color.RED);
-		}
-
+	
 		if (input.equalsIgnoreCase("N")) {
 			GuiConsole.io.println("Let the Adventures Begin...", Color.GREEN);
 			objectList = Gamestart();
 
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness", Color.RED);
-			}
-
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e2) {
-				GuiConsole.io.println("Badness", Color.RED);
-			}
-		} else if (input.equalsIgnoreCase("A")) {
-			AiHeroChoice();
-			maping();
-			AiHero.cornerRandom();
+			
+//		} else if (input.equalsIgnoreCase("A")) {
+//			AiHeroChoice();
+//			maping();
+//			AiHero.cornerRandom();
 		} else if (input.equalsIgnoreCase("E")) {
 			GuiConsole.io.println("Too bad you're leaving....", Color.ORANGE);
 			GuiConsole.io.println("Come back when you dare to enter the dungeons.....", Color.BLUE);
@@ -341,16 +387,6 @@ public class GameMenu implements Serializable {
 		return objectList;
 	}
 
-	
-
-	public String playerName() {
-		GuiConsole.io.println("Welcome player! \nPlease enter your name: ", Color.GREEN);
-		name = GuiConsole.io.nextLine();
-		return name;
-
-	}
-	// if player exist
-
 	public Object[] Gamestart() {
 		// boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
@@ -369,12 +405,7 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
+		
 		GuiConsole.io.println("[I]nstructions-How to play the game...", Color.YELLOW); // Readfile eller metod där allt
 																						// står om spelet, spelrunda
 		GuiConsole.io.println("[N]ew-Create new character..", Color.RED); // tar in hero metoden
@@ -396,7 +427,7 @@ public class GameMenu implements Serializable {
 			break;
 		case "N":
 			playerName();
-			HeroChoice();
+			heroChoice();
 			maping();
 			cornerChoice();
 			// save.saveToDisk(hero.deadgiantspiders, hero.deadorcs, hero.deadskeletons,
@@ -404,10 +435,10 @@ public class GameMenu implements Serializable {
 			// hero.name, hero.treasure, hero.visitedrooms, hero.adventures);
 			break;
 		case "A":
-			AiHeroChoice();
+			aiHeroChoice();
 			maping();
 			Game.dramaticPause = 80;
-			Map.clearScreenWhenEnteringRoom = true;
+			//Map.clearScreenWhenEnteringRoom = true;
 			cornerRandom();
 			break;
 		case "L":
@@ -449,29 +480,14 @@ public class GameMenu implements Serializable {
 			GuiConsole.io.println();
 			break;
 		case "E":
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("You now exit the game....", Color.YELLOW);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("Data will be automatic saved.....", Color.YELLOW);
 			System.exit(0);
 			GuiConsole.io.println();
 		default:
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {
-
-				e.printStackTrace();
-			}
+			
 			GuiConsole.io.println("No such option in menu", Color.RED);
 			GuiConsole.io.println("\t try again........", Color.YELLOW);
 			Gamestart();
