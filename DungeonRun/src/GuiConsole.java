@@ -61,7 +61,7 @@ public final class GuiConsole {
             //pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
                   
                      
-            pane.setSize(1300, 1000);
+            pane.setSize(1000, 700);
             pane.setLayout(null);
            
            
@@ -94,11 +94,11 @@ public final class GuiConsole {
            Image icon= new ImageIcon (getClass().getResource("/ExternalItems/1000.jpg")).getImage();
             paneImage.insertIcon ( new ImageIcon(icon));
             paneImage.setVisible(true);
-            paneImage.setSize(1200, 700);
+            paneImage.setSize(1200, 5);
             paneImage.setLayout(null);
     		//setDefaultCloseOperation(EXIT_ON_CLOSE);
     		//pane.background = new JLabel("", img, JLabel.CENTER);
-            paneImage.setBounds(75, 0, 1006, 500);
+            paneImage.setBounds(75, 0, 1005, 450);
             
             defaultStyles();
             redirectSystemStreams();
@@ -118,7 +118,7 @@ public final class GuiConsole {
                     .getAvailableFontFamilyNames();
             InputPolicy cp = new InputPolicy();
             pane.addKeyListener(cp);
-            pane.setMargin(new Insets(500, 100, 0, 30)); //x,y och  Centrera texten eller vart du vill ha texten i rutan
+            pane.setMargin(new Insets(453, 100, 0, 30)); //x,y och  Centrera texten eller vart du vill ha texten i rutan
             pane.setEditable(false);
             caret = pane.getCaret();
             caret.setBlinkRate(250);
@@ -199,7 +199,7 @@ public final class GuiConsole {
             frame.add(new JScrollPane(pane));
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
-            frame.setBounds(0, 0, 1200, 700);
+            frame.setBounds(0, 0, 1180, 730);// x,y width and height
             
            
             //background
