@@ -75,6 +75,7 @@ public class PlayMusic implements Runnable
     {
         if(this.clip != null)
         {
+        	this.clip.loop(-1);
             this.clip.stop();
             this.clip.close();
         }
@@ -84,6 +85,7 @@ public class PlayMusic implements Runnable
     }
     public void stopbackground()
     {
+    	
     	  this.clip.stop();
           this.clip.close();
           this.clip = null;
