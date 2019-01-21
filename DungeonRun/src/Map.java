@@ -169,11 +169,11 @@ public class Map implements Serializable{
 			GuiConsole.io.clear();
 		}
 		if (showMap) {
-			GuiConsole.io.print("\n█",Color.ORANGE);
+			GuiConsole.io.print("\n█",Color.ORANGE.darker());
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.ORANGE);
+				GuiConsole.io.print("█████",Color.ORANGE.darker());
 			}
-			GuiConsole.io.print("█\n",Color.ORANGE);
+			GuiConsole.io.print("█\n",Color.ORANGE.darker());
 			for(int x = 0; x<=sizex; x++) {
 				for(int y = 0; y<=sizex; y++) {
 					for(Room room : this.room) {
@@ -209,20 +209,20 @@ public class Map implements Serializable{
 						}
 					}
 				} // Y
-				GuiConsole.io.print("█",Color.ORANGE);
-				GuiConsole.io.print(part[1],Color.ORANGE);
-				GuiConsole.io.print("█\n",Color.ORANGE);
-				GuiConsole.io.print("█",Color.ORANGE);
-				GuiConsole.io.print(part[0],Color.ORANGE);
-				GuiConsole.io.print("█\n",Color.ORANGE);
+				GuiConsole.io.print("█",Color.ORANGE.darker());
+				GuiConsole.io.print(part[1],Color.ORANGE.darker());
+				GuiConsole.io.print("█\n",Color.ORANGE.darker());
+				GuiConsole.io.print("█",Color.ORANGE.darker());
+				GuiConsole.io.print(part[0],Color.ORANGE.darker());
+				GuiConsole.io.print("█\n",Color.ORANGE.darker());
 				part[0] = "";
 				part[1] = "";
 			} // X
-			GuiConsole.io.print("█",Color.ORANGE);
+			GuiConsole.io.print("█",Color.ORANGE.darker());
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.ORANGE);
+				GuiConsole.io.print("█████",Color.ORANGE.darker());
 			}
-			GuiConsole.io.print("█\n\n",Color.ORANGE);
+			GuiConsole.io.print("█\n\n",Color.ORANGE.darker());
 		}
 		
 		//System.out.println("deadSteps: " + AI.deadSteps);

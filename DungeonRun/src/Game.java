@@ -24,12 +24,10 @@ public class Game implements Serializable{
 	           
 			GameMenu gamemenu = new GameMenu();
 			Object [] objects = gamemenu.GameMenuFirst();
-			Hero hero = (Hero) objects[1]; //need the correct index
-			//AiHero aihero = (AiHero)objects[3];
-			Map map = (Map) objects[0]; //need the correct index
-			//Map.clearScreenWhenEnteringRoom = true; // Testa g�rna denna och s�g vad ni tycker! Cleanare enligt mig. /Johannes
+			Hero hero = (Hero) objects[1]; // Objects sent from GameMenu(). [0]Map, [1]Hero, [2]Corner
+			Map map = (Map) objects[0];
 			//Map.clearScreenWhenEnteringRoom = true;
-			String corner = (String) objects[2]; //need the correct index
+			String corner = (String) objects[2];
 			Game game = new Game();
 			AI ai = new AI();
 			Room currentroom = map.startingPoint(corner);
@@ -56,23 +54,34 @@ public class Game implements Serializable{
 					GuiConsole.io.print("There is");
 					GuiConsole.io.print(" nothing ",Color.gray);
 					GuiConsole.io.println("here...");
-
 					AI.deadSteps++;
 
 				}
 				firstround = false;
 				if(currentroom.exit) {
 					GuiConsole.io.print("You have found the");
-					GuiConsole.io.print(" exit ",Color.green);
-					GuiConsole.io.println(", do you want to leave, [Y]es [N]o");
+					GuiConsole.io.print(" exit",Color.green);
+					//GuiConsole.io.println(", do you want to leave, [Y]es [N]o");
+					// Pillade dit lite färg, ändra tillbaka om det inte var så du tänkt! /J
+					GuiConsole.io.print(", do you want to leave? [");
+					GuiConsole.io.print("Y", Color.green);
+					GuiConsole.io.print("]");
+					GuiConsole.io.print("es", Color.green);
+					GuiConsole.io.print(" [");
+					GuiConsole.io.print("N", Color.red);
+					GuiConsole.io.print("]");
+					GuiConsole.io.print("o\n", Color.red);
+					GuiConsole.io.print(">> ");
+					
 					String yesorno = null;
 					if (hero.ai) {
 						yesorno = "y";
+						GuiConsole.io.print("y\n");
 					} else {
 						yesorno = GuiConsole.io.nextLine().toLowerCase();
 					}
 					if(yesorno.equals("y")) {
-						GuiConsole.io.print("You have");
+						GuiConsole.io.print("\nYou have");
 						GuiConsole.io.print(" successfully ",Color.green);
 						GuiConsole.io.println("found your way out of the dungeon");
 						//GuiConsole.io.print("You managed to find treasures worth "+hero.treasure+" coins");
@@ -212,20 +221,20 @@ public class Game implements Serializable{
 						whereto = GuiConsole.io.nextLine().toLowerCase();
 					}
 					hero.block = true;
-					if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east")) {
-						if(whereto.equals("north")) {
+					if(whereto.equals("north") || whereto.equals("south") || whereto.equals("west") || whereto.equals("east") || whereto.equals("n") || whereto.equals("s") || whereto.equals("w") || whereto.equals("e")) {
+						if(whereto.equals("north") || whereto.equals("n")) {
 							currentroom = map.goNorth();
 							break;
 						}
-						else if(whereto.equals("south")) {
+						else if(whereto.equals("south") || whereto.equals("s")) {
 							currentroom = map.goSouth();
 							break;
 							}
-						else if(whereto.equals("east")) {
+						else if(whereto.equals("east") || whereto.equals("e")) {
 							currentroom = map.goEast();
 							break;
 						}
-						else if(whereto.equals("west")) {
+						else if(whereto.equals("west") || whereto.equals("w")) {
 							currentroom = map.goWest();
 							break;
 						}
@@ -364,7 +373,13 @@ public class Game implements Serializable{
 				GuiConsole.io.println("?");
 				for(Monster monster : monsterlist) {
 					if(!monster.dead) {
-						GuiConsole.io.println(monster.monstertype,Color.orange.darker());
+						//GuiConsole.io.println(monster.monstertype,Color.orange.darker());
+						// Ändra tillbaka till ovanstående om ni tycker det blir fult! /J
+						GuiConsole.io.print("[");
+						GuiConsole.io.print(monster.monstertype.substring(0,1),Color.orange.darker());
+						GuiConsole.io.print("]");
+						GuiConsole.io.print(monster.monstertype.substring(1),Color.orange.darker());
+						GuiConsole.io.println();
 					}
 				}
 				GuiConsole.io.println();
@@ -377,7 +392,23 @@ public class Game implements Serializable{
 					if (hero.ai) {
 						attacktarget = ai.chooseMonster(monsterlist).toLowerCase();
 					} else {
-						attacktarget =  GuiConsole.io.nextLine().toLowerCase();
+						String input =  GuiConsole.io.nextLine().toLowerCase();
+						switch (input) {
+						case "g":
+							attacktarget = "giant spider";
+							break;
+						case "s":
+							attacktarget = "skeleton";
+							break;
+						case "t":
+							attacktarget = "troll";
+							break;
+						case "o":
+							attacktarget = "orc";
+							break;
+						default:
+							attacktarget =  input.toLowerCase();
+						}
 					}
 					String formattedattacktarget = attacktarget.substring(0,1).toUpperCase()+attacktarget.substring(1);
 					for(Monster monster : monsterlist) {
