@@ -3,15 +3,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game implements Serializable{
-
+public class Game{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static int dramaticPause = 500;
 
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) {
+		System.out.println("WHAT");
+		Hero herotest = new Hero("Rogue", "whatup");
+		SaveLoad sl = new SaveLoad();
+		sl.printall();
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {
@@ -23,7 +27,12 @@ public class Game implements Serializable{
 				playmusic.playBackGround(backgroundmusic);
 	           
 			GameMenu gamemenu = new GameMenu();
-			Object [] objects = gamemenu.GameMenuFirst();
+			Object[] objects = null;
+			try {
+				objects = gamemenu.GameMenuFirst();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 			Hero hero = (Hero) objects[1]; //need the correct index
 			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index

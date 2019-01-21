@@ -9,7 +9,7 @@ public class Hero implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	static String name;
+	String name;
 	
 	int initiative;
 	int health;

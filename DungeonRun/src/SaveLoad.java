@@ -5,7 +5,114 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
-public class SaveLoad implements  java.io.Serializable {
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class SaveLoad {
+	
+	final static String filename = "C:\\Users\\Daniel\\Desktop\\qwer.txt";
+	
+	public SaveLoad() {
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+			}
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void printall() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			for(String line = br.readLine(); line != null; line = br.readLine()) {
+				System.out.println(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean findinfile(String findthis) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			for(String line = br.readLine(); line != null; line = br.readLine()) {
+				System.out.println(line);
+				String[] linearray = (line.split("%"));
+				if(linearray[1].equals(findthis))
+					return true;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+				
+	
+	public void save(Hero hero) {
+		try {
+			boolean exists = false;
+			ArrayList<String> tester = new ArrayList<String>();
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			for(String line = br.readLine(); line != null; line = br.readLine()) {
+				String[] linearray = line.split("%");
+				if(linearray[1].equals(hero.name)) {
+					exists = true;
+					tester.add((hero.herotype + "%" + hero.name + "%" + hero.treasure + "%" + hero.deadgiantspiders + "%" + hero.deadskeletons + "%" + hero.deadorcs + "%" + hero.deadtrolls));
+				}
+				else {
+					tester.add(line);
+				}
+			}
+			br.close();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+			for(String line : tester) {
+				System.out.println(line);
+				bw.write(line+System.getProperty("line.separator"));
+			}
+			if(!exists) {
+				bw.write("This is just a test"+System.getProperty("line.separator"));
+			}
+			
+			bw.close();
+		}
+		catch(Exception e) {
+			System.out.println("Probably didnt enter the filename correctly");
+			//shouldnt get here
+		}
+	}
+	
+	public String [] load(String filename, Hero hero) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			for(String line = br.readLine(); line != null; line = br.readLine()) {
+				String [] linearray = line.split("%");
+				if(linearray[1].equals(hero.name)) {
+					System.out.println(linearray[0]+" "+linearray[1]);
+					return linearray;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Probably didnt enter the filename correctly");
+			//shouldnt get here
+		}
+		String [] emptyarray = {};
+		return emptyarray;
+	}
+
+}
+
 
 	
 	
@@ -16,7 +123,6 @@ public class SaveLoad implements  java.io.Serializable {
 	
 	/**
 	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public SaveLoad(String endMenu) {
@@ -46,7 +152,5 @@ public class SaveLoad implements  java.io.Serializable {
 	
 	
 	
+	*/
 	
-	
-
-	}
