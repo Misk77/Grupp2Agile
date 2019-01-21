@@ -1,8 +1,9 @@
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game implements java.io.Serializable {
+public class Game implements Serializable{
 
 	/**
 	 * 
@@ -10,18 +11,24 @@ public class Game implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	public static int dramaticPause = 500;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {
 			int deadmonstercount = 0;
-			
+			 //Music background This must be here start with MAIN METHOD and then must be in the Guiconsole, so start with also with gui
+			  PlayMusic playmusic = new  PlayMusic();
+	          
+				 String backgroundmusic = "Hypnotic-Puzzle3";
+				playmusic.playBackGround(backgroundmusic);
+	           
 			GameMenu gamemenu = new GameMenu();
 			Object [] objects = gamemenu.GameMenuFirst();
 			Hero hero = (Hero) objects[1]; //need the correct index
 			//AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; //need the correct index
 			//Map.clearScreenWhenEnteringRoom = true; // Testa g�rna denna och s�g vad ni tycker! Cleanare enligt mig. /Johannes
+			//Map.clearScreenWhenEnteringRoom = true;
 			String corner = (String) objects[2]; //need the correct index
 			Game game = new Game();
 			AI ai = new AI();
@@ -49,6 +56,9 @@ public class Game implements java.io.Serializable {
 					GuiConsole.io.print("There is");
 					GuiConsole.io.print(" nothing ",Color.gray);
 					GuiConsole.io.println("here...");
+
+					AI.deadSteps++;
+
 				}
 				firstround = false;
 				if(currentroom.exit) {
@@ -254,13 +264,7 @@ public class Game implements java.io.Serializable {
 		}
 	}
 
-
 	public void collectTreasures(Map map, Hero hero) {
-	//public void collectTreasures(ArrayList<Treasure> treasurelist, Hero hero) {
-		/* Johannes Ã¤ndrat:
-		 * Eftersom collectTreasures kallas efter ev. flykt, och game.currentroom inte uppdateras av map.goLast()
-		 * sÃ¥ fick man skatterna frÃ¥n ett rum Ã¤ven om man flytt dÃ¤rifrÃ¥n. HÃ¤mtar dÃ¤rfÃ¶r treasurelist via map.currentx/y istÃ¤llet.
-		 */
 		if(!hero.dead) {
 			ArrayList<Treasure> treasurelist = null;
 			for(Room room : map.room) {
@@ -292,7 +296,6 @@ public class Game implements java.io.Serializable {
 				GuiConsole.io.println(" coins.\n");
 			}
 		}
-	
 	}
 	
 	public String playerCombatAction(Scanner scanner, Hero hero, ArrayList<Monster> monsterlist, Map map, AI ai) {
@@ -312,12 +315,22 @@ public class Game implements java.io.Serializable {
 		boolean wronginput = true;
 		while(wronginput) {
 			String fleeorattack = null;
+			GuiConsole.io.print(">> ");
 			if (hero.ai) {
 				fleeorattack = ai.fightOrFlight(monsterlist, hero);
 			} else {
-				GuiConsole.io.print(">> ");
 				fleeorattack = GuiConsole.io.nextLine().toLowerCase();
 			}
+			//allseeingeye
+			/*
+			hero.turntaken = true;
+			if(fleeorattack.equals("seeing")) {
+				 GuiConsole.io.println("╔══════════════════════════════════════════════════════════════════╗\n",Color.RED);
+				 GuiConsole.io.println(hero.name + "see a gliming " + treasure.treasuretype + "behind the " +monster.monstertype,Color.RED);
+				 GuiConsole.io.println("╚══════════════════════════════════════════════════════════════════╝\n",Color.RED);
+					return "break";
+				}
+				*/
 			hero.turntaken = true;
 			if(fleeorattack.equals("f")) {
 				wronginput = false;
@@ -331,6 +344,7 @@ public class Game implements java.io.Serializable {
 					GuiConsole.io.print(" fled ", Color.white);
 					GuiConsole.io.print("back to the previous room ");
 					GuiConsole.io.println("successfully", Color.green);
+					AI.deadSteps++;
 					//System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 					return "break";
 				}
@@ -403,6 +417,7 @@ public class Game implements java.io.Serializable {
 									GuiConsole.io.print(monsterlist.get(i).monstertype, Color.orange.darker());
 									GuiConsole.io.print(" has been ");
 									GuiConsole.io.println("slain", Color.white);
+									ai.monsterSlain();
 								}
 								break;
 							}
@@ -464,6 +479,12 @@ public class Game implements java.io.Serializable {
 			GuiConsole.io.println("just in time");
 			
 		}
+	}
+
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

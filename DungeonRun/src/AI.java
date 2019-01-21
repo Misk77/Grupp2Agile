@@ -2,17 +2,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class AI {
-	static int pause = 300;
+	static int pause = 2000;
 	static Random rand = new Random();
-
+	static int deadSteps = 0;
+	static boolean endWhatIsStarted = false;
+	
 	public AI() {
-
+		
 	}
 
 	public String chooseDirection(Map map, Hero hero) {
 		int[] willPower = new int[4]; // Urge to go in either direction (N,S,W,E)
 		int[] xDiff = new int[] {-1,1,0,0}; 
 		int[] yDiff = new int[] {0,0,-1,1};
+		boolean[] hasMonster = new boolean[4];
+		
 		String[] direction = new String[] {"north","south","west","east"};
 		for(int way=0; way<4; way++) {
 			for(Room room : map.room) {
@@ -22,12 +26,14 @@ public class AI {
 						willPower[way] += 10; // Unexplored rooms are always prioritized.
 					} else {
 						if(map.lastroomvisitedx == (map.currentroomx + xDiff[way]) && map.lastroomvisitedy == (map.currentroomy + xDiff[way]) ) {
-							willPower[way] -= 10; // Never look back! If the AI always chose the comfiest path, it'd get stuck.
+							// Never look back! If the AI always chose the comfiest path, it'd get stuck. (doesn't seem to work though)
+							willPower[way] -= 20;
 						}
 
 						for (Monster monster : room.monsterlist) {
 							// The heros can decide differently when faced with a room known to have monsters in them:
 							if (!monster.dead) {
+								hasMonster[way] = true;
 								if(hero.herotype.equals("Knight")) {
 									willPower[way] -= monster.baseattack;
 								}
@@ -39,9 +45,10 @@ public class AI {
 								}
 							}
 						}
-						if(rand.nextInt(100)+1 <= 10) {
-							// We need a wild card to stop the idiots from walking in circles
-							willPower[way] = 100;
+						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
+							if(rand.nextInt(100)+1 <= 50) {
+								willPower[way] = 100;
+							}
 						}
 
 					}
@@ -64,11 +71,16 @@ public class AI {
 				bestChoices.add(direction[i]);
 			}
 		}
+		
+		if (hasMonster[bestWay]) {
+			// AI is supposed to stay and fight if it entered a room knowing there are monsters in it.  
+			endWhatIsStarted = true;
+		}
 
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
-		String decision = bestChoices.get(rand.nextInt(bestChoices.size()));
-		System.out.println(decision);
-		return decision;
+		String theWay = bestChoices.get(rand.nextInt(bestChoices.size()));
+		System.out.println(theWay);
+		return theWay;
 	}
 
 
@@ -105,6 +117,9 @@ public class AI {
 					decision = "f";
 				}
 			}
+			if(deadSteps > 50) {
+				decision = "a";
+			}
 		}
 
 		if(hero.herotype.equals("Rogue")) {
@@ -113,7 +128,13 @@ public class AI {
 			} else {
 				decision = "f";
 			}
+			if(deadSteps > 50) {
+				decision = "a";
+			}
 		}
+		
+		if(decision.equals("a")) {endWhatIsStarted = true;}
+		if(endWhatIsStarted) {decision = "a";}
 
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		System.out.println(decision);
@@ -130,7 +151,13 @@ public class AI {
 			}
 		}
 		try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
+		System.out.println(target);
 		return target;
+	}
+	
+	public void monsterSlain() {
+		deadSteps = 0;
+		endWhatIsStarted = false;
 	}
 
 

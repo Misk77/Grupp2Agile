@@ -1,8 +1,15 @@
+import java.awt.Color;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Hero {
+public class Hero implements Serializable {
 	
-	String name;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	static String name;
 	
 	int initiative;
 	int health;
@@ -26,6 +33,7 @@ public class Hero {
 	boolean block = false;
 	
 	Random rand;
+	
 	
 	public Hero(String herotype, String name) {
 		rand = new Random();
@@ -116,6 +124,18 @@ public class Hero {
 				return true;
 			}
 		}
+		return false;
+	}
+
+
+	public boolean allseeing(Hero hero, Treasure tresure, Monster monster) {
+		 {
+			 GuiConsole.io.println("╔══════════════════════════════════════════════════════════════════╗\n",Color.RED);
+			 GuiConsole.io.println(hero.name + "see a gliming " + tresure.treasuretype + "behind the " +monster.monstertype,Color.RED);
+			 GuiConsole.io.println("╚══════════════════════════════════════════════════════════════════╝\n",Color.RED);
+			 
+		 }
+
 		return false;
 	}
 }

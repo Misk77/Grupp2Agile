@@ -15,6 +15,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 
+import resources.ResourceLoader;
+
 public final class GuiConsole {
 
    
@@ -39,8 +41,8 @@ public final class GuiConsole {
         	//ImageIcon img = new ImageIcon("src/1000.jpg");
             // Orginal windows stil
         	//Ändra stil färg via parametrarna
-            defaultFont = "Lucida Console";
-            //defaultFont = "MONOSPACED";
+            defaultFont = "Lucida Console";//verkar vara bästa för kartorna
+          //defaultFont = "MONOSPACED";//Fungerar
            // defaultFont = "HANGING_BASELINE"; // KARTAN BLIR FEL
            // defaultFont = "SERIF"; // KARTAN BLIR FEL
         	//defaultFont = "SANS_SERIF";   // KARTAN BLIR FEL
@@ -50,8 +52,19 @@ public final class GuiConsole {
             pane.setCaretColor(Color.WHITE);
             pane.setFont(new Font(defaultFont, Font.BOLD,14)); 
             
+            //Music background This must be here start with console and then must be in the main
+            PlayMusic playmusic = new  PlayMusic();
+            
+   		 String backgroundmusic = "/Hypnotic-Puzzle3";
+   		playmusic.playBackGround(backgroundmusic);
+           
+            //pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
+                  
+                     
             pane.setSize(1300, 1000);
             pane.setLayout(null);
+           
+           
     		//setDefaultCloseOperation(EXIT_ON_CLOSE);
     		
 
@@ -68,16 +81,44 @@ public final class GuiConsole {
         }
 
         private void initComponents() {
-            frame = new JFrame("Dungeon RUN");
+            frame = new JFrame("Dungeon run");
             pane = new JTextPane();
+            frame. setLocationRelativeTo(null);
             doc = pane.getStyledDocument();
+            
+          // "src/1000.jpg"));
+            paneImage=new JTextPane();
+            pane.add(paneImage);
+          //  getClass().getResource("ExternalItems/1000.jpg");
+         //  String path="ExternalItems/1000.jpg";
+           Image icon= new ImageIcon (getClass().getResource("/ExternalItems/1000.jpg")).getImage();
+            paneImage.insertIcon ( new ImageIcon(icon));
+            paneImage.setVisible(true);
+            paneImage.setSize(1200, 700);
+            paneImage.setLayout(null);
+    		//setDefaultCloseOperation(EXIT_ON_CLOSE);
+    		//pane.background = new JLabel("", img, JLabel.CENTER);
+            paneImage.setBounds(75, 0, 1006, 500);
+            
             defaultStyles();
             redirectSystemStreams();
+            
+           /* 
+            /////////////////////////////////////// Mapen fram ifall det fungerar
+            Map map = new Map();
+            JFrame frame2 = new JFrame();
+            frame2.setSize(400, 400);
+            frame2.setLocation(frame.getX() + frame.getWidth(), frame.getY());
+            frame2.setVisible(true);
+           ////////////////////////////////////////////////////////////////////////////////MAPENS FÖNSTER/FRAME
+            */
+           // frame.setLocationRelativeTo(null); sätter fönstret i miten
+            
             fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment()
                     .getAvailableFontFamilyNames();
             InputPolicy cp = new InputPolicy();
             pane.addKeyListener(cp);
-            pane.setMargin(new Insets(0, 20, 0, 30)); // Centrera texten eller vart du vill ha texten i rutan
+            pane.setMargin(new Insets(500, 100, 0, 30)); //x,y och  Centrera texten eller vart du vill ha texten i rutan
             pane.setEditable(false);
             caret = pane.getCaret();
             caret.setBlinkRate(250);
@@ -88,7 +129,12 @@ public final class GuiConsole {
     		
     		
             Action backspace = new AbstractAction() {
-                @Override
+                /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
                 public void actionPerformed(ActionEvent e) {
                     if (!editing) {
                         return;
@@ -111,7 +157,12 @@ public final class GuiConsole {
             pane.getActionMap().put("backspace", backspace);
 
             Action enter = new AbstractAction() {
-                @Override
+                /**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
+				@Override
                 public void actionPerformed(ActionEvent e) {
                     if (!editing) {
                         return;
@@ -150,6 +201,7 @@ public final class GuiConsole {
             frame.setVisible(true);
             frame.setBounds(0, 0, 1200, 700);
             
+           
             //background
             /*
             ImageIcon img = new ImageIcon("src/1000.jpg");
@@ -165,9 +217,12 @@ public final class GuiConsole {
     		*/
         }
 
-        private void add(JFrame frame2) {
-			// TODO Auto-generated method stub
-			//kanske kan lägga background
+        @SuppressWarnings("unused")
+		private void add(JFrame frame2) {
+			
+			//kanske kan lägga background  eller mapp    ( "10003.jpg"));
+        	
+        	
 		}
 
 		/**
@@ -798,6 +853,8 @@ public final class GuiConsole {
 
         private JFrame frame;
         private JTextPane pane;
+        private JTextPane paneImage;
+        
         private CountDownLatch latch;
         private StyledDocument doc;
         private Caret caret;
