@@ -29,9 +29,9 @@ public class Map implements Serializable {
 
 	public Map() {
 		rand = new Random();
-		String creepydungeon = "/ExternalItems/creepydungeon";
+		//String creepydungeon = "/ExternalItems/creepydungeon";
 
-		playmusic.playBackGround(creepydungeon);
+		//playmusic.playBackGround(creepydungeon);
 
 	}
 
@@ -169,11 +169,7 @@ public class Map implements Serializable {
 	}
 
 	public void drawMap(boolean atStart) {
-		playmusic.disposeSound();
-		playmusic.disposeSound();
-		playmusic.disposeSound();
-		playmusic.disposeSound();
-		playmusic.disposeSound();
+	
 		boolean showMap = true;
 
 		// Added som new colors & SimpleAttributeSets.

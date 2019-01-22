@@ -91,7 +91,7 @@ public class GameMenu implements Serializable {
 
 	public void cornerChoice() {
 		// Gör dörr ljudet, bara bortmarkera , samt den som stänger ljudet på slutet
-
+		playmusic.disposeSound();
 		PlayMusic playmusic = new PlayMusic();
 		String dungeongatesopens = "/ExternalItems/creepydungeondoorslam";
 		playmusic.playBackGround(dungeongatesopens);
@@ -384,7 +384,7 @@ public class GameMenu implements Serializable {
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
-
+		playmusic.disposeSound();
 		String backgroundmusic = "/ExternalItems/mysterymusic";
 
 		playmusic.playBackGround(backgroundmusic);
@@ -567,21 +567,19 @@ public class GameMenu implements Serializable {
 			break;
 		case "S":
 			// KANSKE DENNA SKA BORT
-			// endMenu(Hero hero);
-			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
-			GuiConsole.io.println("[S]ave-DENNA METOD GÃ–RS SENARE(TEST) - SAVE your character..", Color.YELLOW);
+			
+			GuiConsole.io.println("[S]ave-DENNA METOD GÖRS SENARE(TEST) - SAVE your character..", Color.YELLOW);
 			// SaveLoad.saveToDisk();
 			Gamestart();
 			break;
 		case "H":
-			// Daniel håller på fixa
+			
 			ArrayList<Hero> sortedherolist = saveload.highscore();
 			GuiConsole.io.println("Highscores:\n");
 			for (Hero hero : sortedherolist) {
 				GuiConsole.io.println(hero.treasure + " " + hero.name);
 			}
-			// endMenu(null); // MÃ¥ste ha parameter
-			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
+			
 			Gamestart();
 			break;
 		case "R":
@@ -610,17 +608,16 @@ public class GameMenu implements Serializable {
 	}// END GameMenu
 
 	public String endMenu(Hero hero) {
-		GuiConsole.io.gotoEnd();// Bara för att säkerställa att den scrolllar till slutet speciellt för AI
-
-		// playmusic.disposeSound();
+		// save goes here
+	
+		//GuiConsole.io.gotoEnd();// Bara för att säkerställa att den scrolllar till slutet speciellt för AI
+		//effects
+		playmusic.disposeSound();
 		PlayMusic playmusic = new PlayMusic();
 		String gameover = "/ExternalItems/gameover";
 		playmusic.playBackGround(gameover);
-
 		saveload.save(hero);
-
-		// save goes here
-
+		
 		if (hero.dead) {
 
 			GuiConsole.io.print("Your");
@@ -635,6 +632,8 @@ public class GameMenu implements Serializable {
 			GuiConsole.io.print("accomplishments", Color.white);
 			GuiConsole.io.println(":");
 		}
+		GuiConsole.io.gotoEnd();
+
 		printStatistics(hero);
 
 		GuiConsole.io.print("[");

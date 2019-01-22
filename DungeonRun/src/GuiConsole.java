@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.*;
 
 public final class GuiConsole {
-
+	
 	public final static String newline = System.getProperty("line.separator");
 
 	public static final GUIConsoleIO io = new GUIConsoleIO();
@@ -29,10 +29,6 @@ public final class GuiConsole {
 		public static final String scanner = null;
 
 		private GUIConsoleIO() {
-			PlayMusic playmusic = new PlayMusic();
-
-			String backgroundmusic = "/ExternalItems/mysterymusic";
-			playmusic.playBackGround(backgroundmusic);
 			initComponents();
 		}
 
@@ -51,11 +47,6 @@ public final class GuiConsole {
 			pane.setCaretColor(Color.WHITE);
 			pane.setFont(new Font(defaultFont, Font.BOLD, 14));
 
-			// Music background This must be here start with console and then must be in the
-			// main
-			// Flyttat till där vi starta gui ovanför detta. VERKAR VARA BÄTTRE FLYT DÅ
-			
-			// playmusic.disposeSound();
 
 			// pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
 
@@ -76,6 +67,12 @@ public final class GuiConsole {
 		}
 
 		private void initComponents() {
+			// Music background This must be here start with console and then must be in the
+		
+			PlayMusic playmusic = new PlayMusic();
+			String backgroundmusic = "/ExternalItems/mysterymusic";
+			playmusic.playBackGround(backgroundmusic);
+			
 			frame = new JFrame("Dungeon run");
 			pane = new JTextPane();
 			frame.setLocationRelativeTo(null);
@@ -97,6 +94,9 @@ public final class GuiConsole {
 
 			defaultStyles();
 			redirectSystemStreams();
+			
+			///MAPS
+			
 
 			/*
 			 * /////////////////////////////////////// Mapen fram ifall det fungerar Map map
