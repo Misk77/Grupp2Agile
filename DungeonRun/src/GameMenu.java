@@ -44,7 +44,6 @@ public class GameMenu implements Serializable {
 		}
 		return name;
 	}
-	// if player exist
 
 	public void maping() {
 		Map map = new Map();
@@ -84,6 +83,7 @@ public class GameMenu implements Serializable {
 			break;
 		default:
 			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
+			
 			maping();
 		}
 		objectList[0] = map;
@@ -97,8 +97,6 @@ public class GameMenu implements Serializable {
 		playmusic.playBackGround(dungeongatesopens);
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
-		// System.out.println("â•­â”„â”„â”„â”„â”„â”„â”„â”„â”„â•®\nâ”†1 2â”†\nâ”†
-		// â”†\nâ”† â”†\nâ”†3 4â”†\nâ•°â”„â”„â”„â”„â”„â”„â”„â”„â”„â•¯");
 		GuiConsole.io.print("█████████████\n█", Color.GRAY);
 		GuiConsole.io.print(" A ", Color.orange);
 		GuiConsole.io.print("█████", Color.GRAY);
@@ -115,7 +113,6 @@ public class GameMenu implements Serializable {
 
 		switch (input.toUpperCase()) {
 		case "A":
-
 			corner = "NW";
 			break;
 		case "B":
@@ -240,51 +237,123 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.RED);
 		GuiConsole.io.println(
-				"|=========================||----------| READ ABOUT THE CHARACTER |----------||==========================|",
+				"|======================||----------| HEROES, MONSTERS AND TREASURES |----------||=======================|",
 				Color.GREEN);
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
 
-		GuiConsole.io.println("\n---------------------------Heros-----------------------", Color.MAGENTA);
-		GuiConsole.io.println("Knight\n"
-				+ "Initiative = 5\nHerotype = Herotype\nHealth = 9\nBaseattack = 6\nAvoidance = 4\n"
-				+ "SpecialfÃ¶rmÃ¥ga: SkÃ¶ldblock. Riddaren blockerar alltid fÃ¶rsta attackenper strid med sin skÃ¶ld \noch behÃ¶ver dÃ¤rfÃ¶r varken undvika eller ta nÃ¥gon skada\n",
-				Color.BLUE);
+		GuiConsole.io.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Heroes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", Color.orange);
+		
+		GuiConsole.io.print("The Knight\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("5\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("9\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("6\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("4\n", Color.white);
+		GuiConsole.io.print("Special ability:\n", Color.orange);
+		GuiConsole.io.print("Shield block", Color.white);
+		GuiConsole.io.print(" - The Knight always blocks the first attack with his shield.\n\n\n");
+		
+		GuiConsole.io.print("The Wizard\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("6\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("4\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("9\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("5\n", Color.white);
+		GuiConsole.io.print("Special ability:\n", Color.orange);
+		GuiConsole.io.print("Blinding flash", Color.white);
+		GuiConsole.io.print(" - The Wizard can blind the monsters, giving him an 80% chance of fleeing successfully.\n\n\n");
+		
+		GuiConsole.io.print("The Rogue\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("7\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("5\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("5\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("7\n", Color.white);
+		GuiConsole.io.print("Special ability:\n", Color.orange);
+		GuiConsole.io.print("Critical hit", Color.white);
+		GuiConsole.io.print(" - The Rogue has a 25% chance of dealing double damage every time he attacks.\n\n\n");
+		
+		GuiConsole.io.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Monsters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", Color.orange);
+		
+		GuiConsole.io.print("Giant Spiders\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("7\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("1\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("2\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("3\n\n\n", Color.white);
+		
+		GuiConsole.io.print("Skeletons\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("4\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("2\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("3\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("3\n\n\n", Color.white);
 
-		GuiConsole.io.println("Wizard\n"
-				+ "Initiative = 6\nHerotype = Herotype\nHealth = 4\nBaseattack = 9\nAvoidance = 5\n"
-				+ "SpecialfÃ¶rmÃ¥ga: Ljussken. Trollkarlen kan gÃ¶ra monster blinda och hardÃ¤rfÃ¶r alltid 80% chans att fly frÃ¥n strider\n",
-				Color.WHITE);
+		GuiConsole.io.print("Orcs\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("6\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("3\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("4\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("4\n\n\n", Color.white);
+		
+		GuiConsole.io.print("Trolls\n", Color.red);
+		GuiConsole.io.print("Initiative: ", Color.orange);
+		GuiConsole.io.print("2\n", Color.white);
+		GuiConsole.io.print("Health: ", Color.orange);
+		GuiConsole.io.print("4\n", Color.white);
+		GuiConsole.io.print("Baseattack: ", Color.orange);
+		GuiConsole.io.print("7\n", Color.white);
+		GuiConsole.io.print("Avoidance: ", Color.orange);
+		GuiConsole.io.print("2\n\n\n", Color.white);
+		
+		GuiConsole.io.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Treasures ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", Color.orange);
+		
+		GuiConsole.io.print("Loose coins\n", Color.red);
+		GuiConsole.io.print("Value: ", Color.orange);
+		GuiConsole.io.print("2\n\n\n", Color.white);
 
-		GuiConsole.io.println("Rogue\n"
-				+ "Initiative = 7\nHerotype = Herotype\nHealth = 5\nBaseattack = 5\nAvoidance = 7\n"
-				+ "SpecialfÃ¶rmÃ¥ga: Kritisk trÃ¤ff. Tjuven har 25% chans att gÃ¶ra dubbel skada varje gÃ¥ng tjuven attackerar\n",
-				Color.ORANGE);
-		GuiConsole.io.println("--------------------------Monster----------------------");
-		GuiConsole.io.println(
-				"Giant Spider\nInitiative = 7\nMonstertype = Monster\nHealth = 1\nBaseattack = 2\nAvoidance = 3\n",
-				Color.RED);
-		GuiConsole.io.println(
-				"Skeleton\nInitiative = 4\nMonstertype = Monster\nHealth = 2\nBaseattack = 3\nAvoidance = 3\n",
-				Color.YELLOW);
-		GuiConsole.io.println("Orc\nInitiative = 6\nMonstertype = Monster\nHealth = 3\nBaseattack = 4\nAvoidance = 4\n",
-				Color.RED);
-		GuiConsole.io.println(
-				"Troll\nInitiative = 2\nMonstertype = Monster\nHealth = 4\nBaseattack = 7\nAvoidance = 2\n",
-				Color.CYAN);
-		GuiConsole.io.println("--------------------------Treasure----------------------");
-		GuiConsole.io.println("Loose coins\nTreasuretype: Treasuretype\nValue: 2\n"
-				+ "\nSmall bag of coins\nTreasuretype: Treasuretype\nValue: 6\n"
-				+ "\nGold jewellry\nTreasuretype: Treasuretype\nValue: 10\n"
-				+ "\nPrecious stone\nTreasuretype: Treasuretype\nValue: 14\n"
-				+ "\nSmall treasure chest\nTreasuretype: Treasuretype\nValue: 20\n");
+		GuiConsole.io.print("Small bag of coins\n", Color.red);
+		GuiConsole.io.print("Value: ", Color.orange);
+		GuiConsole.io.print("6\n\n\n", Color.white);
+		
+		GuiConsole.io.print("Gold jewellry\n", Color.red);
+		GuiConsole.io.print("Value: ", Color.orange);
+		GuiConsole.io.print("10\n\n\n", Color.white);
+		
+		GuiConsole.io.print("Precious stone\n", Color.red);
+		GuiConsole.io.print("Value: ", Color.orange);
+		GuiConsole.io.print("14\n\n\n", Color.white);
+		
+		GuiConsole.io.print("Small treasure chest\n", Color.red);
+		GuiConsole.io.print("Value: ", Color.orange);
+		GuiConsole.io.print("20\n\n\n", Color.white);
+		
 		Gamestart();
 	}
 
 	public void iGame() {
-		/* Instruction about the game. */
+		/* Instructions for the game. */
 		GuiConsole.io.println();
 
 		GuiConsole.io.println(
@@ -298,11 +367,19 @@ public class GameMenu implements Serializable {
 				Color.YELLOW);
 
 		GuiConsole.io.println();
-		GuiConsole.io.println("\n" + "1. You need to pick a character.\r\n"
-				+ "2. Choose the map size: Small(4, 4) - Medium(5, 5) - Large(8, 8).\r\n"
-				+ "3. You will battle monsters.\r\n" + "4. Pick up Treasures!\r\n"
-				+ "5. Game Over when the player leaves the map or gets defeated.\r\n"
-				+ "6. The game command movement is: North, South, East, West. \r\n" + "", Color.BLUE);
+		GuiConsole.io.print("1", Color.orange);
+		GuiConsole.io.print(" - You need to pick a character\n");
+		GuiConsole.io.print("2", Color.orange);
+		GuiConsole.io.print(" - Choose the map size: Small (4, 4) - Medium (5, 5) - Large (8, 8)\n");
+		GuiConsole.io.print("3", Color.orange);
+		GuiConsole.io.print(" - You will battle monsters\n");
+		GuiConsole.io.print("4", Color.orange);
+		GuiConsole.io.print(" - Pick up Treasures!\n");
+		GuiConsole.io.print("5", Color.orange);
+		GuiConsole.io.print(" - Game ends when the player leaves the map or gets defeated\n");
+		GuiConsole.io.print("6", Color.orange);
+		GuiConsole.io.print(" - The game command movement is: North, South, East, West\n");
+		Gamestart();
 	}
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
@@ -348,10 +425,6 @@ public class GameMenu implements Serializable {
 			GuiConsole.io.println("Let the Adventure Begin...", Color.GREEN);
 			objectList = Gamestart();
 
-//		} else if (input.equalsIgnoreCase("A")) {
-//			AiHeroChoice();
-//			maping();
-//			AiHero.cornerRandom();
 		} else if (input.equalsIgnoreCase("E")) {
 			GuiConsole.io.println("Too bad you're leaving....", Color.ORANGE);
 			GuiConsole.io.println("Come back when you dare to enter the dungeons.....", Color.BLUE);
@@ -379,7 +452,6 @@ public class GameMenu implements Serializable {
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
 
-		// while (running) {
 		GuiConsole.io.println();
 		GuiConsole.io.println();
 		GuiConsole.io.println(
@@ -392,23 +464,51 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-		// stÃ¥r om spelet, spelrunda
-		GuiConsole.io.println("[N]ew-Create new character", Color.RED); // tar in hero metoden
-		GuiConsole.io.println("[L]oad - Load your character"); // lÃ¤ser frÃ¥n load metoden och tar in befiltlig spelare
-		GuiConsole.io.println("[A]i character", Color.GRAY); //
-		// GuiConsole.io.println("[S]ave - Save your character"); // lÃ¤ser frÃ¥n save
-		// metoden och sparar befiltlig spelare
-		GuiConsole.io.println("[H]ighscore - See highscore (treasure points) for character", Color.GREEN); //
-		GuiConsole.io.println("[R]ead - Read about the characters", Color.ORANGE);// om spelkaraktÃ¤rer
-		GuiConsole.io.println("[I]nstructions-How to play the game", Color.YELLOW); // Readfile eller metod dÃ¤r allt
-		GuiConsole.io.println("[E]XIT/SAVE\n", Color.WHITE);// THen exit automatic save the game
+	
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("N", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ew", Color.orange);
+		GuiConsole.io.print(" - Create a new character\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("L", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("oad", Color.orange);
+		GuiConsole.io.print(" - Load your character\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("A", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("I", Color.orange);
+		GuiConsole.io.print(" - Computer assisted speedrun\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("H", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ighscores", Color.orange);
+		GuiConsole.io.print(" - The most successful treasure hunters\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("R", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("ead", Color.orange);
+		GuiConsole.io.print(" - About Heroes, Monsters & Treasures\n");
+		
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("I", Color.orange);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("nstructions", Color.orange);
+		GuiConsole.io.print(" - How to play the game\n\n");
+
+		GuiConsole.io.print("[");
+		GuiConsole.io.print("E", Color.red);
+		GuiConsole.io.print("]");
+		GuiConsole.io.print("xit & Save\n\n", Color.red);
+		
 		GuiConsole.io.print(">> ");
-		// input = scanner.next();
 		input = GuiConsole.io.nextLine();
-		// Valen i menu
-
 		switch (input.toUpperCase()) {
-
 		case "I":
 			GuiConsole.io.println();
 			iGame();
