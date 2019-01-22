@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SaveLoad {
 	
@@ -109,47 +110,23 @@ public class SaveLoad {
 		String [] emptyarray = {};
 		return emptyarray;
 	}
-
+	public ArrayList<String[]> namesAndClassList(){
+		ArrayList<String[]> heronameclass = new ArrayList<String[]>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			for(String line = br.readLine(); line != null; line = br.readLine()) {
+				String [] linelist = line.split("%");
+				String [] nameclasslist = {linelist[1], linelist[0]};
+				heronameclass.add(nameclasslist);
+			}
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return heronameclass;
+	}
 }
 
 
-	
-	
-	
-
-	
-
-	
-	/**
-	 * 
-	private static final long serialVersionUID = 1L;
-
-	public SaveLoad(String endMenu) {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
-
-	public void save(Serializable data,String filename )throws Exception {
-		try(ObjectOutputStream DungensSave = new ObjectOutputStream(Files.newOutputStream(Paths.get(filename)))){
-			DungensSave.writeObject(data);
-		}
-		}//ENDS SAVE
-		
-	public static Object load(String filename )throws Exception{
-		try (ObjectInputStream DungensLoad = new ObjectInputStream(Files.newInputStream((Paths.get(filename))))){
-		return DungensLoad.readObject();
-	}
-	
-	}
-	
-	
-	
-	*/
 	

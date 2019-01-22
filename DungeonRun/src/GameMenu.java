@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -452,7 +453,15 @@ public class GameMenu implements Serializable {
 		case "L":
 				//Daniels loading
 				//should probably print a list of names here
-				GuiConsole.io.print("Which ");
+				ArrayList<String[]> heronameclasslist = saveload.namesAndClassList();
+				GuiConsole.io.println("Characterlist: ");
+				for(String [] nameclass: heronameclasslist) {
+					GuiConsole.io.println();
+					for(String nameorclass : nameclass) {
+						GuiConsole.io.print(nameorclass + " ", Color.orange);
+					}
+				}
+				GuiConsole.io.print("\n\nWhich ");
 				GuiConsole.io.print("character", Color.orange);
 				GuiConsole.io.println(" do you want to load?");
 				GuiConsole.io.print(">> ");
