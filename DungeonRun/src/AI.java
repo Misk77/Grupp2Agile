@@ -81,7 +81,7 @@ public class AI {
 
 		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		String theWay = bestChoices.get(rand.nextInt(bestChoices.size()));
-		System.out.println(theWay);
+		GuiConsole.io.println(theWay);
 		return theWay;
 	}
 
@@ -139,7 +139,7 @@ public class AI {
 		if(endWhatIsStarted) {decision = "a";}
 
 		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
-		System.out.println(decision);
+		GuiConsole.io.println(decision);
 		return decision;
 	}
 

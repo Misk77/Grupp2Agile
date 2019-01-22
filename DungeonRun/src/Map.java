@@ -1,7 +1,11 @@
+
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 public class Map implements Serializable{
 	/**
@@ -158,37 +162,75 @@ public class Map implements Serializable{
 	}
 
 	public void drawMap(boolean atStart) {
-		// atStart hindrar monster från att visas i första rummet, då det inte clearats ännu.
 		boolean showMap = true;
+		
+		// Added som new colors & SimpleAttributeSets. 
+		Color dark_blue = new Color(0,0,153);
+		Color very_dark_blue = new Color(0,0,35);
+		Color darkest_blue = new Color(0,0,80);
+		Color dark_red = new Color(153,0,0);
+		Color very_dark_red = new Color(60,0,0);
+		Color dark_green = new Color(0,102,0);
+		char buildBlock = '█'; // The map is drawn with this character. Can be anything.
+		char heroBlock = '×'; // This character shows where the hero is.
+		
+		SimpleAttributeSet unExplored = new SimpleAttributeSet();
+		SimpleAttributeSet emptySpaceCurrentRoom = new SimpleAttributeSet();
+		SimpleAttributeSet emptySpaceOtherRoom = new SimpleAttributeSet();
+		SimpleAttributeSet mapFrame = new SimpleAttributeSet();
+		SimpleAttributeSet exitCurrentRoom = new SimpleAttributeSet();
+		SimpleAttributeSet exitOtherRoom = new SimpleAttributeSet();
+		SimpleAttributeSet monsterCurrentRoom = new SimpleAttributeSet();
+		SimpleAttributeSet monsterOtherRoom = new SimpleAttributeSet();
+		SimpleAttributeSet hero = new SimpleAttributeSet();
+		
+		StyleConstants.setForeground(unExplored, very_dark_blue);
+		StyleConstants.setForeground(emptySpaceCurrentRoom, Color.blue);
+		StyleConstants.setForeground(emptySpaceOtherRoom, dark_blue);
+		StyleConstants.setForeground(mapFrame, darkest_blue);
+		StyleConstants.setForeground(exitCurrentRoom, Color.green);
+		StyleConstants.setBackground(exitCurrentRoom, Color.blue);
+		StyleConstants.setForeground(exitOtherRoom, dark_green);
+		StyleConstants.setBackground(exitOtherRoom, dark_blue);
+		StyleConstants.setForeground(monsterCurrentRoom, dark_red);
+		StyleConstants.setBackground(monsterCurrentRoom, Color.blue);
+		StyleConstants.setForeground(monsterOtherRoom, very_dark_red);
+		StyleConstants.setBackground(monsterOtherRoom, dark_blue);
+		StyleConstants.setForeground(hero, Color.orange);
+		StyleConstants.setBackground(hero, Color.blue);
+		
 		String[] part = new String[2];
 		part[0] = "";
 		part[1] = "";
-		String heroHere;
-		// The following line presents a new room much cleaner, at the cost of being able to scroll up.
+		
 		if (clearScreenWhenEnteringRoom) {
 			GuiConsole.io.clear();
 		}
 		if (showMap) {
-			GuiConsole.io.print("\n█",Color.ORANGE.darker());
+			GuiConsole.io.print("\n"+ buildBlock, mapFrame);
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.ORANGE.darker());
+				for (int x = 5; x>0; x--) {
+					GuiConsole.io.print(buildBlock,mapFrame);
+				}
 			}
-			GuiConsole.io.print("█\n",Color.ORANGE.darker());
+			GuiConsole.io.print(buildBlock + "\n", mapFrame);
 			for(int x = 0; x<=sizex; x++) {
 				for(int y = 0; y<=sizex; y++) {
 					for(Room room : this.room) {
 						if(room.x == x && room.y == y) {
 							if (room.visited) {
-								heroHere = " ";
+								
 								if(room.x == currentroomx && room.y == currentroomy) {
-									heroHere = "×";
+									part[0] += "--×--";
+								} else {
+									part[0] += "*****";
 								}
-								part[0] += "  " + heroHere + "  ";
+								
 								if (room.monsterlist.isEmpty() || atStart) {
 									if (room.exit) {
-										part[1] += "EXIT ";
+										part[1] += "EXIT*";
 									} else {
-										part[1] += "     ";
+										part[1] += "*****";
 									}
 								} else {
 									int space = 5;
@@ -199,30 +241,119 @@ public class Map implements Serializable{
 										}
 									}
 									for (int i = space; i>0; i--) {
-										part[1] += " ";
+										part[1] += "*";
 									}
 								}
 							} else {
-								part[0] += "░░░░░";
-								part[1] += "░░░░░";
+								part[0] += "#####";
+								part[1] += "#####";
 							}
 						}
 					}
 				} // Y
-				GuiConsole.io.print("█",Color.ORANGE.darker());
-				GuiConsole.io.print(part[1],Color.ORANGE.darker());
-				GuiConsole.io.print("█\n",Color.ORANGE.darker());
-				GuiConsole.io.print("█",Color.ORANGE.darker());
-				GuiConsole.io.print(part[0],Color.ORANGE.darker());
-				GuiConsole.io.print("█\n",Color.ORANGE.darker());
+				GuiConsole.io.print(buildBlock, mapFrame);			
+				
+				// Print "part[1]", the upper line:
+				for(int i = 0, n = part[1].length() ; i < n ; i++) { 
+				    char c1 = part[1].charAt(i);
+				    char c0 = part[0].charAt(i);
+				    boolean thisRoom = false;
+					if (c0 == heroBlock || c0 == '-') {
+						thisRoom = true;
+					}
+					if(c1 == '*') {
+						if (thisRoom) {
+							GuiConsole.io.print(buildBlock, emptySpaceCurrentRoom);
+						} else {
+							GuiConsole.io.print(buildBlock, emptySpaceOtherRoom);
+						}
+					}
+					else if(c1 == '#') {
+						GuiConsole.io.print(buildBlock, unExplored);
+					}
+					else if(c1 == 'E') {
+						if (thisRoom) {
+							GuiConsole.io.print("E", exitCurrentRoom);
+						} else {
+							GuiConsole.io.print("E", exitOtherRoom);
+						}
+					} else if(c1 == 'X') {	
+						if (thisRoom) {
+							GuiConsole.io.print("X", exitCurrentRoom);
+						} else {
+							GuiConsole.io.print("X", exitOtherRoom);
+						}
+					} else if(c1 == 'I') {	
+						if (thisRoom) {
+							GuiConsole.io.print("I", exitCurrentRoom);
+						} else {
+							GuiConsole.io.print("I", exitOtherRoom);
+						}
+					} else if(c1 == 'T') {	// If the T is not part of 'EXIT', it's a Troll.
+						if (i > 0 && part[1].charAt(i-1) == 'I') {
+							if (thisRoom) {
+								GuiConsole.io.print("T", exitCurrentRoom);
+							} else {
+								GuiConsole.io.print("T", exitOtherRoom);
+							}
+					// Monsters:
+						} else {
+							if (thisRoom) {
+								GuiConsole.io.print("T", monsterCurrentRoom);
+							} else {
+								GuiConsole.io.print("T", monsterOtherRoom);
+							}
+						}
+					} else if(c1 == 'G') {
+						if (thisRoom) {
+							GuiConsole.io.print("G", monsterCurrentRoom);
+						} else {
+							GuiConsole.io.print("G", monsterOtherRoom);
+						}
+					} else if(c1 == 'S') {	
+						if (thisRoom) {
+							GuiConsole.io.print("S", monsterCurrentRoom);
+						} else {
+							GuiConsole.io.print("S", monsterOtherRoom);
+						}
+					} else if(c1 == 'O') {
+						if (thisRoom) {
+							GuiConsole.io.print("O", monsterCurrentRoom);
+						} else {
+							GuiConsole.io.print("O", monsterOtherRoom);
+						}
+					}
+				}
+				GuiConsole.io.print(buildBlock + "\n",mapFrame);
+				GuiConsole.io.print(buildBlock,mapFrame);
+	
+				// Print "part[0]", the lower line:
+				for(int i = 0, n = part[0].length() ; i < n ; i++) { 
+					char c0 = part[0].charAt(i);
+					if(c0 == '#') {
+						GuiConsole.io.print(buildBlock,unExplored);
+					}
+					else if(c0 == '-') {
+						GuiConsole.io.print(buildBlock,emptySpaceCurrentRoom);
+					}
+					else if(c0 == heroBlock) {
+						GuiConsole.io.print(heroBlock, hero);
+					}
+					else if(c0 == '*') {
+						GuiConsole.io.print(buildBlock,emptySpaceOtherRoom);
+					}
+				}
+				GuiConsole.io.print(buildBlock + "\n",mapFrame);
 				part[0] = "";
 				part[1] = "";
 			} // X
-			GuiConsole.io.print("█",Color.ORANGE.darker());
+			GuiConsole.io.print(buildBlock,mapFrame);
 			for (int i = sizex; i>=0; i--) {
-				GuiConsole.io.print("█████",Color.ORANGE.darker());
+				for (int x = 5; x>0; x--) {
+					GuiConsole.io.print(buildBlock,mapFrame);
+				}
 			}
-			GuiConsole.io.print("█\n\n",Color.ORANGE.darker());
+			GuiConsole.io.print(buildBlock + "\n\n",mapFrame);
 		}
 		
 		//System.out.println("deadSteps: " + AI.deadSteps);

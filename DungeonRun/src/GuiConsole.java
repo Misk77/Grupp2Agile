@@ -53,11 +53,11 @@ public final class GuiConsole {
             pane.setFont(new Font(defaultFont, Font.BOLD,14)); 
             
             //Music background This must be here start with console and then must be in the main
-            //PlayMusic playmusic = new  PlayMusic();
-            
-   		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
-   		//playmusic.playBackGround(backgroundmusic);
-           
+            PlayMusic playmusic = new  PlayMusic();
+            playmusic.disposeSound();
+   		String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
+   		playmusic.playBackGround(backgroundmusic);
+   	 //playmusic.disposeSound();
             //pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
                   
                      
