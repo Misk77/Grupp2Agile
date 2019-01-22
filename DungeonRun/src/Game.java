@@ -1,17 +1,31 @@
 import java.awt.Color;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game implements Serializable{
-
+public class Game{
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static int dramaticPause = 500;
 
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) {
+		/*
+		System.out.println("WH");
+		Hero herotest = new Hero("Wizard", "anotherchar");
+		SaveLoad sl = new SaveLoad();
+		sl.printall();
+		sl.save(herotest);
+		String []  ar = sl.load(herotest);
+		for(int i = 0; i<ar.length; i++) {
+			System.out.println(ar[i]);
+		}
+		*/
+		//savetests
 		Scanner scanner = new Scanner(System.in);
 		boolean running = true;
 		while(running) {
@@ -23,10 +37,17 @@ public class Game implements Serializable{
 				// playmusic.playBackGround(backgroundmusic);
 	           
 			GameMenu gamemenu = new GameMenu();
-			Object [] objects = gamemenu.GameMenuFirst();
-			Hero hero = (Hero) objects[1]; // Objects sent from GameMenu(). [0]Map, [1]Hero, [2]Corner
-			Map map = (Map) objects[0];
-			//Map.clearScreenWhenEnteringRoom = true;
+
+			Object[] objects = null;
+			try {
+				objects = gamemenu.GameMenuFirst();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			Hero hero = (Hero) objects[1]; //need the correct index
+			//AiHero aihero = (AiHero)objects[3];
+			Map map = (Map) objects[0]; //need the correct index
+			//Map.clearScreenWhenEnteringRoom = true; // Testa g�rna denna och s�g vad ni tycker! Cleanare enligt mig. /Johannes
 			String corner = (String) objects[2];
 			Game game = new Game();
 			AI ai = new AI();
@@ -202,7 +223,9 @@ public class Game implements Serializable{
 				game.collectTreasures(map, hero);
 			}
 			if(!hero.dead) {
-				GuiConsole.io.println("What direction?", Color.white);
+				GuiConsole.io.print("What ");
+				GuiConsole.io.print("direction", Color.white);
+				GuiConsole.io.println("?");
 				GuiConsole.io.print(">> ");
 				while(true) {
 					//count checks
