@@ -24,8 +24,8 @@ public class GameMenu implements Serializable {
 	public GameMenu(){
 		saveload = new SaveLoad();
 	}
-	@Override
-	public String toString() {
+	//@Override
+	/*public String toString() {
 		return "GameMenu [saveload=" + saveload + ", name=" + name + ", input=" + input + ", herotype=" + herotype
 				+ ", objectList=" + Arrays.toString(objectList) + ", playmusic=" + playmusic + ", game=" + game
 				+ ", playerName()=" + playerName() 
@@ -34,10 +34,12 @@ public class GameMenu implements Serializable {
 				+ Arrays.toString(getObjectList()) + ", getGame()=" + getGame() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-
+	
 	public SaveLoad getSaveload() {
 		return saveload;
+	
 	}
+	
 	public void setSaveload(SaveLoad saveload) {
 		this.saveload = saveload;
 	}
@@ -47,13 +49,13 @@ public class GameMenu implements Serializable {
 	public void setPlaymusic(PlayMusic playmusic) {
 		this.playmusic = playmusic;
 	}
-
+	 */
 	static Scanner scanner = new Scanner(System.in);
 	String name;
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-	 PlayMusic playmusic = new  PlayMusic();
+	 //PlayMusic playmusic = new  PlayMusic();
 	// System objects
 	
 	// Scanner scanner = new Scanner(System.in);
@@ -66,8 +68,8 @@ public class GameMenu implements Serializable {
 		GuiConsole.io.println("\nWelcome player! \nPlease enter your name: ", Color.WHITE);
 		GuiConsole.io.print(">> ");
 		name = GuiConsole.io.nextLine();
-		if (name.length() < 1) {
-			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);
+		if (name.length() < 1 || name.contains("%") || saveload.findinfile(name)) {
+			GuiConsole.io.println("Your name must be 1 character or longer, can not contain '%' and there can not be a character already existing with the same name", Color.RED);
 			playerName();
 		}
 		return name;
@@ -329,10 +331,10 @@ public class GameMenu implements Serializable {
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
-		playmusic.disposeSound();
+		//playmusic.disposeSound();
 		String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
-		playmusic.playBackGround(backgroundmusic);
-		playmusic.disposeSound();
+		//playmusic.playBackGround(backgroundmusic);
+		//playmusic.disposeSound();
 		
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -448,10 +450,11 @@ public class GameMenu implements Serializable {
 			Game.dramaticPause = 80;
 			//Map.clearScreenWhenEnteringRoom = true;
 			cornerRandom();
+			
 			break;
 		case "L":
 				//Daniels loading
-				//should probably print a list of names here
+				//printing list of all saved characters
 				ArrayList<String[]> heronameclasslist = saveload.namesAndClassList();
 				GuiConsole.io.println("Characterlist: ");
 				for(String [] nameclass: heronameclasslist) {
@@ -467,8 +470,8 @@ public class GameMenu implements Serializable {
 				String name = GuiConsole.io.nextLine();
 				String [] heroinfo = saveload.load(name);
 				if(heroinfo.length<2) {
-					//hero doesnt exist
-					//or savefile is fucked up
+					GuiConsole.io.println("No hero by that name exists");
+					Gamestart();
 				}
 				else {
 					Hero hero = new Hero(heroinfo[0], heroinfo[1]);
@@ -477,6 +480,7 @@ public class GameMenu implements Serializable {
 					hero.deadskeletons = Integer.parseInt(heroinfo[4]);
 					hero.deadorcs = Integer.parseInt(heroinfo[5]);
 					hero.deadtrolls = Integer.parseInt(heroinfo[6]);
+					hero.adventures = Integer.parseInt(heroinfo[7]);
 					objectList[1] = hero;
 					maping();
 					cornerChoice();
@@ -494,8 +498,11 @@ public class GameMenu implements Serializable {
 			break;
 		case "H":
 			// Daniel håller på fixa
-			GuiConsole.io.println(
-					"[H]ighscore-DENNA METOD GÃ–RS SENARE - See highscore (treasure points) for character..", Color.RED);
+			ArrayList<Hero> sortedherolist = saveload.highscore();
+			GuiConsole.io.println("Highscores:\n");
+			for(Hero hero : sortedherolist) {
+				GuiConsole.io.println(hero.treasure + " " +hero.name);
+			}
 		//	endMenu(null); // MÃ¥ste ha parameter
 			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
 			Gamestart();
@@ -527,17 +534,17 @@ public class GameMenu implements Serializable {
 
 	public String endMenu(Hero hero) {
 		GuiConsole.io.gotoEnd();// Bara för att säkerställa att den scrolllar till slutet speciellt för AI
-		playmusic.disposeSound();
+		//playmusic.disposeSound();
 		saveload.save(hero);
 		
 		// save goes here
 		
 			if(hero.dead) {
-				PlayMusic playmusic = new  PlayMusic();
+				//PlayMusic playmusic = new  PlayMusic();
 		          
 				String gameover ="/ExternalItems/gameover";
-				playmusic.playBackGround(gameover);
-				playmusic.disposeSound();
+				//playmusic.playBackGround(gameover);
+				//playmusic.disposeSound();
 				GuiConsole.io.print("Your");
 				GuiConsole.io.print(" adventures ",Color.white);
 				GuiConsole.io.print("are over, these are your ");
@@ -551,39 +558,7 @@ public class GameMenu implements Serializable {
 				GuiConsole.io.print("accomplishments", Color.white);
 				GuiConsole.io.println(":");
 			}
-			GuiConsole.io.print("Treasure", Color.orange);
-			GuiConsole.io.print(" worth ");
-			GuiConsole.io.print(hero.treasure, Color.white);
-			GuiConsole.io.println(" coins collected");
-			
-			GuiConsole.io.print(hero.visitedrooms, Color.white);
-			GuiConsole.io.print(" rooms ", Color.white);
-			GuiConsole.io.println("visited");
-			
-			GuiConsole.io.print(hero.deadgiantspiders, Color.white);
-			GuiConsole.io.print(" Giant spiders ", Color.orange.darker());
-			GuiConsole.io.println("slain", Color.white);
-			
-			GuiConsole.io.print(hero.deadskeletons, Color.white);
-			GuiConsole.io.print(" Skeletons ", Color.orange.darker());
-			GuiConsole.io.println("slain", Color.white);
-
-			GuiConsole.io.print(hero.deadorcs, Color.white);
-			GuiConsole.io.print(" Orcs ", Color.orange.darker());
-			GuiConsole.io.println("slain", Color.white);
-		
-			GuiConsole.io.print(hero.deadtrolls, Color.white);
-			GuiConsole.io.print(" Trolls ", Color.orange.darker());
-			GuiConsole.io.println("slain", Color.white);
-			
-			GuiConsole.io.print((hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls), Color.white);
-			GuiConsole.io.print(" monsters ", Color.orange.darker());
-			GuiConsole.io.print("slain", Color.white);
-			GuiConsole.io.println(" in total");
-			
-			GuiConsole.io.print(hero.adventures, Color.white);
-			GuiConsole.io.print(" adventures ", Color.green);
-			GuiConsole.io.println("undertaken\n");
+			printStatistics(hero);
 			
 			GuiConsole.io.print("[");
 			GuiConsole.io.print("M", Color.white);
@@ -608,6 +583,41 @@ public class GameMenu implements Serializable {
 			}
 		}
 	// play a music
+	public void printStatistics(Hero hero) {
+		GuiConsole.io.print("Treasure", Color.orange);
+		GuiConsole.io.print(" worth ");
+		GuiConsole.io.print(hero.treasure, Color.white);
+		GuiConsole.io.println(" coins collected");
+		
+		GuiConsole.io.print(hero.visitedrooms, Color.white);
+		GuiConsole.io.print(" rooms ", Color.white);
+		GuiConsole.io.println("visited");
+		
+		GuiConsole.io.print(hero.deadgiantspiders, Color.white);
+		GuiConsole.io.print(" Giant spiders ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+		
+		GuiConsole.io.print(hero.deadskeletons, Color.white);
+		GuiConsole.io.print(" Skeletons ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+
+		GuiConsole.io.print(hero.deadorcs, Color.white);
+		GuiConsole.io.print(" Orcs ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+	
+		GuiConsole.io.print(hero.deadtrolls, Color.white);
+		GuiConsole.io.print(" Trolls ", Color.orange.darker());
+		GuiConsole.io.println("slain", Color.white);
+		
+		GuiConsole.io.print((hero.deadgiantspiders+hero.deadskeletons+hero.deadorcs+hero.deadtrolls), Color.white);
+		GuiConsole.io.print(" monsters ", Color.orange.darker());
+		GuiConsole.io.print("slain", Color.white);
+		GuiConsole.io.println(" in total");
+		
+		GuiConsole.io.print(hero.adventures, Color.white);
+		GuiConsole.io.print(" adventures ", Color.green);
+		GuiConsole.io.println("undertaken\n");
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

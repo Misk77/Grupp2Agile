@@ -1,2 +1,2 @@
-Knight%fdgfds%78%5%2%0%0%false
-Knight%AI Knight%22%1%1%2%0%false
+Knight%AI Knight%52%1%0%0%0%1%false%true
+Rogue%plswork%100%0%0%2%0%3%false%false

@@ -272,6 +272,7 @@ public class Game{
 		}
 		//cant test this, supposed to count amount of runs
 		hero.adventures++;
+		//counts players adventures but not ai adventures, ?????????????????
 		//GuiConsole.io.println("DO WE GET HERE",Color.RED);
 		//cant test this, supposed to count amount of runs
 		String cont = gamemenu.endMenu(hero);
