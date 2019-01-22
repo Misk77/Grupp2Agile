@@ -1,20 +1,10 @@
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SaveLoad {
 	
@@ -28,7 +18,7 @@ public class SaveLoad {
 			}
 		
 		} catch (IOException e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 		}
 		
 	}
@@ -40,7 +30,7 @@ public class SaveLoad {
 				System.out.println(line);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 		}
 	}
 	
@@ -48,13 +38,13 @@ public class SaveLoad {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {
-				System.out.println(line);
+				GuiConsole.io.println(line);             //Ändrade denna System.out.println(line);
 				String[] linearray = (line.split("%"));
 				if(linearray[1].equals(findthis))
 					return true;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 		}
 		return false;
 	}
@@ -88,7 +78,7 @@ public class SaveLoad {
 			bw.close();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 			//shouldnt get here
 		}
 	}
@@ -104,7 +94,7 @@ public class SaveLoad {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 			//shouldnt get here
 		}
 		String [] emptyarray = {};
@@ -130,7 +120,7 @@ public class SaveLoad {
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 		}
 		return heronameclass;
 	}
@@ -167,7 +157,7 @@ public class SaveLoad {
 		}
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			GuiConsole.io.println(e);
 		}
 		return herolist;
 	}

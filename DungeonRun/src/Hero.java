@@ -4,9 +4,7 @@ import java.util.Random;
 
 public class Hero implements Serializable {
 	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	String name;
@@ -130,9 +128,9 @@ public class Hero implements Serializable {
 
 	public boolean allseeing(Hero hero, Treasure tresure, Monster monster) {
 		 {
-			 GuiConsole.io.println("╔══════════════════════════════════════════════════════════════════╗\n",Color.RED);
+			 GuiConsole.io.println("â•”â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•—\n",Color.RED);
 			 GuiConsole.io.println(hero.name + "see a gliming " + tresure.treasuretype + "behind the " +monster.monstertype,Color.RED);
-			 GuiConsole.io.println("╚══════════════════════════════════════════════════════════════════╝\n",Color.RED);
+			 GuiConsole.io.println("â•šâ•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�\n",Color.RED);
 			 
 		 }
 

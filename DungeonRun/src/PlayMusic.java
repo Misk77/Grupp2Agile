@@ -1,6 +1,7 @@
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 
 public class PlayMusic implements Runnable
@@ -41,6 +42,9 @@ public class PlayMusic implements Runnable
                 {
                 	this. inputStream = AudioSystem.getAudioInputStream(PlayMusic.class.getResource(url));
                 	this. clip.open(inputStream);
+                	 FloatControl gainControl = 
+                	 		    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                	 		gainControl.setValue(0.0f); 
                 	this. clip.loop(10);
                 }
                 catch(Exception e)
@@ -92,4 +96,9 @@ public class PlayMusic implements Runnable
         
        
     }
-}
+ public void   changeVolume(int i){
+	 FloatControl gainControl = 
+ 		    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+ 		gainControl.setValue(-10.0f); 
+    }
+}//END CLASS
