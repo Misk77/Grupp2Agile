@@ -114,15 +114,19 @@ public class GameMenu implements Serializable {
 		switch (input.toUpperCase()) {
 		case "A":
 			corner = "NW";
+			Map.theme = "blue";
 			break;
 		case "B":
 			corner = "NE";
+			Map.theme = "red";
 			break;
 		case "C":
 			corner = "SW";
+			Map.theme = "blue";
 			break;
 		case "D":
 			corner = "SE";
+			Map.theme = "red";
 			break;
 		default:
 			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);

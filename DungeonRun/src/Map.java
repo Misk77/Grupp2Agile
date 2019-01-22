@@ -26,12 +26,44 @@ public class Map implements Serializable {
 
 	Random rand;
 	PlayMusic playmusic = new PlayMusic();
+	
+	public static String theme = "blue";
+	
+	// Added som new colors & SimpleAttributeSets.
+	Color dark_blue = new Color(0, 0, 153);
+	Color darker_blue = new Color(0, 0, 80);
+	Color very_dark_blue = new Color(0, 0, 35);
+	Color dark_red = new Color(153, 0, 0);
+	Color darker_red = new Color(90, 0, 0);
+	Color very_dark_red = new Color(60, 0, 0);
+	Color orangered = new Color(225, 60, 0);
+	Color dark_green = new Color(0, 102, 0);
+	Color darker_green = new Color(0, 75, 0);
+	Color very_dark_green = new Color(0, 50, 0);
+	
+	char buildBlock = '█'; // The map is drawn with this character. Can be anything.
+	char heroBlock = '×'; // This character shows where the hero is.
+
+	SimpleAttributeSet unExplored = new SimpleAttributeSet();
+	SimpleAttributeSet emptySpaceCurrentRoom = new SimpleAttributeSet();
+	SimpleAttributeSet emptySpaceOtherRoom = new SimpleAttributeSet();
+	SimpleAttributeSet mapFrame = new SimpleAttributeSet();
+	SimpleAttributeSet exitCurrentRoom = new SimpleAttributeSet();
+	SimpleAttributeSet exitOtherRoom = new SimpleAttributeSet();
+	SimpleAttributeSet monsterCurrentRoom = new SimpleAttributeSet();
+	SimpleAttributeSet monsterOtherRoom = new SimpleAttributeSet();
+	SimpleAttributeSet hero = new SimpleAttributeSet();
+
+
+
 
 	public Map() {
 		rand = new Random();
 		//String creepydungeon = "/ExternalItems/creepydungeon";
 
 		//playmusic.playBackGround(creepydungeon);
+		
+		
 
 	}
 
@@ -171,41 +203,42 @@ public class Map implements Serializable {
 	public void drawMap(boolean atStart) {
 	
 		boolean showMap = true;
-
-		// Added som new colors & SimpleAttributeSets.
-		Color dark_blue = new Color(0, 0, 153);
-		Color very_dark_blue = new Color(0, 0, 35);
-		Color darkest_blue = new Color(0, 0, 80);
-		Color dark_red = new Color(153, 0, 0);
-		Color very_dark_red = new Color(60, 0, 0);
-		Color dark_green = new Color(0, 102, 0);
-		char buildBlock = '█'; // The map is drawn with this character. Can be anything.
-		char heroBlock = '×'; // This character shows where the hero is.
-
-		SimpleAttributeSet unExplored = new SimpleAttributeSet();
-		SimpleAttributeSet emptySpaceCurrentRoom = new SimpleAttributeSet();
-		SimpleAttributeSet emptySpaceOtherRoom = new SimpleAttributeSet();
-		SimpleAttributeSet mapFrame = new SimpleAttributeSet();
-		SimpleAttributeSet exitCurrentRoom = new SimpleAttributeSet();
-		SimpleAttributeSet exitOtherRoom = new SimpleAttributeSet();
-		SimpleAttributeSet monsterCurrentRoom = new SimpleAttributeSet();
-		SimpleAttributeSet monsterOtherRoom = new SimpleAttributeSet();
-		SimpleAttributeSet hero = new SimpleAttributeSet();
-
-		StyleConstants.setForeground(unExplored, very_dark_blue);
-		StyleConstants.setForeground(emptySpaceCurrentRoom, Color.blue);
-		StyleConstants.setForeground(emptySpaceOtherRoom, dark_blue);
-		StyleConstants.setForeground(mapFrame, darkest_blue);
-		StyleConstants.setForeground(exitCurrentRoom, Color.green);
-		StyleConstants.setBackground(exitCurrentRoom, Color.blue);
-		StyleConstants.setForeground(exitOtherRoom, dark_green);
-		StyleConstants.setBackground(exitOtherRoom, dark_blue);
-		StyleConstants.setForeground(monsterCurrentRoom, dark_red);
-		StyleConstants.setBackground(monsterCurrentRoom, Color.blue);
-		StyleConstants.setForeground(monsterOtherRoom, very_dark_red);
-		StyleConstants.setBackground(monsterOtherRoom, dark_blue);
-		StyleConstants.setForeground(hero, Color.orange);
-		StyleConstants.setBackground(hero, Color.blue);
+		
+		// Theme is set with Map.theme (public static String)
+		// ATM you get a red map by choosing NE or SE corners and blue for the others.
+		if (theme.equals("blue")) {
+			StyleConstants.setForeground(unExplored, very_dark_blue);
+			StyleConstants.setForeground(emptySpaceCurrentRoom, Color.blue);
+			StyleConstants.setForeground(emptySpaceOtherRoom, dark_blue);
+			StyleConstants.setForeground(mapFrame, darker_blue);
+			StyleConstants.setForeground(exitCurrentRoom, Color.green);
+			StyleConstants.setBackground(exitCurrentRoom, Color.blue);
+			StyleConstants.setForeground(exitOtherRoom, dark_green);
+			StyleConstants.setBackground(exitOtherRoom, dark_blue);
+			StyleConstants.setForeground(monsterCurrentRoom, dark_red);
+			StyleConstants.setBackground(monsterCurrentRoom, Color.blue);
+			StyleConstants.setForeground(monsterOtherRoom, very_dark_red);
+			StyleConstants.setBackground(monsterOtherRoom, dark_blue);
+			StyleConstants.setForeground(hero, Color.orange);
+			StyleConstants.setBackground(hero, Color.blue);
+		}
+		if (theme.equals("red")) {
+			StyleConstants.setForeground(unExplored, very_dark_red);
+			StyleConstants.setForeground(emptySpaceCurrentRoom, orangered);
+			StyleConstants.setForeground(emptySpaceOtherRoom, dark_red);
+			StyleConstants.setForeground(mapFrame, darker_red);
+			StyleConstants.setForeground(exitCurrentRoom, Color.yellow);
+			StyleConstants.setBackground(exitCurrentRoom, orangered);
+			StyleConstants.setForeground(exitOtherRoom, dark_green);
+			StyleConstants.setBackground(exitOtherRoom, dark_red);
+			StyleConstants.setForeground(monsterCurrentRoom, Color.green);
+			StyleConstants.setBackground(monsterCurrentRoom, orangered);
+			StyleConstants.setForeground(monsterOtherRoom, very_dark_green);
+			StyleConstants.setBackground(monsterOtherRoom, dark_red);
+			StyleConstants.setForeground(hero, Color.yellow);
+			StyleConstants.setBackground(hero, orangered);
+		}
+	
 
 		String[] part = new String[2];
 		part[0] = "";
@@ -229,7 +262,7 @@ public class Map implements Serializable {
 							if (room.visited) {
 
 								if (room.x == currentroomx && room.y == currentroomy) {
-									part[0] += "--×--";
+									part[0] += "--"+ heroBlock + "--";
 								} else {
 									part[0] += "*****";
 								}
