@@ -45,7 +45,7 @@ public class AI {
 									willPower[way] -= monster.baseattack;
 								}
 							}
-							//GuiConsole.io.gotoEnd();
+							GuiConsole.io.gotoEnd();
 						}
 						if(deadSteps > 20) { // We need to stop these cowards from walking in circles
 							if(rand.nextInt(100)+1 <= 50) {
@@ -140,7 +140,9 @@ public class AI {
 
 		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
 		GuiConsole.io.println(decision);
+		GuiConsole.io.gotoEnd();
 		return decision;
+		
 	}
 
 
@@ -151,9 +153,11 @@ public class AI {
 			if(!monster.dead) {
 				target = monster.monstertype;
 			}
+			
 		}
 		//try {Thread.sleep(pause);} catch (InterruptedException e2) {System.out.printf("Badness", e2);}
-		System.out.println(target);
+		GuiConsole.io.gotoEnd();
+		GuiConsole.io.println(target);
 		return target;
 	}
 	
