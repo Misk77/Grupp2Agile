@@ -450,7 +450,31 @@ public class GameMenu implements Serializable {
 			cornerRandom();
 			break;
 		case "L":
-			 try {
+				//Daniels loading
+				//should probably print a list of names here
+				GuiConsole.io.print("Which ");
+				GuiConsole.io.print("character", Color.orange);
+				GuiConsole.io.println(" do you want to load?");
+				GuiConsole.io.print(">> ");
+				String name = GuiConsole.io.nextLine();
+				String [] heroinfo = saveload.load(name);
+				if(heroinfo.length<2) {
+					//hero doesnt exist
+					//or savefile is fucked up
+				}
+				else {
+					Hero hero = new Hero(heroinfo[0], heroinfo[1]);
+					hero.treasure = Integer.parseInt(heroinfo[2]);
+					hero.deadgiantspiders = Integer.parseInt(heroinfo[3]);
+					hero.deadskeletons = Integer.parseInt(heroinfo[4]);
+					hero.deadorcs = Integer.parseInt(heroinfo[5]);
+					hero.deadtrolls = Integer.parseInt(heroinfo[6]);
+					objectList[1] = hero;
+					maping();
+					cornerChoice();
+				}
+				//Daniels loading
+			 /*try {
 				 FileInputStream fileIn = new FileInputStream("Dungensave.ser");
 		         ObjectInputStream in = new ObjectInputStream(fileIn);
 		         in.close();
@@ -466,6 +490,7 @@ public class GameMenu implements Serializable {
 			
 			GuiConsole.io.println("[L]oad-DENNA METOD GÖRS SENARE -TEST NU MED SERI LOAD your character..", Color.YELLOW);
 			Gamestart();
+			*/
 			break;
 		case "S":
 			// endMenu(Hero hero);

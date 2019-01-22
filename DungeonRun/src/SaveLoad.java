@@ -92,13 +92,13 @@ public class SaveLoad {
 		}
 	}
 	
-	public String [] load(Hero hero) {
+	public String [] load(String name) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {
 				String [] linearray = line.split("%");
-				if(linearray[1].equals(hero.name)) {
-					System.out.println(linearray[0]+" "+linearray[1]);
+				if(linearray[1].equals(name)) {
+					//System.out.println(linearray[0]+" "+linearray[1]);
 					return linearray;
 				}
 			}
