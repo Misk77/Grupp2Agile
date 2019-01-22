@@ -1,1 +1,2 @@
-Knight%AI Knight%2%0%1%0%0%false
+Knight%AI Knight%186%5%7%3%2%true
+Rogue%AI Rogue%46%4%2%0%1%false
