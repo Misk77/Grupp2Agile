@@ -517,6 +517,7 @@ public class GameMenu implements Serializable {
 	}// END GameMenu
 
 	public String endMenu(Hero hero) {
+		GuiConsole.io.gotoEnd();// Bara för att säkerställa att den scrolllar till slutet speciellt för AI
 		playmusic.disposeSound();
 		saveload.save(hero);
 		

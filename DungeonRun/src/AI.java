@@ -20,7 +20,7 @@ public class AI {
 		String[] direction = new String[] {"north","south","west","east"};
 		for(int way=0; way<4; way++) {
 			for(Room room : map.room) {
-				//GuiConsole.io.gotoEnd();
+				GuiConsole.io.gotoEnd();
 				if(room.x == (map.currentroomx + xDiff[way] ) && room.y == (map.currentroomy + yDiff[way]) ) {
 					willPower[way] = 20; // Room exists and the direction will be evaluated.
 					if (!room.visited) {
