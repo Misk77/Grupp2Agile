@@ -54,10 +54,10 @@ public final class GuiConsole {
             
             //Music background This must be here start with console and then must be in the main
             PlayMusic playmusic = new  PlayMusic();
-            
-   		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
+            playmusic.disposeSound();
+   		String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
    		playmusic.playBackGround(backgroundmusic);
-           
+   	 //playmusic.disposeSound();
             //pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
                   
                      

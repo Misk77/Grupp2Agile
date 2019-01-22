@@ -316,10 +316,10 @@ public class GameMenu implements Serializable {
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
-		
-         
-		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
+		playmusic.disposeSound();
+		String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
 		playmusic.playBackGround(backgroundmusic);
+		playmusic.disposeSound();
 		
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -396,6 +396,7 @@ public class GameMenu implements Serializable {
 	}
 
 	public Object[] Gamestart() {
+	
 		// boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
@@ -532,6 +533,7 @@ public class GameMenu implements Serializable {
 	}// END GameMenu
 
 	public String endMenu(Hero hero) {
+		playmusic.disposeSound();
 		saveload.save(hero);
 		//SaveLoad data=new  SaveLoad(name);
 		/*  Denna verkar spara
@@ -561,6 +563,10 @@ public class GameMenu implements Serializable {
 		 * String gameover; playmusic.playBackGround(gameover);
 		 */
 			if(hero.dead) {
+				PlayMusic playmusic = new  PlayMusic();
+		          
+				String gameover ="/ExternalItems/gameover";
+				playmusic.playBackGround(gameover);
 				GuiConsole.io.print("Your");
 				GuiConsole.io.print(" adventures ",Color.white);
 				GuiConsole.io.print("are over, these are your ");
