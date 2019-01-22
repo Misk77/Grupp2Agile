@@ -20,17 +20,21 @@ public class GameMenu implements Serializable {
 	 * 
 	 */
 	SaveLoad saveload;
-	
-	public GameMenu(){
+
+	public GameMenu() {
 		saveload = new SaveLoad();
 	}
 	//@Override
 	/*public String toString() {
+=======
+
+	@Override
+	public String toString() {
+>>>>>>> branch 'master' of https://github.com/Misk77/Grupp2DungeonRun.git
 		return "GameMenu [saveload=" + saveload + ", name=" + name + ", input=" + input + ", herotype=" + herotype
 				+ ", objectList=" + Arrays.toString(objectList) + ", playmusic=" + playmusic + ", game=" + game
-				+ ", playerName()=" + playerName() 
-				+ ", Gamestart()=" + Arrays.toString(Gamestart()) + ", getName()=" + getName() + ", getInput()="
-				+ getInput() + ", getHerotype()=" + getHerotype() + ", getObjectList()="
+				+ ", playerName()=" + playerName() + ", Gamestart()=" + Arrays.toString(Gamestart()) + ", getName()="
+				+ getName() + ", getInput()=" + getInput() + ", getHerotype()=" + getHerotype() + ", getObjectList()="
 				+ Arrays.toString(getObjectList()) + ", getGame()=" + getGame() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
@@ -39,13 +43,19 @@ public class GameMenu implements Serializable {
 		return saveload;
 	
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/Misk77/Grupp2DungeonRun.git
 	public void setSaveload(SaveLoad saveload) {
 		this.saveload = saveload;
 	}
+
 	public PlayMusic getPlaymusic() {
 		return playmusic;
 	}
+
 	public void setPlaymusic(PlayMusic playmusic) {
 		this.playmusic = playmusic;
 	}
@@ -57,13 +67,12 @@ public class GameMenu implements Serializable {
 	Object[] objectList = new Object[4];
 	 //PlayMusic playmusic = new  PlayMusic();
 	// System objects
-	
+
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
 
-	
 	Game game = new Game();
-	
+
 	public String playerName() {
 		GuiConsole.io.println("\nWelcome player! \nPlease enter your name: ", Color.WHITE);
 		GuiConsole.io.print(">> ");
@@ -80,25 +89,25 @@ public class GameMenu implements Serializable {
 		Map map = new Map();
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose map size:", Color.WHITE);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("S", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("mall ", Color.orange);
 		GuiConsole.io.print("(4x4)\n");
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("M", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("edium ", Color.orange);
 		GuiConsole.io.print("(5x5)\n");
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("L", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("arge ", Color.orange);
 		GuiConsole.io.print("(8x8)\n");
-		
+
 		GuiConsole.io.print(">> ");
 		input = GuiConsole.io.nextLine();
 
@@ -122,16 +131,17 @@ public class GameMenu implements Serializable {
 	public void cornerChoice() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
-		// System.out.println("â•­â”„â”„â”„â”„â”„â”„â”„â”„â”„â•®\nâ”†1 2â”†\nâ”† â”†\nâ”† â”†\nâ”†3 4â”†\nâ•°â”„â”„â”„â”„â”„â”„â”„â”„â”„â•¯");
-		GuiConsole.io.print("█████████████\n█",Color.GRAY);
+		// System.out.println("â•­â”„â”„â”„â”„â”„â”„â”„â”„â”„â•®\nâ”†1 2â”†\nâ”†
+		// â”†\nâ”† â”†\nâ”†3 4â”†\nâ•°â”„â”„â”„â”„â”„â”„â”„â”„â”„â•¯");
+		GuiConsole.io.print("█████████████\n█", Color.GRAY);
 		GuiConsole.io.print(" A ", Color.orange);
-		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print("█████", Color.GRAY);
 		GuiConsole.io.print(" B ", Color.orange);
-		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█",Color.GRAY);
+		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█", Color.GRAY);
 		GuiConsole.io.print(" C ", Color.orange);
-		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print("█████", Color.GRAY);
 		GuiConsole.io.print(" D ", Color.orange);
-		GuiConsole.io.print("█\n█████████████\n",Color.GRAY);
+		GuiConsole.io.print("█\n█████████████\n", Color.GRAY);
 
 		String corner = null;
 		GuiConsole.io.print(">> ");
@@ -168,34 +178,33 @@ public class GameMenu implements Serializable {
 	/*
 	 * void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
 	 * System.out.println(
-	 * "â•”â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•—\n");
-	 * System.out.println(hero.name + "see a gliming " + tresure.treasuretype +
+	 * "â•”â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•—\n"
+	 * ); System.out.println(hero.name + "see a gliming " + tresure.treasuretype +
 	 * "behind the " +monster.monstertype); System.out.println(
-	 * "â•šâ•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�\n"); }
+	 * "â•šâ•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�\n"
+	 * ); }
 	 */
-	
-	
+
 	// VÃ¤lj herotype for player
 	public void heroChoice() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose your character:", Color.WHITE);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("K", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("night\n", Color.orange);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("R", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("ogue\n", Color.orange);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("W", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("izard\n", Color.orange);
 
-		
 		GuiConsole.io.print(">> ");
 		String input = GuiConsole.io.nextLine();
 
@@ -216,21 +225,21 @@ public class GameMenu implements Serializable {
 		Hero hero = new Hero(input, name);
 		objectList[1] = hero;
 	}
-	
+
 	public void aiHeroChoice() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose AI character:", Color.WHITE);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("K", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("night\n", Color.orange);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("R", Color.orange);
 		GuiConsole.io.print("]");
 		GuiConsole.io.print("ogue\n", Color.orange);
-		
+
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("W", Color.orange);
 		GuiConsole.io.print("]");
@@ -257,8 +266,7 @@ public class GameMenu implements Serializable {
 		hero.ai = true;
 		objectList[1] = hero;
 	}
-	
-	
+
 	public void ReadChar() {
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -333,9 +341,11 @@ public class GameMenu implements Serializable {
 	public Object[] GameMenuFirst() throws ClassNotFoundException {
 		//playmusic.disposeSound();
 		String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
+
 		//playmusic.playBackGround(backgroundmusic);
 		//playmusic.disposeSound();
 		
+
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
 				Color.RED);
@@ -367,12 +377,10 @@ public class GameMenu implements Serializable {
 		GuiConsole.io.print(">> ");
 		input = GuiConsole.io.nextLine();
 
-	
 		if (input.equalsIgnoreCase("N")) {
 			GuiConsole.io.println("Let the Adventure Begin...", Color.GREEN);
 			objectList = Gamestart();
 
-			
 //		} else if (input.equalsIgnoreCase("A")) {
 //			AiHeroChoice();
 //			maping();
@@ -383,9 +391,10 @@ public class GameMenu implements Serializable {
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
-			
-		 
-			GuiConsole.io.println("Denna metod gÃ¶rs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
+
+			GuiConsole.io.println(
+					"Denna metod gÃ¶rs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD",
+					Color.YELLOW);
 			GameMenuFirst();
 
 		} else {
@@ -397,7 +406,7 @@ public class GameMenu implements Serializable {
 	}
 
 	public Object[] Gamestart() {
-	
+
 		// boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
@@ -415,11 +424,12 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-																								// stÃ¥r om spelet, spelrunda
+		// stÃ¥r om spelet, spelrunda
 		GuiConsole.io.println("[N]ew-Create new character", Color.RED); // tar in hero metoden
 		GuiConsole.io.println("[L]oad - Load your character"); // lÃ¤ser frÃ¥n load metoden och tar in befiltlig spelare
 		GuiConsole.io.println("[A]i character", Color.GRAY); //
-		//GuiConsole.io.println("[S]ave - Save your character"); // lÃ¤ser frÃ¥n save metoden och sparar befiltlig spelare
+		// GuiConsole.io.println("[S]ave - Save your character"); // lÃ¤ser frÃ¥n save
+		// metoden och sparar befiltlig spelare
 		GuiConsole.io.println("[H]ighscore - See highscore (treasure points) for character", Color.GREEN); //
 		GuiConsole.io.println("[R]ead - Read about the characters", Color.ORANGE);// om spelkaraktÃ¤rer
 		GuiConsole.io.println("[I]nstructions-How to play the game", Color.YELLOW); // Readfile eller metod dÃ¤r allt
@@ -448,7 +458,7 @@ public class GameMenu implements Serializable {
 			aiHeroChoice();
 			maping();
 			Game.dramaticPause = 80;
-			//Map.clearScreenWhenEnteringRoom = true;
+			// Map.clearScreenWhenEnteringRoom = true;
 			cornerRandom();
 			
 			break;
@@ -486,10 +496,10 @@ public class GameMenu implements Serializable {
 					cornerChoice();
 				}
 				//Daniels loading
-			
+
 			break;
 		case "S":
-			//KANSKE DENNA SKA BORT
+			// KANSKE DENNA SKA BORT
 			// endMenu(Hero hero);
 			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
 			GuiConsole.io.println("[S]ave-DENNA METOD GÃ–RS SENARE(TEST) - SAVE your character..", Color.YELLOW);
@@ -514,14 +524,14 @@ public class GameMenu implements Serializable {
 			GuiConsole.io.println();
 			break;
 		case "E":
-			
+
 			GuiConsole.io.println("You now exit the game....", Color.YELLOW);
-			
+
 			GuiConsole.io.println("Data will be automatic saved.....", Color.YELLOW);
 			System.exit(0);
 			GuiConsole.io.println();
 		default:
-			
+
 			GuiConsole.io.println("No such option in menu", Color.RED);
 			GuiConsole.io.println("\t try again........", Color.YELLOW);
 			Gamestart();
@@ -580,8 +590,10 @@ public class GameMenu implements Serializable {
 				else {
 					continue;
 				}
+
 			}
-		}
+	}
+	
 	// play a music
 	public void printStatistics(Hero hero) {
 		GuiConsole.io.print("Treasure", Color.orange);
@@ -591,7 +603,7 @@ public class GameMenu implements Serializable {
 		
 		GuiConsole.io.print(hero.visitedrooms, Color.white);
 		GuiConsole.io.print(" rooms ", Color.white);
-		GuiConsole.io.println("visited");
+		GuiConsole.io.println("visited this run");
 		
 		GuiConsole.io.print(hero.deadgiantspiders, Color.white);
 		GuiConsole.io.print(" Giant spiders ", Color.orange.darker());
@@ -670,8 +682,6 @@ public class GameMenu implements Serializable {
 	public static void setgMenuMain(GameMenu gMenuMain) {
 		GameMenu.gMenuMain = gMenuMain;
 	}
-
-	
 
 	public Game getGame() {
 		return game;

@@ -18,9 +18,9 @@ public class PlayMusic implements Runnable
     {
         if(running)
             return;
-        thread = new Thread(this);
-        running = true;
-        thread.start();
+        this.thread = new Thread(this);
+       this. running = true;
+        this.thread.start();
     }
 
     //
@@ -39,13 +39,13 @@ public class PlayMusic implements Runnable
                 playSong = false;
                 try
                 {
-                    inputStream = AudioSystem.getAudioInputStream(PlayMusic.class.getResource(url));
-                    clip.open(inputStream);
-                    clip.loop(10);
+                	this. inputStream = AudioSystem.getAudioInputStream(PlayMusic.class.getResource(url));
+                	this. clip.open(inputStream);
+                	this. clip.loop(10);
                 }
                 catch(Exception e)
                 {
-                    e.printStackTrace();
+                	GuiConsole.io.println("Somthings wrong in run getting the AudioStream"+e);
                 }
             }
         }
@@ -55,8 +55,8 @@ public class PlayMusic implements Runnable
     {
         if(clip != null)
         {
-            clip.stop();
-            clip.close();
+        	this.clip.stop();
+        	this.clip.close();
         }
         try
         {
@@ -64,24 +64,24 @@ public class PlayMusic implements Runnable
         }
         catch(LineUnavailableException e)
         {
-            e.printStackTrace();
+        	GuiConsole.io.println("Somthings wrong in playBackGround getting the  AudioSystem.getClip"+e);
         }
         url = string + ".wav";
-       playSong = true;
-       inputStream = null;
+        this.  playSong = true;
+        this. inputStream = null;
     }
 
     public void disposeSound()
     {
         if(clip != null)
         {
-        	clip.loop(-1);
-            clip.stop();
-            clip.close();
+        	this.clip.loop(-1);
+        	this. clip.stop();
+        	this. clip.close();
         }
-        clip = null;
-        playSong = false;
-        inputStream = null;
+        this. clip = null;
+        this. playSong = false;
+        this. inputStream = null;
     }
     public void stopbackground()
     {
