@@ -29,7 +29,10 @@ public final class GuiConsole {
 		public static final String scanner = null;
 
 		private GUIConsoleIO() {
-			
+			PlayMusic playmusic = new PlayMusic();
+
+			String backgroundmusic = "/ExternalItems/mysterymusic";
+			playmusic.playBackGround(backgroundmusic);
 			initComponents();
 		}
 
@@ -50,11 +53,8 @@ public final class GuiConsole {
 
 			// Music background This must be here start with console and then must be in the
 			// main
-			// Flyttat till där vi starta gui ovanför detta
-			PlayMusic playmusic = new PlayMusic();
-
-			String backgroundmusic = "/ExternalItems/mysterymusic";
-			playmusic.playBackGround(backgroundmusic);
+			// Flyttat till där vi starta gui ovanför detta. VERKAR VARA BÄTTRE FLYT DÅ
+			
 			// playmusic.disposeSound();
 
 			// pane.setBorder(BorderFactory.createEmptyBorder(4, 4, 2, 20));
