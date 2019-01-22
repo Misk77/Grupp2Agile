@@ -476,6 +476,7 @@ public class GameMenu implements Serializable {
 			
 			break;
 		case "S":
+			//KANSKE DENNA SKA BORT
 			// endMenu(Hero hero);
 			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
 			GuiConsole.io.println("[S]ave-DENNA METOD GÃ–RS SENARE(TEST) - SAVE your character..", Color.YELLOW);
@@ -483,6 +484,7 @@ public class GameMenu implements Serializable {
 			Gamestart();
 			break;
 		case "H":
+			// Daniel håller på fixa
 			GuiConsole.io.println(
 					"[H]ighscore-DENNA METOD GÃ–RS SENARE - See highscore (treasure points) for character..", Color.RED);
 		//	endMenu(null); // MÃ¥ste ha parameter
