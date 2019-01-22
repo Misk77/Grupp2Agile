@@ -1,4 +1,6 @@
 Wizard%anotherchar%0%0%0%0%0
 Knight%jklfd%68%1%0%1%1
 Knight%fdgfds%50%3%1%0%0%false
-Knight%AI Knight%54%0%1%1%0%false
+Knight%AI Knight%10%0%0%1%0%false
+Rogue%AI Rogue%12%1%0%0%0%false
+Wizard%AI Wizard%168%5%3%1%0%true

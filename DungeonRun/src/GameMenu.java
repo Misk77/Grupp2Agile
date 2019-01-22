@@ -25,13 +25,26 @@ public class GameMenu implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "GameMenu [name=" + name + ", input=" + input + ", herotype=" + herotype + ", objectList="
-				+ Arrays.toString(objectList) + ", fd=" + fd + ", game=" + game + ", GameMenuFirst()="
-				 + ", playerName()=" + playerName() + ", Gamestart()="
-				+ Arrays.toString(Gamestart()) + ", getName()=" + getName() + ", getInput()=" + getInput()
-				+ ", getHerotype()=" + getHerotype() + ", getObjectList()=" + Arrays.toString(getObjectList())
-				+ ", getFd()=" + getFd() + ", getGame()=" + getGame() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "GameMenu [saveload=" + saveload + ", name=" + name + ", input=" + input + ", herotype=" + herotype
+				+ ", objectList=" + Arrays.toString(objectList) + ", playmusic=" + playmusic + ", game=" + game
+				+ ", playerName()=" + playerName() 
+				+ ", Gamestart()=" + Arrays.toString(Gamestart()) + ", getName()=" + getName() + ", getInput()="
+				+ getInput() + ", getHerotype()=" + getHerotype() + ", getObjectList()="
+				+ Arrays.toString(getObjectList()) + ", getGame()=" + getGame() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	public SaveLoad getSaveload() {
+		return saveload;
+	}
+	public void setSaveload(SaveLoad saveload) {
+		this.saveload = saveload;
+	}
+	public PlayMusic getPlaymusic() {
+		return playmusic;
+	}
+	public void setPlaymusic(PlayMusic playmusic) {
+		this.playmusic = playmusic;
 	}
 
 	static Scanner scanner = new Scanner(System.in);
@@ -45,8 +58,7 @@ public class GameMenu implements Serializable {
 	// Scanner scanner = new Scanner(System.in);
 	static GameMenu gMenuMain = new GameMenu();
 
-	// SaveLoad save = new SaveLoad();// Maybe shouldnt be here
-	FileData fd = new FileData();
+	
 	Game game = new Game();
 	
 	public String playerName() {
@@ -535,38 +547,15 @@ public class GameMenu implements Serializable {
 	public String endMenu(Hero hero) {
 		playmusic.disposeSound();
 		saveload.save(hero);
-		//SaveLoad data=new  SaveLoad(name);
-		/*  Denna verkar spara
-		try {
-			data.save(hero, "Dungensave.ser");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		//SaveLoad data=new  SaveLoad(name);
-		//test imorse
-		 try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream("Dungeonsave.ser");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(hero);
-	         out.close();
-	         fileOut.close();
-	         System.out.printf("Serialized data is saved in Dungeonsave.ser");
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	      }
+		
 		// save goes here
-		/*
-		 * Detta funkar inte.. else klagar.... PlayMusic playmusic = new PlayMusic();
-		 * String gameover; playmusic.playBackGround(gameover);
-		 */
+		
 			if(hero.dead) {
 				PlayMusic playmusic = new  PlayMusic();
 		          
 				String gameover ="/ExternalItems/gameover";
 				playmusic.playBackGround(gameover);
+				playmusic.disposeSound();
 				GuiConsole.io.print("Your");
 				GuiConsole.io.print(" adventures ",Color.white);
 				GuiConsole.io.print("are over, these are your ");
@@ -690,13 +679,7 @@ public class GameMenu implements Serializable {
 		GameMenu.gMenuMain = gMenuMain;
 	}
 
-	public FileData getFd() {
-		return fd;
-	}
-
-	public void setFd(FileData fd) {
-		this.fd = fd;
-	}
+	
 
 	public Game getGame() {
 		return game;
