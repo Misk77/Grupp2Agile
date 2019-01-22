@@ -380,22 +380,8 @@ public class GameMenu implements Serializable {
 			System.exit(0);
 
 		} else if (input.equalsIgnoreCase("L")) {
-			 try {
-				 FileInputStream fileIn = new FileInputStream("Dungensave.ser");
-		         ObjectInputStream in = new ObjectInputStream(fileIn);
-		         in.close();
-		         fileIn.close();
-		      } catch (IOException i) {
-		         i.printStackTrace();
-		         return objectList ;
-		      }
-		      
-			 GuiConsole.io.println("Deserialized Dungensave...", Color.YELLOW);
-			 GuiConsole.io.println("Name: " +getName(), Color.YELLOW);
-			 GuiConsole.io.println("getHerotype: " + getHerotype(), Color.YELLOW);
 			
-		   
-			// save.LoadFromDisk(0, 0, 0, 0, herotype, herotype, 0, 0, 0);
+		 
 			GuiConsole.io.println("Denna metod gÃ¶rs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
 			GameMenuFirst();
 
@@ -487,23 +473,7 @@ public class GameMenu implements Serializable {
 					cornerChoice();
 				}
 				//Daniels loading
-			 /*try {
-				 FileInputStream fileIn = new FileInputStream("Dungensave.ser");
-		         ObjectInputStream in = new ObjectInputStream(fileIn);
-		         in.close();
-		         fileIn.close();
-		      } catch (IOException i) {
-		         i.printStackTrace();
-		         return objectList ;
-		      }
-		      
-			 GuiConsole.io.println("Deserialized Dungensave...", Color.YELLOW);
-			 GuiConsole.io.println("Name: " +getName(), Color.YELLOW);
-			 GuiConsole.io.println("getHerotype: " + getHerotype(), Color.YELLOW);
 			
-			GuiConsole.io.println("[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..", Color.YELLOW);
-			Gamestart();
-			*/
 			break;
 		case "S":
 			// endMenu(Hero hero);
