@@ -108,15 +108,15 @@ public class GameMenu implements Serializable {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
 		// System.out.println("â•­â”„â”„â”„â”„â”„â”„â”„â”„â”„â•®\nâ”†1 2â”†\nâ”† â”†\nâ”† â”†\nâ”†3 4â”†\nâ•°â”„â”„â”„â”„â”„â”„â”„â”„â”„â•¯");
-		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆ",Color.GRAY);
+		GuiConsole.io.print("█████████████\n█",Color.GRAY);
 		GuiConsole.io.print(" A ", Color.orange);
-		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ",Color.GRAY);
+		GuiConsole.io.print("█████",Color.GRAY);
 		GuiConsole.io.print(" B ", Color.orange);
-		GuiConsole.io.print("â–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆ",Color.GRAY);
+		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█",Color.GRAY);
 		GuiConsole.io.print(" C ", Color.orange);
-		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ",Color.GRAY);
+		GuiConsole.io.print("█████",Color.GRAY);
 		GuiConsole.io.print(" D ", Color.orange);
-		GuiConsole.io.print("â–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\n",Color.GRAY);
+		GuiConsole.io.print("█\n█████████████\n",Color.GRAY);
 
 		String corner = null;
 		GuiConsole.io.print(">> ");
