@@ -39,7 +39,7 @@ public class GameMenu implements Serializable {
 	String input;
 	String herotype;
 	Object[] objectList = new Object[4];
-	 //PlayMusic playmusic = new  PlayMusic();
+	 PlayMusic playmusic = new  PlayMusic();
 	// System objects
 	
 	// Scanner scanner = new Scanner(System.in);
@@ -107,16 +107,16 @@ public class GameMenu implements Serializable {
 	public void cornerChoice() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
-		// System.out.println("╭┄┄┄┄┄┄┄┄┄╮\n┆1 2┆\n┆ ┆\n┆ ┆\n┆3 4┆\n╰┄┄┄┄┄┄┄┄┄╯");
-		GuiConsole.io.print("█████████████\n█",Color.GRAY);
+		// System.out.println("â•­â”„â”„â”„â”„â”„â”„â”„â”„â”„â•®\nâ”†1 2â”†\nâ”† â”†\nâ”† â”†\nâ”†3 4â”†\nâ•°â”„â”„â”„â”„â”„â”„â”„â”„â”„â•¯");
+		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆ",Color.GRAY);
 		GuiConsole.io.print(" A ", Color.orange);
-		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ",Color.GRAY);
 		GuiConsole.io.print(" B ", Color.orange);
-		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█",Color.GRAY);
+		GuiConsole.io.print("â–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\nâ–ˆ",Color.GRAY);
 		GuiConsole.io.print(" C ", Color.orange);
-		GuiConsole.io.print("█████",Color.GRAY);
+		GuiConsole.io.print("â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ",Color.GRAY);
 		GuiConsole.io.print(" D ", Color.orange);
-		GuiConsole.io.print("█\n█████████████\n",Color.GRAY);
+		GuiConsole.io.print("â–ˆ\nâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ\n",Color.GRAY);
 
 		String corner = null;
 		GuiConsole.io.print(">> ");
@@ -153,14 +153,14 @@ public class GameMenu implements Serializable {
 	/*
 	 * void allSeeingEye(Hero hero, Treasure tresure, Monster monster){
 	 * System.out.println(
-	 * "╔══════════════════════════════════════════════════════════════════╗\n");
+	 * "â•”â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•—\n");
 	 * System.out.println(hero.name + "see a gliming " + tresure.treasuretype +
 	 * "behind the " +monster.monstertype); System.out.println(
-	 * "╚══════════════════════════════════════════════════════════════════╝\n"); }
+	 * "â•šâ•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�â•�\n"); }
 	 */
 	
 	
-	// Välj herotype for player
+	// VÃ¤lj herotype for player
 	public void heroChoice() {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose your character:", Color.WHITE);
@@ -259,17 +259,17 @@ public class GameMenu implements Serializable {
 		GuiConsole.io.println("\n---------------------------Heros-----------------------", Color.MAGENTA);
 		GuiConsole.io.println("Knight\n"
 				+ "Initiative = 5\nHerotype = Herotype\nHealth = 9\nBaseattack = 6\nAvoidance = 4\n"
-				+ "Specialförmåga: Sköldblock. Riddaren blockerar alltid första attackenper strid med sin sköld \noch behöver därför varken undvika eller ta någon skada\n",
+				+ "SpecialfÃ¶rmÃ¥ga: SkÃ¶ldblock. Riddaren blockerar alltid fÃ¶rsta attackenper strid med sin skÃ¶ld \noch behÃ¶ver dÃ¤rfÃ¶r varken undvika eller ta nÃ¥gon skada\n",
 				Color.BLUE);
 
 		GuiConsole.io.println("Wizard\n"
 				+ "Initiative = 6\nHerotype = Herotype\nHealth = 4\nBaseattack = 9\nAvoidance = 5\n"
-				+ "Specialförmåga: Ljussken. Trollkarlen kan göra monster blinda och hardärför alltid 80% chans att fly från strider\n",
+				+ "SpecialfÃ¶rmÃ¥ga: Ljussken. Trollkarlen kan gÃ¶ra monster blinda och hardÃ¤rfÃ¶r alltid 80% chans att fly frÃ¥n strider\n",
 				Color.WHITE);
 
 		GuiConsole.io.println("Rogue\n"
 				+ "Initiative = 7\nHerotype = Herotype\nHealth = 5\nBaseattack = 5\nAvoidance = 7\n"
-				+ "Specialförmåga: Kritisk träff. Tjuven har 25% chans att göra dubbel skada varje gång tjuven attackerar\n",
+				+ "SpecialfÃ¶rmÃ¥ga: Kritisk trÃ¤ff. Tjuven har 25% chans att gÃ¶ra dubbel skada varje gÃ¥ng tjuven attackerar\n",
 				Color.ORANGE);
 		GuiConsole.io.println("--------------------------Monster----------------------");
 		GuiConsole.io.println(
@@ -319,7 +319,7 @@ public class GameMenu implements Serializable {
 		
          
 		 String backgroundmusic = "/ExternalItems/Hypnotic-Puzzle3";
-		//playmusic.playBackGround(backgroundmusic);
+		playmusic.playBackGround(backgroundmusic);
 		
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -384,7 +384,7 @@ public class GameMenu implements Serializable {
 			
 		   
 			// save.LoadFromDisk(0, 0, 0, 0, herotype, herotype, 0, 0, 0);
-			GuiConsole.io.println("Denna metod görs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÖRS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
+			GuiConsole.io.println("Denna metod gÃ¶rs senare.. GuiConsole.io.println(\"[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..\", Color.YELLOW);LOAD CHARACTER. IFPLAYEREXIST METHOD", Color.YELLOW);
 			GameMenuFirst();
 
 		} else {
@@ -413,14 +413,14 @@ public class GameMenu implements Serializable {
 				"|=======================================================================================================|",
 				Color.YELLOW);
 		GuiConsole.io.println();
-																								// står om spelet, spelrunda
+																								// stÃ¥r om spelet, spelrunda
 		GuiConsole.io.println("[N]ew-Create new character", Color.RED); // tar in hero metoden
-		GuiConsole.io.println("[L]oad - Load your character"); // läser från load metoden och tar in befiltlig spelare
+		GuiConsole.io.println("[L]oad - Load your character"); // lÃ¤ser frÃ¥n load metoden och tar in befiltlig spelare
 		GuiConsole.io.println("[A]i character", Color.GRAY); //
-		//GuiConsole.io.println("[S]ave - Save your character"); // läser från save metoden och sparar befiltlig spelare
+		//GuiConsole.io.println("[S]ave - Save your character"); // lÃ¤ser frÃ¥n save metoden och sparar befiltlig spelare
 		GuiConsole.io.println("[H]ighscore - See highscore (treasure points) for character", Color.GREEN); //
-		GuiConsole.io.println("[R]ead - Read about the characters", Color.ORANGE);// om spelkaraktärer
-		GuiConsole.io.println("[I]nstructions-How to play the game", Color.YELLOW); // Readfile eller metod där allt
+		GuiConsole.io.println("[R]ead - Read about the characters", Color.ORANGE);// om spelkaraktÃ¤rer
+		GuiConsole.io.println("[I]nstructions-How to play the game", Color.YELLOW); // Readfile eller metod dÃ¤r allt
 		GuiConsole.io.println("[E]XIT/SAVE\n", Color.WHITE);// THen exit automatic save the game
 		GuiConsole.io.print(">> ");
 		// input = scanner.next();
@@ -488,22 +488,22 @@ public class GameMenu implements Serializable {
 			 GuiConsole.io.println("Name: " +getName(), Color.YELLOW);
 			 GuiConsole.io.println("getHerotype: " + getHerotype(), Color.YELLOW);
 			
-			GuiConsole.io.println("[L]oad-DENNA METOD GÖRS SENARE -TEST NU MED SERI LOAD your character..", Color.YELLOW);
+			GuiConsole.io.println("[L]oad-DENNA METOD GÃ–RS SENARE -TEST NU MED SERI LOAD your character..", Color.YELLOW);
 			Gamestart();
 			*/
 			break;
 		case "S":
 			// endMenu(Hero hero);
-			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
-			GuiConsole.io.println("[S]ave-DENNA METOD GÖRS SENARE(TEST) - SAVE your character..", Color.YELLOW);
+			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
+			GuiConsole.io.println("[S]ave-DENNA METOD GÃ–RS SENARE(TEST) - SAVE your character..", Color.YELLOW);
 			// SaveLoad.saveToDisk();
 			Gamestart();
 			break;
 		case "H":
 			GuiConsole.io.println(
-					"[H]ighscore-DENNA METOD GÖRS SENARE - See highscore (treasure points) for character..", Color.RED);
-		//	endMenu(null); // Måste ha parameter
-			// Alternativ...1. read from file method in saveLoad 2. göra metod med allt
+					"[H]ighscore-DENNA METOD GÃ–RS SENARE - See highscore (treasure points) for character..", Color.RED);
+		//	endMenu(null); // MÃ¥ste ha parameter
+			// Alternativ...1. read from file method in saveLoad 2. gÃ¶ra metod med allt
 			Gamestart();
 			break;
 		case "R":
