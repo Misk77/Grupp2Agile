@@ -540,12 +540,10 @@ public class GameMenu implements Serializable {
 			// Daniels loading
 			// printing list of all saved characters
 			ArrayList<String[]> heronameclasslist = saveload.namesAndClassList();
-			GuiConsole.io.println("Characterlist: ");
+			GuiConsole.io.println("Characterlist: \n");
 			for (String[] nameclass : heronameclasslist) {
-				GuiConsole.io.println();
-				for (String nameorclass : nameclass) {
-					GuiConsole.io.print(nameorclass + " ", Color.orange);
-				}
+				GuiConsole.io.print(nameclass[0], Color.orange);
+				GuiConsole.io.print(" " + nameclass[1] + "\n", Color.cyan);
 			}
 			GuiConsole.io.print("\n\nWhich ");
 			GuiConsole.io.print("character", Color.orange);
