@@ -581,7 +581,14 @@ public class GameMenu implements Serializable {
 			ArrayList<Hero> sortedherolist = saveload.highscore();
 			GuiConsole.io.println("Highscores:\n");
 			for (Hero hero : sortedherolist) {
-				GuiConsole.io.println(hero.treasure + " " + hero.name);
+				GuiConsole.io.print(hero.treasure, Color.white);
+				GuiConsole.io.print(" " +hero.name+ " ", Color.orange);
+				if(hero.dead) {
+					GuiConsole.io.println("dead", Color.red);
+				}
+				else {
+					GuiConsole.io.println("alive", Color.green);
+				}
 			}
 			
 			Gamestart();
