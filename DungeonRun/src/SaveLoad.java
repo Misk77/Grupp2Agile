@@ -38,7 +38,7 @@ public class SaveLoad {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {
-				GuiConsole.io.println(line);             //Ändrade denna System.out.println(line);
+				GuiConsole.io.println(line);             //ï¿½ndrade denna System.out.println(line);
 				String[] linearray = (line.split("%"));
 				if(linearray[1].equals(findthis))
 					return true;
@@ -88,7 +88,7 @@ public class SaveLoad {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {
 				String [] linearray = line.split("%");
-				if(linearray[1].equals(name)) {
+				if(linearray[1].equals(name) && linearray[8].equals("false") && linearray[9].equals("false")) {
 					//System.out.println(linearray[0]+" "+linearray[1]);
 					return linearray;
 				}
