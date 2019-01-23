@@ -32,11 +32,7 @@ public class Game {
 			GameMenu gamemenu = new GameMenu();
 
 			Object[] objects = null;
-			try {
-				objects = gamemenu.GameMenuFirst();
-			} catch (ClassNotFoundException e) {
-				GuiConsole.io.print(e);
-			}
+			objects = gamemenu.Gamestart();// Bytte från gamemenufirst till Gamestart
 			Hero hero = (Hero) objects[1]; // need the correct index
 			// AiHero aihero = (AiHero)objects[3];
 			Map map = (Map) objects[0]; // need the correct index

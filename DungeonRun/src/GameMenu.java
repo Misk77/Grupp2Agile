@@ -92,7 +92,7 @@ public class GameMenu implements Serializable {
 	public void cornerChoice() {
 		// Gör dörr ljudet, bara bortmarkera , samt den som stänger ljudet på slutet
 		playmusic.disposeSound();
-		PlayMusic playmusic = new PlayMusic();
+	    PlayMusic playmusic = new PlayMusic();
 		String dungeongatesopens = "/ExternalItems/creepydungeondoorslam";
 		playmusic.playBackGround(dungeongatesopens);
 		GuiConsole.io.println();
@@ -387,12 +387,11 @@ public class GameMenu implements Serializable {
 	}
 
 //Games start here, then NEW GAME the follow the methods one by one , into  Game class and the game is set to go running
-	public Object[] GameMenuFirst() throws ClassNotFoundException {
-		playmusic.disposeSound();
-		String backgroundmusic = "/ExternalItems/mysterymusic";
-
-		playmusic.playBackGround(backgroundmusic);
-		playmusic.disposeSound();
+	//  Bortmarkerade denna så Spelet börjar i gamestart direkt, bara en MENY
+	/*
+	 public Object[] GameMenuFirst() throws ClassNotFoundException {
+		//playmusic.disposeSound();
+		
 
 		GuiConsole.io.println(
 				"|=======================================================================================================|",
@@ -449,9 +448,12 @@ public class GameMenu implements Serializable {
 
 		return objectList;
 	}
-
+*/
 	public Object[] Gamestart() {
+		String backgroundmusic = "/ExternalItems/mysterymusic";
 
+		playmusic.playBackGround(backgroundmusic);
+		playmusic.disposeSound();
 		// boolean running = true;
 		// GAME: // This can be uses as at startpoint, then ever we wanna get back here,
 		// have GAME; like a break but put us here instead
@@ -616,7 +618,7 @@ public class GameMenu implements Serializable {
 	
 		//GuiConsole.io.gotoEnd();// Bara för att säkerställa att den scrolllar till slutet speciellt för AI
 		//effects
-		playmusic.disposeSound();
+		playmusic.disposeSound();//bortmarkera för johannes datore
 		PlayMusic playmusic = new PlayMusic();
 		String gameover = "/ExternalItems/gameover";
 		playmusic.playBackGround(gameover);
