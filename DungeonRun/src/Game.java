@@ -41,7 +41,7 @@ public class Game {
 			String corner = (String) objects[2];
 			Game game = new Game();
 			AI ai = new AI();
-			Room currentroom = map.startingPoint(corner);
+			Room currentroom = map.startingPoint(corner, hero);
 			map.generateExit();
 			map.clearCurrentRoom();
 			// System.out.println("CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
@@ -167,7 +167,7 @@ public class Game {
 								}
 							}
 							if (!monster.dead) {
-								game.monsterAttack(hero, monster);
+								game.monsterAttack(hero, monster, map);
 							} else {
 								deadmonstercount++;
 							}
@@ -227,16 +227,16 @@ public class Game {
 								|| whereto.equals("east") || whereto.equals("n") || whereto.equals("s")
 								|| whereto.equals("w") || whereto.equals("e")) {
 							if (whereto.equals("north") || whereto.equals("n")) {
-								currentroom = map.goNorth();
+								currentroom = map.goNorth(hero);
 								break;
 							} else if (whereto.equals("south") || whereto.equals("s")) {
-								currentroom = map.goSouth();
+								currentroom = map.goSouth(hero);
 								break;
 							} else if (whereto.equals("east") || whereto.equals("e")) {
-								currentroom = map.goEast();
+								currentroom = map.goEast(hero);
 								break;
 							} else if (whereto.equals("west") || whereto.equals("w")) {
-								currentroom = map.goWest();
+								currentroom = map.goWest(hero);
 								break;
 							}
 						} else {
@@ -350,7 +350,7 @@ public class Game {
 					for (Monster monster : monsterlist) {
 						monster.resetMonsterHealth();
 					}
-					map.goLast();
+					map.goLast(hero);
 					GuiConsole.io.print("You");
 					GuiConsole.io.print(" fled ", Color.white);
 					GuiConsole.io.print("back to the previous room ");
@@ -359,12 +359,14 @@ public class Game {
 					// System.out.println("NEW CURRENTROOM "+map.currentroomx+" "+map.currentroomy);
 					return "break";
 				} else {
+					map.drawMap(false, hero);
 					GuiConsole.io.print("Your attempt to");
 					GuiConsole.io.print(" flee ", Color.white);
 					GuiConsole.io.print("back to the previous room");
 					GuiConsole.io.println(" failed", Color.red);
 				}
 			} else if (fleeorattack.equals("a")) {
+				map.drawMap(false, hero);
 				wronginput = false;
 				GuiConsole.io.print("Which");
 				GuiConsole.io.print(" monster ", Color.orange.darker());
@@ -424,6 +426,7 @@ public class Game {
 									int herodmg = hero.dealDamage();
 									int monsterhealth = monsterlist.get(i).health;
 									monsterlist.get(i).takeDamage(herodmg);
+									map.drawMap(false, hero);
 									GuiConsole.io.print(hero.name, Color.cyan);
 									GuiConsole.io.print(" hit ");
 									GuiConsole.io.print(monsterlist.get(i).monstertype, Color.ORANGE.darker());
@@ -475,7 +478,7 @@ public class Game {
 		return "";
 	}
 
-	public void monsterAttack(Hero hero, Monster monster) {
+	public void monsterAttack(Hero hero, Monster monster, Map map) {
 		int monsterattackroll = monster.attackRoll();
 		int herodefendroll = hero.defendRoll();
 		// System.out.println("ROLLS MONSTERATTACKROLL "+monsterattackroll+"\nHERO
@@ -490,6 +493,7 @@ public class Game {
 			int monsterdmg = monster.dealDamage();
 			int herohealth = hero.health;
 			hero.takeDamage(monsterdmg);
+			map.drawMap(false, hero);
 			GuiConsole.io.print(monster.monstertype, Color.orange.darker());
 			GuiConsole.io.print(" hit ");
 			GuiConsole.io.print(hero.name, Color.cyan);

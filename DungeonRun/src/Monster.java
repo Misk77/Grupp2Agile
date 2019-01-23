@@ -8,6 +8,7 @@ public class Monster implements Serializable{
 	private static final long serialVersionUID = 1L;
 	int initiative;
 	int health;
+	int maxHealth;
 	int baseattack;
 	int avoidance;
 	String monstertype;
@@ -22,24 +23,28 @@ public class Monster implements Serializable{
 		if (monstertype.equals("Giant spider")) {
 			this.initiative = 7;
 			this.health = 1;
+			this.maxHealth = this.health;
 			this.baseattack = 2;
 			this.avoidance = 3;
 			this.monstertype = monstertype;
 		} else if (monstertype.equals("Skeleton")) {
 			this.initiative = 4;
 			this.health = 2;
+			this.maxHealth = this.health;
 			this.baseattack = 3;
 			this.avoidance = 3;
 			this.monstertype = monstertype;
 		} else if (monstertype.equals("Orc")) {
 			this.initiative = 6;
 			this.health = 3;
+			this.maxHealth = this.health;
 			this.baseattack = 4;
 			this.avoidance = 4;
 			this.monstertype = monstertype;
 		} else if (monstertype.equals("Troll")) {
 			this.initiative = 2;
 			this.health = 4;
+			this.maxHealth = this.health;
 			this.baseattack = 7;
 			this.avoidance = 2;
 			this.monstertype = monstertype;

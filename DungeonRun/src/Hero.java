@@ -11,6 +11,7 @@ public class Hero implements Serializable {
 	
 	int initiative;
 	int health;
+	int maxHealth;
 	int baseattack;
 	int avoidance;
 	String herotype;
@@ -40,6 +41,7 @@ public class Hero implements Serializable {
 			this.initiative = 5;
 			this.herotype = herotype;
 			this.health = 9;
+			this.maxHealth = this.health;
 			this.baseattack = 6;
 			this.avoidance = 4;
 			this.block = true; //this needs to be set to true at the start or end of every room
@@ -49,6 +51,7 @@ public class Hero implements Serializable {
 			this.initiative = 6;
 			this.herotype = herotype;
 			this.health = 4;
+			this.maxHealth = this.health;
 			this.baseattack = 9;
 			this.avoidance = 5;
 		}
@@ -57,6 +60,7 @@ public class Hero implements Serializable {
 			this.initiative = 7;
 			this.herotype = herotype;
 			this.health = 5;
+			this.maxHealth = this.health;
 			this.baseattack = 5;
 			this.avoidance = 7;
 		}
