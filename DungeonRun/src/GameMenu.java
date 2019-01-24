@@ -98,13 +98,21 @@ public class GameMenu implements Serializable {
 		GuiConsole.io.println();
 		GuiConsole.io.println("Choose what corner of the map to start from:", Color.WHITE);
 		GuiConsole.io.print("█████████████\n█", Color.GRAY);
-		GuiConsole.io.print(" A ", Color.orange);
+		GuiConsole.io.print("█", Color.black);
+		GuiConsole.io.print("A", Color.orange);
+		GuiConsole.io.print("█", Color.black);
 		GuiConsole.io.print("█████", Color.GRAY);
-		GuiConsole.io.print(" B ", Color.orange);
+		GuiConsole.io.print("█", Color.black);
+		GuiConsole.io.print("B", Color.orange);
+		GuiConsole.io.print("█", Color.black);
 		GuiConsole.io.print("█\n█████████████\n█████████████\n█████████████\n█", Color.GRAY);
-		GuiConsole.io.print(" C ", Color.orange);
+		GuiConsole.io.print("█", Color.black);
+		GuiConsole.io.print("C", Color.orange);
+		GuiConsole.io.print("█", Color.black);
 		GuiConsole.io.print("█████", Color.GRAY);
-		GuiConsole.io.print(" D ", Color.orange);
+		GuiConsole.io.print("█", Color.black);
+		GuiConsole.io.print("D", Color.orange);
+		GuiConsole.io.print("█", Color.black);
 		GuiConsole.io.print("█\n█████████████\n", Color.GRAY);
 
 		String corner = null;
@@ -114,19 +122,15 @@ public class GameMenu implements Serializable {
 		switch (input.toUpperCase()) {
 		case "A":
 			corner = "NW";
-			Map.theme = "blue";
 			break;
 		case "B":
 			corner = "NE";
-			Map.theme = "red";
 			break;
 		case "C":
 			corner = "SW";
-			Map.theme = "blue";
 			break;
 		case "D":
 			corner = "SE";
-			Map.theme = "red";
 			break;
 		default:
 			GuiConsole.io.println("Something went wrong, please try again!", Color.RED);

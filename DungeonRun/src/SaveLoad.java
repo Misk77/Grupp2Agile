@@ -38,7 +38,7 @@ public class SaveLoad {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filename));
 			for(String line = br.readLine(); line != null; line = br.readLine()) {
-				GuiConsole.io.println(line);             //�ndrade denna System.out.println(line);
+				//GuiConsole.io.println(line);             //�ndrade denna System.out.println(line);
 				String[] linearray = (line.split("%"));
 				if(linearray[1].equals(findthis))
 					return true;

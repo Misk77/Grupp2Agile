@@ -42,8 +42,8 @@ public class Map implements Serializable {
 	Color very_dark_green = new Color(0, 50, 0);
 	
 	char buildBlock = '█'; // The map is drawn with this character. Can be anything.
-	char heroBlock = '×'; // This character shows where the hero is.
-	char healthBlock = '¤';
+	char heroBlock = '×'; // This character shows where the hero is. Can be anything.
+	char healthBlock = '¤'; // The health bars are made with this character. Can be anything.
 
 	SimpleAttributeSet unExplored = new SimpleAttributeSet();
 	SimpleAttributeSet emptySpaceCurrentRoom = new SimpleAttributeSet();
@@ -58,9 +58,6 @@ public class Map implements Serializable {
 	SimpleAttributeSet monsterOtherRoom = new SimpleAttributeSet();
 	SimpleAttributeSet theHero = new SimpleAttributeSet();
 	
-
-
-
 
 	public Map() {
 		rand = new Random();
@@ -207,9 +204,7 @@ public class Map implements Serializable {
 		//if (hero.ai) {clearScreenWhenEnteringRoom = true;}
 		boolean showMap = true;
 
-		// Theme is set with Map.theme (public static String)
-		// ATM you get a red map by choosing NE or SE corners and blue for the others.
-		if (theme.equals("blue")) {
+		if(hero.herotype.equals("Wizard")) {
 			StyleConstants.setForeground(unExplored, very_dark_blue);
 			StyleConstants.setForeground(emptySpaceCurrentRoom, Color.blue);
 			StyleConstants.setForeground(emptySpaceOtherRoom, dark_blue);
@@ -230,21 +225,47 @@ public class Map implements Serializable {
 			StyleConstants.setForeground(theHero, Color.orange);
 			StyleConstants.setBackground(theHero, Color.blue);
 		}
-		if (theme.equals("red")) {
+		if(hero.herotype.equals("Rogue")) {
 			StyleConstants.setForeground(unExplored, very_dark_red);
 			StyleConstants.setForeground(emptySpaceCurrentRoom, orangered);
 			StyleConstants.setForeground(emptySpaceOtherRoom, dark_red);
 			StyleConstants.setForeground(mapFrame, darker_red);
+			StyleConstants.setForeground(heroFrameText, Color.orange);
+			StyleConstants.setBackground(heroFrameText, darker_red);
+			StyleConstants.setForeground(monsterFrameText, very_dark_green);
+			StyleConstants.setBackground(monsterFrameText, darker_red);
+			StyleConstants.setForeground(bgColor, Color.black);
 			StyleConstants.setForeground(exitCurrentRoom, Color.yellow);
 			StyleConstants.setBackground(exitCurrentRoom, orangered);
 			StyleConstants.setForeground(exitOtherRoom, dark_green);
 			StyleConstants.setBackground(exitOtherRoom, dark_red);
-			StyleConstants.setForeground(monsterCurrentRoom, Color.green);
+			StyleConstants.setForeground(monsterCurrentRoom, Color.black);
 			StyleConstants.setBackground(monsterCurrentRoom, orangered);
-			StyleConstants.setForeground(monsterOtherRoom, very_dark_green);
+			StyleConstants.setForeground(monsterOtherRoom, darker_red);
 			StyleConstants.setBackground(monsterOtherRoom, dark_red);
 			StyleConstants.setForeground(theHero, Color.yellow);
 			StyleConstants.setBackground(theHero, orangered);
+		}
+		if(hero.herotype.equals("Knight")) {
+			StyleConstants.setForeground(unExplored, very_dark_green);
+			StyleConstants.setForeground(emptySpaceCurrentRoom, Color.green);
+			StyleConstants.setForeground(emptySpaceOtherRoom, dark_green);
+			StyleConstants.setForeground(mapFrame, darker_green);
+			StyleConstants.setForeground(heroFrameText, Color.orange);
+			StyleConstants.setBackground(heroFrameText, darker_green);
+			StyleConstants.setForeground(monsterFrameText, dark_red);
+			StyleConstants.setBackground(monsterFrameText, darker_green);
+			StyleConstants.setForeground(bgColor, Color.black);
+			StyleConstants.setForeground(exitCurrentRoom, Color.yellow);
+			StyleConstants.setBackground(exitCurrentRoom, Color.green);
+			StyleConstants.setForeground(exitOtherRoom, very_dark_green);
+			StyleConstants.setBackground(exitOtherRoom, dark_green);
+			StyleConstants.setForeground(monsterCurrentRoom, Color.red);
+			StyleConstants.setBackground(monsterCurrentRoom, Color.green);
+			StyleConstants.setForeground(monsterOtherRoom, very_dark_green);
+			StyleConstants.setBackground(monsterOtherRoom, dark_green);
+			StyleConstants.setForeground(theHero, Color.yellow);
+			StyleConstants.setBackground(theHero, Color.green);
 		}
 		
 		int heroBoxWidth = 30;
