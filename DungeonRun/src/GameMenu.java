@@ -567,6 +567,8 @@ public class GameMenu implements Serializable {
 				hero.deadtrolls = Integer.parseInt(heroinfo[6]);
 				hero.adventures = Integer.parseInt(heroinfo[7]);
 				objectList[1] = hero;
+				GuiConsole.io.println("\nAccomplishments:", Color.white);
+				printStatistics(hero, "load");
 				maping();
 				cornerChoice();
 			}
@@ -649,7 +651,7 @@ public class GameMenu implements Serializable {
 		}
 		GuiConsole.io.gotoEnd();
 
-		printStatistics(hero);
+		printStatistics(hero, "end");
 
 		GuiConsole.io.print("[");
 		GuiConsole.io.print("M", Color.white);
@@ -677,15 +679,17 @@ public class GameMenu implements Serializable {
 	}
 
 	// play a music
-	public void printStatistics(Hero hero) {
+	public void printStatistics(Hero hero, String endORload) {
 		GuiConsole.io.print("Treasure", Color.orange);
 		GuiConsole.io.print(" worth ");
 		GuiConsole.io.print(hero.treasure, Color.white);
 		GuiConsole.io.println(" coins collected");
 
-		GuiConsole.io.print(hero.visitedrooms, Color.white);
-		GuiConsole.io.print(" rooms ", Color.white);
-		GuiConsole.io.println("visited this run");
+		if (endORload.equals("end")) {
+			GuiConsole.io.print(hero.visitedrooms, Color.white);
+			GuiConsole.io.print(" rooms ", Color.white);
+			GuiConsole.io.println("visited this run");
+		}
 
 		GuiConsole.io.print(hero.deadgiantspiders, Color.white);
 		GuiConsole.io.print(" Giant spiders ", Color.orange.darker());
